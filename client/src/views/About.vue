@@ -1,3 +1,23 @@
-<template>
-  <div class="about"><h1>This is an about page</h1></div>
+<template lang="pug">
+  section
+    app-about-us
+    app-why-us
+    app-team
+    app-reviews
 </template>
+
+<script>
+import appAboutUs from '@/components/AboutUs';
+import appWhyUs from '@/components/WhyUs';
+import appTeam from '@/components/Team';
+import appReviews from '@/components/Reviews'
+
+export default {
+  components: {
+    appAboutUs,
+    appWhyUs,
+    appReviews,
+    appTeam
+  }
+};
+</script>
