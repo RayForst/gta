@@ -24,8 +24,9 @@ export default new Router({
       component: appWhatWeDo
     },
     {
-      path: "/what-we-do/:name",
+      path: "/what-we-do/:slug",
       name: "what-we-do-item",
+      props: true,
       component: appWhatWeDoProject
     },
     {

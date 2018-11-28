@@ -3,10 +3,42 @@
     .container-fluid
       .row
         .col-xs-12
-          p 
-            | A Toronto based marketing company that specializes in Signs, promotional items and printing to meet the needs of its small, mid size and large corporations. 
-            br
-            br
-            | We specialize in custom made designs to suit any special marketing needs of our clients.
-          router-link(:to='{ name: "about" }') Learn more
+          h2 {{ title }}
+          p.caption {{ caption }}
+          p {{ text }}
+          router-link(:to="{ name: 'about' }") Learn more
 </template>
+
+<script>
+import contentService from '@/services/ContentService'
+
+export default {
+  data() {
+    return {
+      title: null,
+      caption: null,
+      buttonText: null,
+      text: null,
+    }
+  },
+  methods: {
+    async get() {
+      const blockInfo = (await contentService.blockInfo.get({
+        page: 'about-company'
+      })).data
+
+      const content = (await contentService.aboutCompany.get({
+        id: 1
+      })).data
+    
+      this.title = blockInfo.title;
+      this.caption = blockInfo.caption
+      this.buttonText = blockInfo.buttonText
+      this.text = content.text
+    }
+  },
+  mounted() {
+    this.get()
+  }
+}
+</script>

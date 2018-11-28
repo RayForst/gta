@@ -1,20 +1,20 @@
 <template lang="pug">
   div
     section.content-header
-      h1 Customer reviews
+      h1 Why Us
     section.content
-      app-block-info(page='customer-review')
-      app-customer-reviews-list
+      app-block-info(page='why-us')
+      app-why-us-list
 </template>
 
 <script>
 import appBlockInfo from '@/components/content-blocks/BlockInfo';
-import appCustomerReviewsList from '@/components/content-blocks/CustomerReviewsList';
+import appWhyUsList from '@/components/content-blocks/WhyUsList';
 
 export default {
   components: {
     appBlockInfo,
-    appCustomerReviewsList
+    appWhyUsList
   }
 }
 </script>

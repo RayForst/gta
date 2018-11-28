@@ -5,9 +5,32 @@ export default {
     get: credentials => Api().get("content/meta", { params: credentials }),
     save: credentials => Api().post("content/meta", credentials)
   },
+  head: {
+    get: credentials => Api().get("content/head", { params: credentials }),
+    save: credentials => Api().post("content/head", credentials)
+  },
   blockInfo: {
-    get: credentials => Api().get("content/block-info", { params: credentials }),
+    get: credentials =>
+      Api().get("content/block-info", { params: credentials }),
     save: credentials => Api().post("content/block-info", credentials)
+  },
+  whyUs: {
+    get: credentials => Api().get("content/why-us", { params: credentials }),
+    save: credentials => Api().post("content/why-us", credentials)
+  },
+  work: {
+    get: credentials => Api().get("content/work", { params: credentials }),
+    save: credentials => Api().post("content/work", credentials)
+  },
+  customerReview: {
+    get: credentials =>
+      Api().get("content/customer-review", { params: credentials }),
+    save: credentials => Api().post("content/customer-review", credentials)
+  },
+  aboutCompany: {
+    get: credentials =>
+      Api().get("content/about-company", { params: credentials }),
+    save: credentials => Api().post("content/about-company", credentials)
   },
   whatWeDo: {
     get: credentials =>

@@ -10,4 +10,17 @@ module.exports = (sequelize, DataTypes) =>
         category: {
             type: DataTypes.STRING,
         },
+        person_name: {
+            type: DataTypes.STRING,
+        },
+        person_position: {
+            type: DataTypes.STRING,
+        },
+        comment: DataTypes.TEXT,
+        shortDescription: {
+            type: DataTypes.STRING,
+        },
+        description: {
+            type: DataTypes.TEXT,
+        },
     })

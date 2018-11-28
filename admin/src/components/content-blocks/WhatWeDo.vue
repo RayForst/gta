@@ -12,10 +12,15 @@
           span {{ item.title }}
           span {{ item.slug }}
           span {{ item.icon }}.svg
+          span(@click="edit(item.id)")
+            u Edit
     form.box-body(@submit.prevent="save")
       .form-group
         label(for="r1") Title
         input#r1.form-control(v-model="title" type="text" placeholder="Title")
+      .form-group
+        label(for="r6") Article Title
+        input#r6.form-control(v-model="articleTitle" type="text" placeholder="Title")
       .form-group
         label(for="r3") Slug
         input#r3.form-control(v-model="slug" type="text" placeholder="Slug")
@@ -26,59 +31,64 @@
       .form-group
         label(for="r2") Short description
         textarea#r2.form-control(v-model="shortDescription" placeholder="Short description")
+      .form-group
+        label(for="testid-2") Description
+        wysiwyg#testid-2(v-model="description")
+
       button.btn.btn-block.btn-success Save
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
     return {
-      icons: [
-        '3d-letters',
-        'decals',
-        'glass',
-        'large',
-        'promo',
-        'sandvich',
-      ],
+      icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich"],
       items: [],
+      description: null,
       title: null,
       shortDescription: null,
       slug: null,
       icon: null,
-    }
+      articleTitle: null
+    };
   },
   methods: {
     async save() {
-     // this.error = ''
-
       await contentService.whatWeDo.save({
         title: this.title,
         shortDescription: this.shortDescription,
         slug: this.slug,
-        icon: this.icon
-      })
+        description: this.description,
+        icon: this.icon,
+        articleTitle: this.articleTitle
+      });
 
-      this.title = null
-      this.shortDescription = null
-      this.slug = null
-      this.icon = null
+      this.title = null;
+      this.articleTitle = null;
+      this.shortDescription = null;
+      this.slug = null;
+      this.icon = null;
+      this.description = null;
       this.get();
     },
     async get() {
-      const list = (await contentService.whatWeDo.get()).data
+      this.items = (await contentService.whatWeDo.get()).data;
+    },
+    edit(id) {
+      const selected = this.items.filter(obj => obj.id === id)[0];
 
-      console.log(list)
-
-      this.items = list;
-      // this.description = meta.description;
-      // this.keywords = meta.keywords;
+      this.title = selected.title;
+      this.articleTitle = selected.articleTitle;
+      this.shortDescription = selected.shortDescription;
+      this.slug = selected.slug;
+      this.icon = selected.icon;
+      this.description = selected.description;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>

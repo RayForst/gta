@@ -4,7 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    headerData: null
+  },
+  mutations: {
+    setHeader(state, payload) {
+      state.headerData = payload;
+    }
+  },
   actions: {}
 });

@@ -1,8 +1,5 @@
-//const AuthenticationController = require('./controllers/AuthenticationController')
 const ContentController = require('./controllers/ContentController')
 const ContentWorkController = require('./controllers/content/WorksController')
-//const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
-//const UserController = require('./controllers/UserController')
 
 module.exports = app => {
     app.get('/status', (req, res) => {
@@ -21,6 +18,19 @@ module.exports = app => {
 
     app.get('/content/block-info', ContentController.getBlockInfo)
     app.post('/content/block-info', ContentController.saveBlockInfo)
+
+    app.get('/content/head', ContentController.getHead)
+    app.post('/content/head', ContentController.saveHead)
+
+    app.get('/content/about-company', ContentController.getAboutCompany)
+    app.post('/content/about-company', ContentController.saveAboutCompany)
+
+    app.get('/content/customer-review', ContentController.getCustomerReview)
+    app.post('/content/customer-review', ContentController.saveCustomerReview)
+
+    app.get('/content/why-us', ContentController.getWhyUs)
+    app.post('/content/why-us', ContentController.saveWhyUs)
+
     // app.post(
     //     '/register',
     //     AuthenticationControllerPolicy.register,

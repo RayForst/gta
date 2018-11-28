@@ -4,6 +4,20 @@ export default {
   meta: {
     get: credentials => Api().get("content/meta", { params: credentials })
   },
+  head: {
+    get: credentials => Api().get("content/head", { params: credentials })
+  },
+  whyUs: {
+    get: credentials => Api().get("content/why-us", { params: credentials })
+  },
+  aboutCompany: {
+    get: credentials =>
+      Api().get("content/about-company", { params: credentials })
+  },
+  customerReviews: {
+    get: credentials =>
+      Api().get("content/customer-review", { params: credentials })
+  },
   whatWeDo: {
     get: credentials => Api().get("content/what-we-do", { params: credentials })
   },

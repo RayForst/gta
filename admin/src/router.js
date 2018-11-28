@@ -11,6 +11,8 @@ import appContacts from "./views/Contacts.vue";
 import appSettings from "./views/Settings.vue";
 import appContactsRequests from "./views/ContactsRequests.vue";
 import appCustomerReview from "./views/CustomerReview.vue";
+import appAboutCompany from "./views/AboutCompany.vue";
+import appWhyUs from "./views/WhyUs.vue";
 
 Vue.use(Router);
 
@@ -73,9 +75,19 @@ export default new Router({
       component: appContactsRequests
     },
     {
-      path: "/contacts-requests",
+      path: "/customer-reviews",
       name: "customer-reviews",
       component: appCustomerReview
+    },
+    {
+      path: "/about-company",
+      name: "about-company",
+      component: appAboutCompany
+    },
+    {
+      path: "/why-us",
+      name: "why-us",
+      component: appWhyUs
     }
   ]
 });

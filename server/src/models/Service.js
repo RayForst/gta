@@ -3,12 +3,18 @@ module.exports = (sequelize, DataTypes) =>
         title: {
             type: DataTypes.STRING,
         },
+        articleTitle: {
+            type: DataTypes.STRING,
+        },
         slug: {
             type: DataTypes.STRING,
             unique: true,
         },
         shortDescription: {
             type: DataTypes.STRING,
+        },
+        description: {
+            type: DataTypes.TEXT,
         },
         icon: {
             type: DataTypes.STRING,

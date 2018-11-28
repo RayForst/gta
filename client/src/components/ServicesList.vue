@@ -9,38 +9,38 @@
           img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
           h3 {{ item.title }}
           p {{ item.shortDescription }}
-          router-link(:to="{ name: 'what-we-do-item', params: { name: item.slug } }") Learn more
+          router-link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") Learn more
       .row
         .col-xs-12
           router-link(:to="{ name: 'what-we-do' }") {{ buttonText }}
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
     return {
       title: null,
       items: [],
-      buttonText: null,
-    }
+      buttonText: null
+    };
   },
-  props: ['gallery'],
+  props: ["gallery"],
   methods: {
     async get() {
       const blockInfo = (await contentService.blockInfo.get({
-        page: 'what-we-do'
-      })).data
-      const list = (await contentService.whatWeDo.get()).data
-    
+        page: "what-we-do"
+      })).data;
+      const list = (await contentService.whatWeDo.get()).data;
+
       this.items = list;
-      this.title = blockInfo.title
-      this.buttonText = blockInfo.buttonText
+      this.title = blockInfo.title;
+      this.buttonText = blockInfo.buttonText;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>

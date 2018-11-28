@@ -4,15 +4,17 @@
       h1 Contacts Page
     section.content
       app-meta
-      | Other content
+      app-head(page="contacts")
 </template>
 
 <script>
 import appMeta from '@/components/content-blocks/Meta';
+import appHead from '@/components/content-blocks/Head';
 
 export default {
   components: {
-    appMeta
+    appMeta,
+    appHead
   }
 }
 </script>

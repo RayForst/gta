@@ -1,7 +1,7 @@
 <template lang="pug">
   .box.box-default
     .box-header.with-border
-      h3.box-title Block info
+      h3.box-title {{ name }} Block info
       .box-tools.pull-right
         button.btn.btn-box-toolbtn.btn-box-tool
           i.fa.fa-minus
@@ -22,7 +22,7 @@
 import contentService from '@/services/ContentService'
 
 export default {
-  props: ['page'],
+  props: ['page', 'name'],
   data() {
     return {
       title: null,

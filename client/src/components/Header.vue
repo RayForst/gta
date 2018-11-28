@@ -15,37 +15,110 @@
                 | {{ item.text }}
               template(v-else)
                 img(src="../assets/img/logo.svg" alt="company logo")
+        template(v-if="!itemView")
+          .row
+            .col-xs-12
+              h1 {{ title }}
+              p {{ caption }}
+              router-link(:to="{ name: 'contacts' }") Request a quote 
+        template(v-else)
+          .row
+            .col-xs-12
+              router-link(:to="{ name: 'index' }") Home
+              | /
+              router-link(:to="{ name: itemView.breadcrumbs[0].route }") {{ itemView.breadcrumbs[0].name }}
+              | / 
+              span {{ itemView.breadcrumbs[1].name }}
+          .row
+            .col-xs-12
+              span {{ itemView.icon }}
+              h1 {{ itemView.title }}
+              router-link(:to="{ name: 'contacts' }") Request a quote 
 </template>
 
 <script>
+import contentService from "@/services/ContentService";
+
 export default {
   data() {
     return {
+      contentKey: "index",
+      title: null,
+      caption: null,
       routes: [
         {
-          text: 'What we do',
-          route: 'what-we-do'
+          text: "What we do",
+          route: "what-we-do"
         },
         {
-          text: 'Our works',
-          route: 'works'
+          text: "Our works",
+          route: "works"
         },
         {
-          text: 'Logo',
-          route: 'index'
+          text: "Logo",
+          route: "index"
         },
         {
-          text: 'Company',
-          route: 'about'
+          text: "Company",
+          route: "about"
         },
         {
-          text: 'Contact us',
-          route: 'contacts'
-        },
+          text: "Contact us",
+          route: "contacts"
+        }
       ]
+    };
+  },
+  methods: {
+    async get() {
+      const blockInfo = (await contentService.head.get({
+        page: this.contentKey
+      })).data;
+
+      this.title = blockInfo.title;
+      this.caption = blockInfo.caption;
     }
+  },
+  computed: {
+    page() {
+      return this.$store.state.route.path;
+    },
+    itemView() {
+      return this.$store.state.headerData;
+    }
+  },
+  watch: {
+    page(newV, old) {
+      switch (newV) {
+        case "/what-we-do":
+          this.contentKey = "what-we-do";
+          break;
+        case "/works":
+          this.contentKey = "works";
+          break;
+        case "/contacts":
+          this.contentKey = "contacts";
+          break;
+        case "/about":
+          this.contentKey = "about";
+          break;
+        case "/":
+          this.contentKey = "index";
+          break;
+        default:
+          this.contentKey = null;
+      }
+
+      if (this.contentKey) {
+        this.$store.commit("setHeader", null);
+        this.get();
+      }
+    }
+  },
+  mounted() {
+    this.get();
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -94,7 +167,7 @@ a {
 
 .navigation-links {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
