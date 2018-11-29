@@ -98,7 +98,6 @@ module.exports = {
                 })
 
                 if (services.description) {
-                    console.log('ok')
                     services.description = services.description.replace(
                         /<style([\S\s]*?)>([\S\s]*?)<\/style>/gi,
                         ''
@@ -266,6 +265,47 @@ module.exports = {
             }
 
             res.send(service ? service.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async getAbout(req, res) {
+        try {
+            const meta = await Models.About.findOne({
+                where: { id: req.query.id },
+            })
+
+            if (meta.description) {
+                meta.description = meta.description.replace(
+                    /<style([\S\s]*?)>([\S\s]*?)<\/style>/gi,
+                    ''
+                )
+            }
+
+            res.send(meta ? meta.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async saveAbout(req, res) {
+        try {
+            let meta
+            let alreadyExists = await Models.About.findOne({
+                where: { id: 1 },
+            })
+
+            if (alreadyExists) {
+                meta = alreadyExists
+                alreadyExists.update(req.body)
+            } else {
+                meta = await Models.About.create(req.body)
+            }
+
+            res.send(meta.toJSON())
         } catch (err) {
             res.status(400).send({
                 error: 'Something went wrong' + err,

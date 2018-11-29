@@ -25,6 +25,9 @@ module.exports = app => {
     app.get('/content/about-company', ContentController.getAboutCompany)
     app.post('/content/about-company', ContentController.saveAboutCompany)
 
+    app.get('/content/about', ContentController.getAbout)
+    app.post('/content/about', ContentController.saveAbout)
+
     app.get('/content/customer-review', ContentController.getCustomerReview)
     app.post('/content/customer-review', ContentController.saveCustomerReview)
 

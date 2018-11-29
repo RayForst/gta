@@ -13,6 +13,9 @@ export default {
   works: {
     get: credentials => Api().get("content/work", { params: credentials })
   },
+  about: {
+    get: credentials => Api().get("content/about", { params: credentials })
+  },
   aboutCompany: {
     get: credentials =>
       Api().get("content/about-company", { params: credentials })
