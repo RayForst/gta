@@ -31,6 +31,18 @@
           .form-group
             label(for="r3") Category
             input#r3.form-control(v-model="category" type="text" placeholder="Category")
+          .form-group
+            label(for="r3") Person name
+            input#r3.form-control(v-model="person_name" type="text" placeholder="Person name")
+          .form-group
+            label(for="r3") Person company
+            input#r3.form-control(v-model="person_position" type="text" placeholder="Category")
+          .form-group
+            label(for="r1") Person comment
+            textarea#r1.form-control(v-model="comment" type="text" placeholder="Person comment")
+          .form-group
+            label(for="testid-2") Description
+            wysiwyg#testid-2(v-model="description")
           button.btn.btn-block.btn-success Save
 </template>
 
@@ -47,7 +59,11 @@ export default {
       title: null,
       category: null,
       slug: null,
-      id: null
+      person_name: null,
+      person_position: null,
+      comment: null,
+      id: null,
+      description: null
     };
   },
   components: {
@@ -61,11 +77,19 @@ export default {
         title: this.title,
         category: this.category,
         slug: this.slug,
+        person_position: this.person_position,
+        person_name: this.person_name,
+        comment: this.comment,
+        description: this.description,
         id: this.id
       });
       this.title = null;
       this.category = null;
       this.slug = null;
+      this.person_name = null;
+      this.person_position = null;
+      this.comment = null;
+      this.description = null;
       this.get();
     },
     async get() {
@@ -79,6 +103,10 @@ export default {
       this.title = selected.title;
       this.category = selected.category;
       this.slug = selected.slug;
+      this.person_name = selected.person_name;
+      this.person_position = selected.person_position;
+      this.comment = selected.comment;
+      this.description = selected.description;
       this.id = selected.id;
     }
   },

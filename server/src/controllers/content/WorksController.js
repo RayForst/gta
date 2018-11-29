@@ -26,10 +26,17 @@ module.exports = {
         try {
             let works
 
-            if (req.body.id) {
+            if (req.query.slug) {
                 works = await Models.Work.findOne({
-                    where: { id: req.body.id },
+                    where: { slug: req.query.slug },
                 })
+
+                if (works.description) {
+                    works.description = works.description.replace(
+                        /<style([\S\s]*?)>([\S\s]*?)<\/style>/gi,
+                        ''
+                    )
+                }
                 res.send(works.toJSON())
             } else {
                 console.log('no id')
