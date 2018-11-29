@@ -20,7 +20,7 @@
             .col-xs-12
               h1 {{ title }}
               p {{ caption }}
-              router-link(:to="{ name: 'contacts' }") Request a quote 
+              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
         template(v-else)
           .row
             .col-xs-12
@@ -33,7 +33,7 @@
             .col-xs-12
               span {{ itemView.icon }}
               h1 {{ itemView.title }}
-              router-link(:to="{ name: 'contacts' }") Request a quote 
+              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
 </template>
 
 <script>
@@ -136,7 +136,7 @@ nav {
   opacity: 1;
 }
 
-a {
+nav a {
   font-size: 14px;
   font-weight: bold;
   font-style: normal;

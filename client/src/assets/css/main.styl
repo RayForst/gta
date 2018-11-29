@@ -17,12 +17,31 @@ body
   margin: 0 auto
 
 // typo
+h1
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #ffffff;
+  max-width: 600px;
+
 h2 
   font-size: 32px;
   font-weight: bold;
   color: #000000;
   margin-bottom: 10px;
   line-height: 1.5;
+
+h3
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #000000;
+
+h4
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+
 
 p.caption
   opacity: 0.5;
@@ -36,3 +55,25 @@ p.caption
 .section-heading
   text-align: center;
   margin-bottom: 50px;
+
+// buttons
+
+a, button
+  &.ui-btn
+    border-radius: 26px;
+    background-color: #eb008b;
+    font-size: 16px;
+    font-weight: bold;
+    color:#fff;
+    border: none;
+    text-decoration: none;
+    line-height: 20px;
+    padding: 17px 50px;
+    min-width: 150px;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+  
+  &.ui-secondary
+    background-color: #0094d9;

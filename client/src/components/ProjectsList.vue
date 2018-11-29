@@ -14,8 +14,8 @@
           p {{ item.category }} {{ item.slug }}
           router-link(:to="{ name: 'works-project', params: { slug: item.slug } }") Learn more
       .row
-        .col-xs-12
-          button(@click="increaseDisplayLimit") {{ buttonText }}
+        .col-xs-12.center-xs
+          button.ui-btn.ui-secondary(@click="increaseDisplayLimit") {{ buttonText }}
 </template>
 
 <script>

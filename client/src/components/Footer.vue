@@ -5,10 +5,19 @@
           .wave.waveTop(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')")
       .container-fluid
         .row
+          .col-xs-3
+            | Logo
+          .col-xs-9
+            .row
+              .col-xs-9
+                h4 Find what you’re looking for
+                p We want you to feel assured that your shirts are being printed by the best of the best.
+              .col-xs-3
+                router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
+        .row
           .col-xs-12
-            | Footer
             section
-              h3 Find what you’re looking for
+              h4 Find what you’re looking for
               ul
                 li(v-for="item in routes")
                   router-link(:to='{ name: item.route }') {{ item.text }}
@@ -16,36 +25,35 @@
               h4 Feel free to contact us
               a(href="#") {{ phone }}
               a(href="#") {{ email }}
-
 </template>
 
 <script>
 export default {
   data() {
     return {
-      phone: '+1 (416) 522-4501',
-      email: 'hello@gtaimagesolutions.com',
+      phone: "+1 (416) 522-4501",
+      email: "hello@gtaimagesolutions.com",
       routes: [
         {
-          text: 'What we do',
-          route: 'what-we-do'
+          text: "What we do",
+          route: "what-we-do"
         },
         {
-          text: 'Works',
-          route: 'works'
+          text: "Works",
+          route: "works"
         },
         {
-          text: 'Company',
-          route: 'about'
+          text: "Company",
+          route: "about"
         },
         {
-          text: 'Contact us',
-          route: 'contacts'
-        },
+          text: "Contact us",
+          route: "contacts"
+        }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

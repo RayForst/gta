@@ -11,8 +11,8 @@
           p {{ item.shortDescription }}
           router-link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") Learn more
       .row
-        .col-xs-12
-          router-link(:to="{ name: 'what-we-do' }") {{ buttonText }}
+        .col-xs-12.center-xs
+          router-link.ui-btn(:to="{ name: 'what-we-do' }") {{ buttonText }}
 </template>
 
 <script>

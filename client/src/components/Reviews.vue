@@ -13,8 +13,8 @@
             span {{ item.person_position }}
             span {{ item.comment }}
       .row
-        .col-xs-12
-          router-link(:to="{ name: 'works' }") {{ buttonText }}
+        .col-xs-12.center-xs
+          router-link.ui-btn.ui-secondary(:to="{ name: 'works' }") {{ buttonText }}
 </template>
 
 <script>

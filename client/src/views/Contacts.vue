@@ -31,14 +31,14 @@
             textarea(id="formMesssge" name="message", cols="30", rows="6" placeholder="Hi guys, we want to cooporate…")
       .row.p_t_2
         .col-xs-12.center-xs.start-md
-          button.swp-form__button.button.button-primary.button-big Send
+          button.ui-btn.swp-form__button.button.button-primary.button-big Send
         .col-xs-12.p_t_2.primary.swp-form__response.hide
           | Thank You for contacting Us! If you have any more questions, click here to write a new message.
     app-map
 </template>
 
 <script>
-import appMap from '@/components/Map';
+import appMap from "@/components/Map";
 
 export default {
   components: {

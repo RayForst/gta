@@ -2,7 +2,6 @@
   .container-fluid 
     .row
       .col-xs-12
-    app-breadcrumbs
     .row
       .col-xs-12
         h2 {{ articleTitle  }}
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import appBreadcrumbs from "@/components/ui/Breadcrumbs";
 import appWhyUs from "@/components/WhyUs";
 import appReviews from "@/components/Reviews";
 import appCA from "@/components/CA";
@@ -28,7 +26,6 @@ import contentService from "@/services/ContentService";
 
 export default {
   components: {
-    appBreadcrumbs,
     appWhyUs,
     appReviews,
     appCA
