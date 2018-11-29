@@ -2,7 +2,7 @@
   section
     .container-fluid
       .row
-        .col-xs-12
+        .section-heading.col-xs-12
           h2 {{ title }}
           p.caption {{ caption }}
       .row
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
@@ -26,26 +26,26 @@ export default {
       title: null,
       caption: null,
       items: [],
-      buttonText: null,
-    }
+      buttonText: null
+    };
   },
-  props: ['gallery'],
+  props: ["gallery"],
   methods: {
     async get() {
       const blockInfo = (await contentService.blockInfo.get({
-        page: 'customer-review'
-      })).data
-      const list = (await contentService.customerReviews.get()).data
-    
+        page: "customer-review"
+      })).data;
+      const list = (await contentService.customerReviews.get()).data;
+
       this.items = list;
-      this.title = blockInfo.title
-      this.caption = blockInfo.caption
-      this.buttonText = blockInfo.buttonText
+      this.title = blockInfo.title;
+      this.caption = blockInfo.caption;
+      this.buttonText = blockInfo.buttonText;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>
 

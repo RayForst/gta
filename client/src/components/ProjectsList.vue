@@ -2,7 +2,7 @@
   section
     .container-fluid
       .row
-        .col-xs-12
+        .col-xs-12.section-heading
           h2 {{ title }}
       .row
         .col-xs-12

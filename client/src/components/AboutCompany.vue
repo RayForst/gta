@@ -2,15 +2,17 @@
   section
     .container-fluid
       .row
-        .col-xs-12
+        .col-xs-12.section-heading
           h2 {{ title }}
           p.caption {{ caption }}
+      .row
+        .col-xs-12
           p {{ text }}
           router-link(:to="{ name: 'about' }") Learn more
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
@@ -18,27 +20,27 @@ export default {
       title: null,
       caption: null,
       buttonText: null,
-      text: null,
-    }
+      text: null
+    };
   },
   methods: {
     async get() {
       const blockInfo = (await contentService.blockInfo.get({
-        page: 'about-company'
-      })).data
+        page: "about-company"
+      })).data;
 
       const content = (await contentService.aboutCompany.get({
         id: 1
-      })).data
-    
+      })).data;
+
       this.title = blockInfo.title;
-      this.caption = blockInfo.caption
-      this.buttonText = blockInfo.buttonText
-      this.text = content.text
+      this.caption = blockInfo.caption;
+      this.buttonText = blockInfo.buttonText;
+      this.text = content.text;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>
