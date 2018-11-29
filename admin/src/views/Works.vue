@@ -5,6 +5,7 @@
     section.content
       app-meta
       app-head(page="works")
+      app-block-info(page='works')
       .box.box-default
         .box-header.with-border
           h3.box-title Why us list
@@ -16,11 +17,17 @@
             div(v-for="item in items" :key="item.id")
               span {{ item.id }}
               span {{ item.title }}
+              span {{ item.slug }}
               span {{ item.category }}
+              span(@click="edit(item.id)")
+                u Edit
         form.box-body(@submit.prevent="save")
           .form-group
             label(for="r1") Title
             input#r1.form-control(v-model="title" type="text" placeholder="Title")
+          .form-group
+            label(for="r1") Slug
+            input#r1.form-control(v-model="slug" type="text" placeholder="Slug")
           .form-group
             label(for="r3") Category
             input#r3.form-control(v-model="category" type="text" placeholder="Category")
@@ -28,6 +35,7 @@
 </template>
 
 <script>
+import appBlockInfo from "@/components/content-blocks/BlockInfo";
 import appMeta from "@/components/content-blocks/Meta";
 import appHead from "@/components/content-blocks/Head";
 import contentService from "@/services/ContentService";
@@ -37,27 +45,41 @@ export default {
     return {
       items: [],
       title: null,
-      category: null
+      category: null,
+      slug: null,
+      id: null
     };
   },
   components: {
     appMeta,
-    appHead
+    appHead,
+    appBlockInfo
   },
   methods: {
     async save() {
       await contentService.work.save({
         title: this.title,
-        category: this.category
+        category: this.category,
+        slug: this.slug,
+        id: this.id
       });
       this.title = null;
       this.category = null;
+      this.slug = null;
       this.get();
     },
     async get() {
       const list = (await contentService.work.get()).data;
 
       this.items = list;
+    },
+    edit(id) {
+      const selected = this.items.filter(obj => obj.id === id)[0];
+
+      this.title = selected.title;
+      this.category = selected.category;
+      this.slug = selected.slug;
+      this.id = selected.id;
     }
   },
   mounted() {

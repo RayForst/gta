@@ -10,6 +10,9 @@ export default {
   whyUs: {
     get: credentials => Api().get("content/why-us", { params: credentials })
   },
+  works: {
+    get: credentials => Api().get("content/work", { params: credentials })
+  },
   aboutCompany: {
     get: credentials =>
       Api().get("content/about-company", { params: credentials })

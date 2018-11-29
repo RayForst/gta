@@ -35,8 +35,9 @@ export default new Router({
       component: appWorks
     },
     {
-      path: "/works/:name",
+      path: "/works/:slug",
       name: "works-project",
+      props: true,
       component: appWorksProject
     },
     {
