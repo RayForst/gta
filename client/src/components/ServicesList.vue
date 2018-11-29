@@ -1,15 +1,15 @@
 <template lang="pug">
   section
-    .container-fluid
+    .container-fluid.mid
       .row
         .col-xs-12.section-heading
           h2 {{ title }}
       .row
-        .col-xs-6(v-for="item in items" :key="item.id")
+        .item.col-xs-6(v-for="item in items" :key="item.id")
           img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
           h3 {{ item.title }}
           p {{ item.shortDescription }}
-          router-link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") Learn more
+          router-link.link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") Learn more
       .row
         .col-xs-12.center-xs
           router-link.ui-btn(:to="{ name: 'what-we-do' }") {{ buttonText }}
@@ -44,3 +44,17 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+p {
+  font-size: 18px;
+  line-height: 1.56;
+  color: #767676;
+}
+
+.item {
+  padding: 0 50px;
+  margin-bottom: 70px;
+}
+</style>
+

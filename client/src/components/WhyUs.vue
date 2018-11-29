@@ -5,9 +5,9 @@
         h2 {{ title }}
         p.caption {{ caption }}
     .row
-        .col-xs-12
-          div(v-for="item in list" :key="item.id")
-            span {{ item.text }}
+        .col-xs-6(v-for="item in list" :key="item.id")
+          .item
+            div {{ item.text }}
 </template>
 
 <script>
@@ -39,3 +39,22 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.item {
+  font-size: 22px;
+  line-height: 1.27;
+  color: #0a0a0a;
+  border-radius: 6px;
+  box-shadow: 0 0 40px 0 rgba(9, 39, 75, 0.11);
+  background-color: #ffffff;
+  margin: 0 12px;
+  margin-bottom: 40px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+
+  div {
+    padding-right: 20%;
+  }
+}
+</style>

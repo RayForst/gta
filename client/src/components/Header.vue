@@ -19,7 +19,7 @@
           .row
             .col-xs-12
               h1 {{ title }}
-              p {{ caption }}
+              p.heading-caption {{ caption }}
               router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
         template(v-else)
           .row
@@ -125,6 +125,7 @@ export default {
 header {
   position: relative;
   padding-bottom: 160px;
+  margin-bottom: 20px;
 }
 
 nav {

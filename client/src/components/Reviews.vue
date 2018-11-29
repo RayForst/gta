@@ -5,13 +5,15 @@
         .section-heading.col-xs-12
           h2 {{ title }}
           p.caption {{ caption }}
-      .row
-        .col-xs-12
-          div(v-for="item in items" :key="item.id")
-            span {{ item.id }}
-            span {{ item.person_name }}
-            span {{ item.person_position }}
-            span {{ item.comment }}
+    .owl-wrap(v-if="items.length")
+      carousel(loop=true autoWidth=true :dots="false")
+        .carousel-item(v-for="item in items" :key="item.id")
+          .carousel-item-content
+            .person
+              .fullname {{ item.person_name }}
+              .position {{ item.person_position }}
+            .comment {{ item.comment }}
+    .container-fluid
       .row
         .col-xs-12.center-xs
           router-link.ui-btn.ui-secondary(:to="{ name: 'works' }") {{ buttonText }}
@@ -19,8 +21,10 @@
 
 <script>
 import contentService from "@/services/ContentService";
+import carousel from "vue-owl-carousel";
 
 export default {
+  components: { carousel },
   data() {
     return {
       title: null,
@@ -49,3 +53,22 @@ export default {
 };
 </script>
 
+<style lang="stylus" scoped>
+.carousel-item {
+  width: 420px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .carousel-item-content {
+    width: 380px;
+    height: 260px;
+    border-radius: 5px;
+    box-shadow: 0 0 40px 0 rgba(9, 39, 75, 0.11);
+    background: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+}
+</style>
