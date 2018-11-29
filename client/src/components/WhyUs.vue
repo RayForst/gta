@@ -10,7 +10,6 @@
             span {{ item.text }}
 </template>
 
-
 <script>
 import contentService from "@/services/ContentService";
 

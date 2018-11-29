@@ -36,6 +36,10 @@ export default {
     get: credentials => Api().get("content/about", { params: credentials }),
     save: credentials => Api().post("content/about", credentials)
   },
+  team: {
+    get: credentials => Api().get("content/team", { params: credentials }),
+    save: credentials => Api().post("content/team", credentials)
+  },
   whatWeDo: {
     get: credentials =>
       Api().get("content/what-we-do", { params: credentials }),

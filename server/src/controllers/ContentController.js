@@ -312,4 +312,47 @@ module.exports = {
             })
         }
     },
+    async getTeam(req, res) {
+        try {
+            let services
+
+            if (req.body.id) {
+                services = await Models.Team.findOne({
+                    where: { id: req.body.id },
+                })
+                res.send(services.toJSON())
+            } else {
+                services = await Models.Team.findAll({
+                    raw: true,
+                })
+
+                res.send(services)
+            }
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async saveTeam(req, res) {
+        try {
+            let service = req.body.id
+                ? await Models.Team.findOne({
+                    where: { id: req.body.id },
+                })
+                : null
+
+            if (service) {
+                service.update(req.body)
+            } else {
+                service = await Models.Team.create(req.body)
+            }
+
+            res.send(service ? service.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
 }

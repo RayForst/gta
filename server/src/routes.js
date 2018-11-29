@@ -34,6 +34,9 @@ module.exports = app => {
     app.get('/content/why-us', ContentController.getWhyUs)
     app.post('/content/why-us', ContentController.saveWhyUs)
 
+    app.get('/content/team', ContentController.getTeam)
+    app.post('/content/team', ContentController.saveTeam)
+
     // app.post(
     //     '/register',
     //     AuthenticationControllerPolicy.register,

@@ -13,6 +13,7 @@ import appContactsRequests from "./views/ContactsRequests.vue";
 import appCustomerReview from "./views/CustomerReview.vue";
 import appAboutCompany from "./views/AboutCompany.vue";
 import appWhyUs from "./views/WhyUs.vue";
+import appTeam from "./views/Team.vue";
 
 Vue.use(Router);
 
@@ -88,6 +89,11 @@ export default new Router({
       path: "/why-us",
       name: "why-us",
       component: appWhyUs
+    },
+    {
+      path: "/team",
+      name: "team",
+      component: appTeam
     }
   ]
 });

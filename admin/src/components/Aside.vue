@@ -33,6 +33,9 @@
         router-link(:to="{ name: 'customer-reviews' }")
           span Customer Reviews
       li.treeview
+        router-link(:to="{ name: 'team' }")
+          span Team
+      li.treeview
         router-link(:to="{ name: 'about-company' }")
           span About company
     ul.sidebar-menu
