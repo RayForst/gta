@@ -1,14 +1,17 @@
 <template lang="pug">
   section
-    .container-fluid
+    .container-fluid.mid
       .row
         .col-xs-12.section-heading
           h2 {{ title }}
           p.caption {{ caption }}
-      .row
-        .col-xs-12
-          p {{ text }}
-          router-link(:to="{ name: 'about' }") Learn more
+      .row.m1
+        .col-xs-6
+          img(src="../assets/img/flag-can@2x.png", alt="")
+          p.content {{ text }}
+          router-link.link(:to="{ name: 'about' }") Learn more
+        .col-xs-6.end-xs
+          img(src="../assets/img/gta-house.svg", alt="")
 </template>
 
 <script>
@@ -44,3 +47,21 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.content {
+  font-size: 18px;
+  line-height: 1.78;
+  color: #000000;
+}
+
+.m1 {
+  margin-top: 10px;
+}
+
+p {
+  white-space: pre-wrap;
+  padding-right: 70px;
+  margin-bottom: 30px;
+}
+</style>
