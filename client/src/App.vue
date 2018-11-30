@@ -1,14 +1,14 @@
 <template lang="pug">
   #app
-    app-header
+    // app-header
     section.content
       router-view
     app-footer
 </template>
 
 <script>
-import appHeader from '@/components/Header'
-import appFooter from '@/components/Footer'
+import appHeader from "@/components/Header";
+import appFooter from "@/components/Footer";
 
 export default {
   data() {
@@ -16,9 +16,9 @@ export default {
   },
   components: {
     appHeader,
-    appFooter,
+    appFooter
   }
-}
+};
 </script>
 
 

@@ -5,31 +5,31 @@
           .wave.waveTop(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')")
       .container-fluid
         .row.ca
-          .col-xs-3.align-center
+          .col-xs-12.col-sm-5.col-md-3.align-start.center-xs.start-sm
             router-link(:to="{ name: 'index' }")
               img(src="../assets/img/logo-no-text.svg", alt="")
-          .col-xs-9.align-center
+          .col-xs-12.col-sm-7.col-md-9.align-center
             .row.align-center.w100
-              .col-xs-9
+              .col-xs-12.col-md-7
                 h4 Printing services
                 p We want you to feel assured that your shirts are being printed by the best of the best.
-              .col-xs-3
+              .col-xs-12.col-md-5.center-xs.start-sm
                 router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
         .row.content
-          .col-xs-3.address
+          .col-xs-12.col-sm-5.col-md-3.address.last-xs.first-sm
             div
               img(src="../assets/img/flag-can.png" srcset="../assets/img/flag-can@2x.png 2x" alt="")
               span 790 Eglinton Ave East Toronto, ON M4G 2L1
             div.copy © 2018 GTA Image solutions Inc
-          .col-xs-9
+          .col-xs-12.col-sm-7.col-md-9
             .row
-              .col-xs-7
+              .col-xs-12.col-md-7
                 section
                   h4 Find what you’re looking for
                   ul.links
                     li(v-for="item in routes")
                       router-link(:to='{ name: item.route }') {{ item.text }}
-              .col-xs-5
+              .col-xs-12.col-md-5
                 section.contacts
                   h4 Feel free to contact us
                   div
@@ -79,7 +79,15 @@ export default {
 <style lang="stylus" scoped>
 footer {
   position: relative;
-  padding-top: 160px;
+  padding-top: 40px;
+
+  @media only screen and (min-width: 48em) {
+    padding-top: 120px;
+  }
+
+  @media only screen and (min-width: 48em) {
+    padding-top: 160px;
+  }
 }
 
 .copy {
@@ -91,13 +99,18 @@ footer {
   padding: 80px 0 35px 0;
 }
 
+.align-start {
+  display: flex;
+  align-items: flex-start;
+}
+
 .align-center {
   display: flex;
   align-items: center;
 }
 
 .w100 {
-  width: 100%;
+  min-width: 100%;
 }
 
 .content {
@@ -139,7 +152,15 @@ footer {
     line-height: 1.64;
     color: #ffffff;
     max-width: 160px;
-    padding-left: 15px;
+    padding-left: 0;
+    padding-top: 20px;
+    padding-bottom: 25px;
+
+    @media only screen and (min-width: 48em) {
+      padding-left: 15px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 }
 
@@ -149,11 +170,15 @@ h3, h4, ul {
 }
 
 .contacts a {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   line-height: 1.78;
   color: #fff;
   text-decoration: none;
+
+  @media only screen and (min-width: 64em) {
+    font-size: 18px;
+  }
 }
 
 h4 {
@@ -177,8 +202,9 @@ p {
   font-size: 14px;
   line-height: 1.57;
   color: #ffffff;
-  width: 380px;
+  max-width: 380px;
   margin-top: 6px;
+  margin-bottom: 30px;
 }
 
 .social {
@@ -225,7 +251,41 @@ p {
 
   &.waveTop {
     // animation: move_wave 120s linear infinite;
-    background-size: 76% 160px;
+    background-size: 76% 40px;
+
+    @media only screen and (min-width: 48em) {
+      background-size: 76% 120px;
+    }
+
+    @media only screen and (min-width: 64em) {
+      background-size: 76% 160px;
+    }
+  }
+}
+
+ul {
+  margin-bottom: 50px;
+
+  @media only screen and (min-width: 64em) {
+    margin-bottom: 0;
+  }
+}
+
+.contacts {
+  margin-bottom: 50px;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: 0;
+  }
+}
+
+.address {
+  div:first-child {
+    flex-direction: column;
+
+    @media only screen and (min-width: 48em) {
+      flex-direction: row;
+    }
   }
 }
 

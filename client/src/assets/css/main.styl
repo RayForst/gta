@@ -1,8 +1,12 @@
 @import "~normalize.css";
 
+$media_sm = 'only screen and (min-width:48em)'
+$media_md = 'only screen and (min-width: 64em)'
+
 body
   font-family: 'Montserrat', sans-serif;
-//  margin: 0;
+  min-width: 320px;
+
 
 #app
   display: flex
@@ -71,12 +75,15 @@ a, button
     border: none;
     text-decoration: none;
     line-height: 20px;
-    padding: 17px 50px;
+    padding: 17px 25px;
     min-width: 150px;
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
+    
+    @media $media_sm
+      padding: 17px 50px;
   
   &.ui-secondary
     background-color: #0094d9;
