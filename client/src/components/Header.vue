@@ -15,12 +15,21 @@
                 | {{ item.text }}
               template(v-else)
                 img(src="../assets/img/logo.svg" alt="company logo")
+      .container-fluid.mid
         template(v-if="!itemView")
-          .row
-            .col-xs-12
-              h1 {{ title }}
-              p.heading-caption {{ caption }}
-              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
+          template(v-if="contentKey === 'index'")
+            .row
+              .col-xs-12
+                h1 {{ title }}
+                p.heading-caption {{ caption }}
+                router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+          template(v-else)
+            .row.middle-xs
+              .col-xs-8
+                h1 {{ title }}
+                p.heading-caption {{ caption }}
+              .col-xs-4
+                router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
         template(v-else)
           .row
             .col-xs-12
@@ -124,13 +133,14 @@ export default {
 <style lang="stylus" scoped>
 header {
   position: relative;
-  padding-bottom: 160px;
+  padding-bottom: 200px;
   margin-bottom: 20px;
 }
 
 nav {
   color: #fff;
   padding: 10px 0;
+  padding-bottom: 60px;
 }
 
 .logo {

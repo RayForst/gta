@@ -88,7 +88,7 @@ footer {
 
 .ca {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 60px 0 35px 0;
+  padding: 80px 0 35px 0;
 }
 
 .align-center {
