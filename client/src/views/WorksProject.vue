@@ -1,26 +1,35 @@
 <template lang="pug">
-  .container-fluid 
-    .row
-      .col-xs-12
-    .row
-      .col-xs-4
-        .row
-          .col-xs-12
-            | Person company logo
-          .col-xs-12
-            div {{ person_name }}
-            div {{ person_position }}
-      .col-xs-8
-        | {{ comment }}
-    .row
-      .col-xs-12
-        | Gallery
-    .row
-      .col-xs-12
-        .desc(v-html="description")
-    app-c-a
-    app-why-us
-    app-reviews
+  section
+    .container-fluid 
+      .row
+        .col-xs-12
+      .row
+        .col-xs-4
+          .row
+            .col-xs-12
+              | Person company logo
+            .col-xs-12
+              div {{ person_name }}
+              div {{ person_position }}
+        .col-xs-8
+          | {{ comment }}
+    .carousel-wrap
+      carousel(:loop="true" :autoWidth="true" :dots="false")
+        <img src="https://placeimg.com/200/200/any?1">
+        <img src="https://placeimg.com/200/200/any?2">
+        <img src="https://placeimg.com/200/200/any?3">
+        <img src="https://placeimg.com/200/200/any?4">
+        <img src="https://placeimg.com/200/200/any?1">
+        <img src="https://placeimg.com/200/200/any?2">
+        <img src="https://placeimg.com/200/200/any?3">
+        <img src="https://placeimg.com/200/200/any?4">
+    .container-fluid 
+      .row
+        .col-xs-12
+          .desc(v-html="description")
+      app-c-a
+      app-why-us
+      app-reviews
 </template>
 
 <script>
@@ -28,12 +37,14 @@ import appWhyUs from "@/components/WhyUs";
 import appReviews from "@/components/Reviews";
 import appCA from "@/components/CA";
 import contentService from "@/services/ContentService";
+import carousel from "vue-owl-carousel";
 
 export default {
   components: {
     appWhyUs,
     appReviews,
-    appCA
+    appCA,
+    carousel
   },
   props: ["slug"],
   data() {

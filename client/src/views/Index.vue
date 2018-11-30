@@ -1,14 +1,16 @@
 <template lang="pug">
   section
     app-what-we-do(gallery="false")
+    .spacer
     app-reviews
+    .spacer
     app-about-company
 </template>
 
 <script>
-import appWhatWeDo from '@/components/ServicesList'
-import appReviews from '@/components/Reviews'
-import appAboutCompany from '@/components/AboutCompany'
+import appWhatWeDo from "@/components/ServicesList";
+import appReviews from "@/components/Reviews";
+import appAboutCompany from "@/components/AboutCompany";
 
 export default {
   components: {
@@ -18,3 +20,9 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus">
+.spacer {
+  height: 70px;
+}
+</style>
