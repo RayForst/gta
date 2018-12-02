@@ -1,5 +1,6 @@
 <template lang="pug">
   section
+    .spacer
     app-what-we-do(gallery="true")
     .spacer
     app-reviews
