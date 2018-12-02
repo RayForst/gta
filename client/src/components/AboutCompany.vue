@@ -6,11 +6,11 @@
           h2 {{ title }}
           p.caption {{ caption }}
       .row.m1
-        .col-xs-6
+        .col-xs-12.col-md-6
           img(src="../assets/img/flag-can@2x.png", alt="")
           p.content {{ text }}
           router-link.link(:to="{ name: 'about' }") Learn more
-        .col-xs-6.end-xs
+        .col-xs-12.col-md-6.end-xs
           img(src="../assets/img/gta-house.svg", alt="")
 </template>
 
@@ -59,7 +59,7 @@ export default {
   margin-top: 10px;
 }
 
-p {
+.m1 p {
   white-space: pre-wrap;
   padding-right: 70px;
   margin-bottom: 30px;

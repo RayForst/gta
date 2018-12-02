@@ -5,7 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    headerData: null
+    headerData: {
+      title: null,
+      icon: null,
+      breadcrumbs: null,
+      caption: null
+    }
   },
   mutations: {
     setHeader(state, payload) {

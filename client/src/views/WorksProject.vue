@@ -68,7 +68,8 @@ export default {
 
       this.$store.commit("setHeader", {
         title: content.title,
-        icon: "some.svg",
+        caption: content.shortDescription,
+        icon: null,
         breadcrumbs: [
           {
             name: "Our works",

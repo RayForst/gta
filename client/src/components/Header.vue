@@ -19,30 +19,51 @@
         template(v-if="!itemView")
           template(v-if="contentKey === 'index'")
             .row
-              .col-xs-12
+              .col-xs-12.col-sm-6
                 h1 {{ title }}
                 p.heading-caption {{ caption }}
-                router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+                .row
+                  .col-xs-12.center-xs.start-sm
+                    router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+              .col-xs-12.col-sm-6.graphics-wrap
+                .graphics
+                  div.graph.graph-1
+                    .line
+                    img(src="../assets/img/00.svg", alt="")
+                  div.graph.graph-2
+                    img(src="../assets/img/01.svg", alt="")
+                  div.graph.graph-3
+                    .line.line-2
+                    img(src="../assets/img/02.svg", alt="")
           template(v-else)
             .row.middle-xs
-              .col-xs-8
+              .col-xs-12.col-sm-7.col-md-8
                 h1 {{ title }}
                 p.heading-caption {{ caption }}
-              .col-xs-4
+              .col-xs-12.col-sm-5.col-md-4.center-xs
                 router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
-        template(v-else)
-          .row
-            .col-xs-12
+        template(v-else-if="itemView.title")
+          .row.middle-xs.crumbs-hero
+            .col-xs-12.breadcrumbs
               router-link(:to="{ name: 'index' }") Home
               | /
               router-link(:to="{ name: itemView.breadcrumbs[0].route }") {{ itemView.breadcrumbs[0].name }}
               | / 
               span {{ itemView.breadcrumbs[1].name }}
-          .row
-            .col-xs-12
-              span {{ itemView.icon }}
-              h1 {{ itemView.title }}
-              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
+          .row.middle-xs
+            .col-xs-12.col-sm-7.col-md-8
+              template(v-if="typeof itemView.icon === 'string'")
+                .row.icon-heading.align-center
+                  .col-xs-12.col-md-5.col-lg-3.center-xs
+                    img(:src="require('../assets/img/what-we-do/'+itemView.icon)" alt="")
+                  .col-xs-12.col-md-7.col-lg-9
+                    h1 {{ itemView.title }}
+                    p.heading-caption {{ itemView.caption }}
+              template(v-else)
+                h1 {{ itemView.title }}
+                p.heading-caption {{ itemView.caption }}
+            .col-xs-12.col-sm-5.col-md-4.center-xs
+              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
 </template>
 
 <script>
@@ -80,24 +101,15 @@ export default {
   },
   methods: {
     async get() {
+      if (!this.contentKey) return;
       const blockInfo = (await contentService.head.get({
         page: this.contentKey
       })).data;
 
       this.title = blockInfo.title;
       this.caption = blockInfo.caption;
-    }
-  },
-  computed: {
-    page() {
-      return this.$store.state.route.path;
     },
-    itemView() {
-      return this.$store.state.headerData;
-    }
-  },
-  watch: {
-    page(newV, old) {
+    setContentKey(newV) {
       switch (newV) {
         case "/what-we-do":
           this.contentKey = "what-we-do";
@@ -124,7 +136,21 @@ export default {
       }
     }
   },
+  computed: {
+    page() {
+      return this.$store.state.route.path;
+    },
+    itemView() {
+      return this.$store.state.headerData;
+    }
+  },
+  watch: {
+    page(newV, old) {
+      this.setContentKey(newV);
+    }
+  },
   mounted() {
+    this.setContentKey(this.page);
     this.get();
   }
 };
@@ -133,18 +159,36 @@ export default {
 <style lang="stylus" scoped>
 header {
   position: relative;
-  padding-bottom: 200px;
+  padding-bottom: 80px;
   margin-bottom: 20px;
+  overflow: hidden;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 140px;
+  }
+
+  @media only screen and (min-width: 64em) {
+    padding-bottom: 200px;
+  }
 }
 
 nav {
   color: #fff;
   padding: 10px 0;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 60px;
+  }
 }
 
 .logo {
   opacity: 1;
+  margin: 0 auto;
+
+  @media only screen and (min-width: 64em) {
+    margin: 0;
+  }
 }
 
 nav a {
@@ -158,11 +202,15 @@ nav a {
   text-decoration: none;
   opacity: 0.5;
   text-transform: uppercase;
-  transition: opacity 0.3s ease;
   padding: 10px;
 
   &:not(.logo) {
     margin-top: 55px;
+    display: none;
+
+    @media only screen and (min-width: 64em) {
+      display: block;
+    }
   }
 
   &:hover {
@@ -216,6 +264,18 @@ nav a {
   }
 }
 
+.crumbs-hero {
+  margin-top: -20px;
+}
+
+.icon-heading {
+  margin-bottom: 10px;
+
+  @media only screen and (min-width: 64em) {
+    margin-bottom: 0;
+  }
+}
+
 .wave {
   position: absolute;
   left: 0;
@@ -229,21 +289,45 @@ nav a {
 
   &.waveTop {
     // animation: move_wave 40s linear infinite;
-    background-size: 84% 160px;
+    background-size: 84% 40px;
+
+    @media only screen and (min-width: 48em) {
+      background-size: 84% 120px;
+    }
+
+    @media only screen and (min-width: 64em) {
+      background-size: 84% 160px;
+    }
   }
 
   &.waveMiddle {
     // animation: move_wave 50s linear infinite;
-    background-size: 80% 130px;
     animation-delay: 2s;
     background-position-x: -20%;
+    background-size: 80% 30px;
+
+    @media only screen and (min-width: 48em) {
+      background-size: 80% 100px;
+    }
+
+    @media only screen and (min-width: 64em) {
+      background-size: 80% 130px;
+    }
   }
 
   &.waveBottom {
     // animation: move_wave 60s linear infinite;
-    background-size: 76% 100px;
     animation-delay: 1s;
     background-position-x: 30%;
+    background-size: 76% 20px;
+
+    @media only screen and (min-width: 48em) {
+      background-size: 76% 70px;
+    }
+
+    @media only screen and (min-width: 64em) {
+      background-size: 76% 100px;
+    }
   }
 }
 

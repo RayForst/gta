@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    // app-header
+    app-header
     section.content
       router-view
     app-footer
