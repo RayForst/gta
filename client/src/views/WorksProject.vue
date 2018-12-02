@@ -84,6 +84,7 @@ export default {
   },
   mounted() {
     this.get();
+    document.body.className = "bg-purple-red";
   }
 };
 </script>

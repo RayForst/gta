@@ -1,17 +1,21 @@
 <template lang="pug">
-  section
+  section.overflow-h
     .container-fluid.mid
       .row
         .col-xs-12.section-heading
           h2 {{ title }}
           p.caption {{ caption }}
       .row.m1
-        .col-xs-12.col-md-6
+        .col-xs-12.col-md-6.center-xs.content-wrap.start-md
           img(src="../assets/img/flag-can@2x.png", alt="")
           p.content {{ text }}
-          router-link.link(:to="{ name: 'about' }") Learn more
+          router-link.link(:to="{ name: 'about' }")
+            | Learn more
+            img.icon(src="../assets/img/arrow.svg", alt="")
         .col-xs-12.col-md-6.end-xs
-          img(src="../assets/img/gta-house.svg", alt="")
+          .image-wrap
+            .line
+            img(src="../assets/img/gta-house.svg", alt="")
 </template>
 
 <script>
@@ -59,9 +63,45 @@ export default {
   margin-top: 10px;
 }
 
+.content-wrap {
+  margin-bottom: 50px;
+}
+
 .m1 p {
   white-space: pre-wrap;
-  padding-right: 70px;
   margin-bottom: 30px;
+}
+
+.image-wrap {
+  position: relative;
+  max-width: 650px;
+  margin-left: auto;
+
+  img {
+    width: 100%;
+    max-height: 462px;
+  }
+
+  .line {
+    position: absolute;
+    width: 100%;
+    height: 73%;
+    transform: rotate(-30deg);
+    z-index: -1;
+    top: 25%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 7%;
+      height: 68%;
+      width: 2000px;
+      opacity: 0.1;
+      padding: 0;
+      background: #808080;
+      border-radius: 150px;
+    }
+  }
 }
 </style>

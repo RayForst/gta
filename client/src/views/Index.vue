@@ -4,7 +4,8 @@
     //- .spacer
     //- app-reviews
     //- .spacer
-    //- app-about-company
+    app-about-company
+    .spacer.hide_md
 </template>
 
 <script>
@@ -17,6 +18,9 @@ export default {
     appWhatWeDo,
     appReviews,
     appAboutCompany
+  },
+  mounted() {
+    document.body.className = "";
   }
 };
 </script>

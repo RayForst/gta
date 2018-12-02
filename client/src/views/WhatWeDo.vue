@@ -13,6 +13,9 @@ export default {
   components: {
     appWhatWeDo,
     appReviews
+  },
+  mounted() {
+    document.body.className = "bg-orange";
   }
 };
 </script>

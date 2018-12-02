@@ -234,7 +234,6 @@ p {
   overflow: hidden;
   height: 100%;
   top: -1px;
-  background-image: linear-gradient(127deg, #0094d9, #a709ff);
   z-index: 15;
 }
 

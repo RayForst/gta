@@ -43,6 +43,9 @@ import appMap from "@/components/Map";
 export default {
   components: {
     appMap
+  },
+  mounted() {
+    document.body.className = "bg-purple";
   }
 };
 </script>

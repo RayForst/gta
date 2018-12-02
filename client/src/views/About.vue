@@ -18,6 +18,9 @@ export default {
     appWhyUs,
     appReviews,
     appTeam
+  },
+  mounted() {
+    document.body.className = "";
   }
 };
 </script>

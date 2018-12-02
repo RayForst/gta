@@ -73,6 +73,7 @@ export default {
   },
   mounted() {
     this.get();
+    document.body.className = "bg-blue-green";
   }
 };
 </script>

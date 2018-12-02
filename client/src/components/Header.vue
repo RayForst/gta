@@ -247,7 +247,7 @@ nav a {
   overflow: hidden;
   height: 100%;
   top: -1px;
-  background-image: linear-gradient(115deg, #0094d9, #eb008b);
+  background-image: linear-gradient(127deg, #a709ff, #0094d9);
 
   &.bgTop {
     z-index: 15;
