@@ -1,26 +1,30 @@
 <template lang="pug">
   section
-    .container-fluid.mid
+    .container-fluid.small
       .row
         .col-xs-12
       .row
-        .col-xs-12
+        .col-xs-12.section-heading.heading.line
           h2 {{ articleTitle  }}
-      .row
-        .col-xs-6
-          div {{ shortDescription }}
-        .col-xs-6
-          .carousel-wrap
+      .row.short-desc
+        .col-xs-12.col-md-5
+          p {{ shortDescription }}
+        .col-xs-12.col-md-6.col-md-offset-1
+          .carousel-wrap.owl-dots-left
             carousel(loop=true :items=1 :dots="true" :nav="false")
               <img src="https://placeimg.com/200/200/any?1">
               <img src="https://placeimg.com/200/200/any?2">
               <img src="https://placeimg.com/200/200/any?3">
               <img src="https://placeimg.com/200/200/any?4">
-      .row
-        .col-xs-12
+      .row.desc-wrap
+        .col-xs-12.col-md-6
+          .desc(v-html="description")
+        .col-xs-12.col-md-6
           .desc(v-html="description")
       app-c-a
-      app-why-us
+      .spacer
+    app-why-us
+    .spacer
     app-reviews
 </template>
 
@@ -81,11 +85,34 @@ export default {
 
 <style lang="stylus" scoped>
 .desc {
-  column-count: 2;
+  font-size: 18px;
+  line-height: 1.56;
+  color: #4a4a4a;
+  padding-right: 40px;
 }
 
-.carousel-wrap {
-  max-width: 400px;
-  margin: 0 auto;
+.desc-wrap {
+  padding-bottom: 85px;
+}
+
+.short-desc {
+  border-bottom: 1px solid rgba(#8395a7, 0.1);
+  padding-bottom: 85px;
+  margin-bottom: 60px;
+
+  @media only screen and (min-width: 64em) {
+    margin-top: 30px;
+  }
+
+  p {
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.42;
+    letter-spacing: normal;
+    color: #000000;
+    white-space: pre-wrap;
+  }
 }
 </style>

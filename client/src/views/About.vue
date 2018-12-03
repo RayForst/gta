@@ -1,9 +1,9 @@
 <template lang="pug">
   section
-    //- app-about-us
-    //- app-why-us
-    //- app-team
-    //- app-reviews
+    app-about-us
+    app-why-us
+    app-team
+    app-reviews
 </template>
 
 <script>

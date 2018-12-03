@@ -1,12 +1,15 @@
 <template lang="pug">
-  .container-fluid
+  .container-fluid.mid
     .row
       .col-xs-12.section-heading
         h2 {{ title }}
         p.caption {{ caption }}
     .row
-        .col-xs-6(v-for="item in list" :key="item.id")
+        .col-xs-12.col-sm-6(v-for="item in list" :key="item.id")
           .item
+            .row
+              .col-xs-12
+                img(src="../assets/img/temporary-img.png", alt="")
             div {{ item.text }}
 </template>
 
@@ -53,8 +56,14 @@ export default {
   padding: 30px 40px;
   box-sizing: border-box;
 
-  div {
-    padding-right: 20%;
+  img {
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (min-width: 64em) {
+    div {
+      padding-right: 20%;
+    }
   }
 }
 </style>
