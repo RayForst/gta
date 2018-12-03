@@ -2,8 +2,8 @@
   section
     app-what-we-do(gallery="false")
     .spacer
-    //- app-reviews
-    //- .spacer
+    app-reviews
+    .spacer
     app-about-company
     .spacer.hide_md
 </template>

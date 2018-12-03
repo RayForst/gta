@@ -8,7 +8,7 @@
         .item(v-for="(item, index) in items" :key="item.id" :class="gallery === 'true' ? 'col-xs-12' : 'col-xs-12 col-sm-6'")
           template(v-if="gallery === 'true'")
             .row
-              .col-xs-12.col-md-5(:class="(index + 1) % 2 === 0 ? 'col-md-offset-1' : ''")
+              .col-xs-12.col-md-5(:class="(index + 1) % 2 !== 0 ? 'col-md-offset-1' : ''")
                 .row
                   .col-xs-12.center-xs.start-sm
                     img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
@@ -17,7 +17,7 @@
                 router-link.link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }")
                   | Learn more
                   img.icon(src="../assets/img/arrow.svg", alt="")
-              .col-xs-12.col-md-6(:class="(index + 1) % 2 === 0 ? 'first-md owl-dots-left' : 'col-md-offset-1 owl-dots-right'")
+              .col-xs-12.col-md-6(:class="(index + 1) % 2 !== 0 ? 'first-md owl-dots-left' : 'col-md-offset-1 owl-dots-right'")
                 .carousel-wrap
                   carousel(loop=true :items=1 :dots="true" :nav="false")
                     <img src="https://placeimg.com/490/280/any?1">

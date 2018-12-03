@@ -5,6 +5,16 @@ import { sync } from "vuex-router-sync";
 import store from "./store";
 import * as VueGoogleMaps from "vue2-google-maps";
 
+var filter = function (text, length, clamp) {
+  clamp = clamp || '...';
+  var node = document.createElement('div');
+  node.innerHTML = text;
+  var content = node.textContent;
+  return content.length > length ? content.slice(0, length) + clamp : content;
+};
+
+Vue.filter('truncate', filter);
+
 Vue.config.productionTip = false;
 sync(store, router);
 

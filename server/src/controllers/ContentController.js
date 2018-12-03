@@ -188,12 +188,12 @@ module.exports = {
             let services
 
             if (req.body.id) {
-                services = await Models.CustomerReview.findOne({
+                services = await Models.Work.findOne({
                     where: { id: req.body.id },
                 })
                 res.send(services.toJSON())
             } else {
-                services = await Models.CustomerReview.findAll({
+                services = await Models.Work.findAll({
                     raw: true,
                 })
 
