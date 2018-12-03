@@ -6,7 +6,7 @@
           h2 {{ title }}
           p.caption {{ caption }}
     .owl-wrap(v-if="items.length")
-      carousel(loop=true autoWidth=true :responsive="{0:{nav:false,dots:true,center:true},768:{nav:true,dots:false,center:false}}")
+      carousel(loop=true autoWidth=true :responsive="{0:{nav:false,dots:true,center:true},1024:{nav:true,dots:false,center:false}}")
         .carousel-item(v-for="item in items" :key="item.id")
           router-link.carousel-item-content(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") 
             span.bg(style="background-image: url('https://placeimg.com/640/480/any')")

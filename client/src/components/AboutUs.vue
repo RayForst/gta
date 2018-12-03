@@ -1,29 +1,30 @@
 <template lang="pug">
   section
-    .container-fluid
+    .container-fluid.small
       .row
         .section-heading.col-xs-12
           h2 {{ title }}
           p.caption {{ caption }}
-      .row
-        .col-xs-6
+      .row.desc-wrap
+        .col-xs-12.col-sm-5
           p(v-html="description")
-        .col-xs-6
+        .col-xs-12.col-sm-6.col-sm-offset-1
           .carousel-wrap
             carousel(loop=true :items=1 :dots="true" :nav="false")
               <img src="https://placeimg.com/200/200/any?1">
               <img src="https://placeimg.com/200/200/any?2">
               <img src="https://placeimg.com/200/200/any?3">
               <img src="https://placeimg.com/200/200/any?4">
-      .row
-        .col-xs-6
+      .spacer
+      .row.short-desc-wrap
+        .col-xs-12.col-sm-6.last-xs.first-sm
           .carousel-wrap
             carousel(loop=true :items=1 :dots="true" :nav="false")
               <img src="https://placeimg.com/200/200/any?1">
               <img src="https://placeimg.com/200/200/any?2">
               <img src="https://placeimg.com/200/200/any?3">
               <img src="https://placeimg.com/200/200/any?4">
-        .col-xs-6
+        .col-xs-12.col-sm-5.col-sm-offset-1
           p {{ shortDescription }}
 </template>
 
@@ -65,3 +66,29 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.desc-wrap {
+  p {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #000000;
+  }
+}
+
+.short-desc-wrap {
+  p {
+    font-size: 22px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.64;
+    letter-spacing: normal;
+    color: #000000;
+  }
+}
+</style>

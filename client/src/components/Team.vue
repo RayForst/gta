@@ -1,14 +1,16 @@
 <template lang="pug">
   section
-    .container-fluid
+    .container-fluid.mid
       .row
         .col-xs-12.section-heading
           h2 {{ title }}
           p.caption {{ caption }}
       .row
-          .col-xs-3(v-for="item in list" :key="item.id")
-              div {{ item.fullname }}
-              div {{ item.position }}
+          .col-xs-12.col-sm-6.col-md-4.col-lg-3.person-item(v-for="item in list" :key="item.id")
+              div.user-photo-wrap
+                .user-photo(:style="{ backgroundImage: 'url(' + require('../assets/img/userpic.jpeg') + ')' }")
+              div.name {{ item.fullname }}
+              div.pos {{ item.position }}
 </template>
 
 <script>
@@ -40,3 +42,50 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.pos {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.22;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.user-photo-wrap {
+  position: relative;
+  margin-bottom: 30px;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+
+  .user-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+  }
+}
+
+.person-item {
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+</style>

@@ -1,8 +1,11 @@
 <template lang="pug">
   section
     app-about-us
+    .spacer
     app-why-us
+    .spacer
     app-team
+    .spacer
     app-reviews
 </template>
 

@@ -17,9 +17,9 @@
               <img src="https://placeimg.com/200/200/any?3">
               <img src="https://placeimg.com/200/200/any?4">
       .row.desc-wrap
-        .col-xs-12.col-md-6
+        .col-xs-12.col-sm-6
           .desc(v-html="description")
-        .col-xs-12.col-md-6
+        .col-xs-12.col-sm-6
           .desc(v-html="description")
       app-c-a
       .spacer
