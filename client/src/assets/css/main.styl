@@ -67,6 +67,21 @@ p.caption
 .section-heading
   text-align: center
   margin-bottom: 50px
+  position relative
+
+  &.line
+    h2
+      margin-bottom: 45px
+
+    &:before
+      content: ''
+      position absolute;
+      left: 50%;
+      bottom:0;
+      width: 86px;
+      margin-left: -(86px / 2);
+      height: 2px;
+      background-color: #eb008b;
 
 // buttons
 
@@ -246,6 +261,10 @@ header nav a
   a
     color:#eb008b
     text-decoration: none
+    transition: color +$transition_link
+
+    &:hover
+      color:#fff100
 
   span
     color: #fff
@@ -369,3 +388,7 @@ section
   height: 50px
   border-radius: 100%;
   overflow: hidden;
+
+  img
+    display: block;
+    width: 100%;
