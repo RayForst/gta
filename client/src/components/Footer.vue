@@ -249,7 +249,7 @@ p {
   transform: translateX(0) translateZ(0) scaleY(1);
 
   &.waveTop {
-    // animation: move_wave 120s linear infinite;
+    animation: move_wave 120s linear infinite;
     background-size: 76% 40px;
 
     @media only screen and (min-width: 48em) {

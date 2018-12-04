@@ -29,12 +29,12 @@
                 .graphics
                   div.graph.graph-1
                     .line
-                    img(src="../assets/img/00.svg", alt="")
+                    icon-graphics1
                   div.graph.graph-2
-                    img(src="../assets/img/01.svg", alt="")
+                    icon-graphics2
                   div.graph.graph-3
                     .line.line-2
-                    img(src="../assets/img/02.svg", alt="")
+                    icon-graphics3
           template(v-else)
             .row.middle-xs
               .col-xs-12.col-sm-7.col-md-8
@@ -68,8 +68,16 @@
 
 <script>
 import contentService from "@/services/ContentService";
+import iconGraphics1 from "@/components/icons/Graphics1";
+import iconGraphics2 from "@/components/icons/Graphics2";
+import iconGraphics3 from "@/components/icons/Graphics3";
 
 export default {
+  components: {
+    iconGraphics1,
+    iconGraphics2,
+    iconGraphics3
+  },
   data() {
     return {
       contentKey: "index",
@@ -288,7 +296,7 @@ nav a {
   transform: translateX(0) translateZ(0) scaleY(1);
 
   &.waveTop {
-    // animation: move_wave 40s linear infinite;
+    animation: move_wave 40s linear infinite;
     background-size: 84% 40px;
 
     @media only screen and (min-width: 48em) {
@@ -301,7 +309,7 @@ nav a {
   }
 
   &.waveMiddle {
-    // animation: move_wave 50s linear infinite;
+    animation: move_wave 50s linear infinite;
     animation-delay: 2s;
     background-position-x: -20%;
     background-size: 80% 30px;
@@ -316,7 +324,7 @@ nav a {
   }
 
   &.waveBottom {
-    // animation: move_wave 60s linear infinite;
+    animation: move_wave 60s linear infinite;
     animation-delay: 1s;
     background-position-x: 30%;
     background-size: 76% 20px;

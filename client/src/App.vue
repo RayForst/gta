@@ -1,5 +1,6 @@
 <template lang="pug">
   #app
+    app-burger
     app-header
     section.content
       router-view
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import appBurger from "@/components/ui/Burger";
 import appHeader from "@/components/Header";
 import appFooter from "@/components/Footer";
 
@@ -15,8 +17,14 @@ export default {
     return {};
   },
   components: {
+    appBurger,
     appHeader,
     appFooter
+  },
+  methods: {
+    openmenu(ev) {
+      ev.target.classList.toggle("open");
+    }
   }
 };
 </script>
