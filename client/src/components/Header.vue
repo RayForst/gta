@@ -1,5 +1,5 @@
 <template lang="pug">
-    header
+    header.main
       .waveWrapper.waveAnimation
         .waveWrapperInner.bgTop
           .wave.waveTop(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')")
@@ -7,7 +7,7 @@
           .wave.waveMiddle(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')")
         .waveWrapperInner.bgBottom
           .wave.waveBottom(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')")
-      .container-fluid
+      .container-fluid.nav-container
         nav.row
           .navigation-links.col-xs-12
             router-link(v-for="item in routes" :key="item.route" :to='{ name: item.route }' :class="{ logo: item.route === 'index'}")
@@ -29,12 +29,12 @@
                 .graphics
                   div.graph.graph-1
                     .line
-                    icon-graphics1
+                    //icon-graphics1
                   div.graph.graph-2
-                    icon-graphics2
+                    //icon-graphics2
                   div.graph.graph-3
                     .line.line-2
-                    icon-graphics3
+                    //icon-graphics3
           template(v-else)
             .row.middle-xs
               .col-xs-12.col-sm-7.col-md-8
@@ -68,15 +68,15 @@
 
 <script>
 import contentService from "@/services/ContentService";
-import iconGraphics1 from "@/components/icons/Graphics1";
-import iconGraphics2 from "@/components/icons/Graphics2";
-import iconGraphics3 from "@/components/icons/Graphics3";
+//import iconGraphics1 from "@/components/icons/Graphics1";
+//import iconGraphics2 from "@/components/icons/Graphics2";
+//import iconGraphics3 from "@/components/icons/Graphics3";
 
 export default {
   components: {
-    iconGraphics1,
-    iconGraphics2,
-    iconGraphics3
+    //iconGraphics1,
+    //iconGraphics2,
+    //iconGraphics3
   },
   data() {
     return {
@@ -159,7 +159,7 @@ export default {
   },
   mounted() {
     this.setContentKey(this.page);
-    this.get();
+    //this.get();
   }
 };
 </script>
@@ -296,7 +296,6 @@ nav a {
   transform: translateX(0) translateZ(0) scaleY(1);
 
   &.waveTop {
-    animation: move_wave 40s linear infinite;
     background-size: 84% 40px;
 
     @media only screen and (min-width: 48em) {
@@ -309,7 +308,6 @@ nav a {
   }
 
   &.waveMiddle {
-    animation: move_wave 50s linear infinite;
     animation-delay: 2s;
     background-position-x: -20%;
     background-size: 80% 30px;
@@ -324,7 +322,6 @@ nav a {
   }
 
   &.waveBottom {
-    animation: move_wave 60s linear infinite;
     animation-delay: 1s;
     background-position-x: 30%;
     background-size: 76% 20px;
@@ -339,25 +336,17 @@ nav a {
   }
 }
 
-@keyframes move_wave {
-  0% {
-    transform: translateX(0) translateZ(0) scaleY(1);
+.nav-container {
+  @media only screen and (min-width: 64em) {
+    margin: 0 70px;
   }
 
-  25% {
-    transform: translateX(-25%) translateZ(0) scaleY(0.6);
+  @media only screen and (min-width: 84em) {
+    margin: 0 130px;
   }
 
-  50% {
-    transform: translateX(-50%) translateZ(0) scaleY(1);
-  }
-
-  75% {
-    transform: translateX(-25%) translateZ(0) scaleY(0.6);
-  }
-
-  100% {
-    transform: translateX(0) translateZ(0) scaleY(1);
+  @media (min-width: 1600px) {
+    margin: 0 auto;
   }
 }
 </style>

@@ -1,74 +1,210 @@
-@keyframes checked-anim {
-    50% {
-        width: 3000px;
-        height: 3000px;
-    }
-    100% {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}
-@keyframes not-checked-anim {
-    0% {
-        width: 3000px;
-        height: 3000px;
-    }
-}
+$triggerW = 100px;
 
 #menu 
-    position: fixed;
-    margin: 0; padding: 0;
-    width: 110px;
-    height: 181px;
-    right: 0;
-    border-bottom-left-radius: 100%;
-    animation: not-checked-anim .2s both;
-    transition: .2s;
-    //overflow hidden
+    position fixed
+    margin 0
+    padding 0
+    width: $triggerW
+    height: $triggerW
+    right 0
+    border-bottom-left-radius 100%
+    transition .2s
+    z-index 9998
+    background-image linear-gradient(239deg, #0094d9, #4b0997)
+
+    &.mounted
+        animation not-checked-anim .2s both
+
+    .navigation-container,
+    .address-container
+        display block
+
+        @media $media_md
+            display flex
+
+    .logo 
+        height: 100px;
+        margin-bottom: 10px;
+
+        @media $media_lg
+            height: 130px
+            margin-bottom: 30px;
+
+        @media $media_lg
+            height: 156px
+            margin-bottom: 50px;
+
+    a
+        font-size: 16px
+
+        @media $media_md
+            font-size: 20px
+
+    .contacts
+        a
+            line-height: 2.78
+
+    h4 {
+        margin: 20px 0 25px 0;
+    }
+    
+    & > .content
+        padding 20px 0 20px 30px;
+        box-sizing border-box
+        width 100%
+        max-height 100%
+        opacity: 0
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        overflow-y: auto;
+        height: 100%
+        
+
+        @media $media_lg
+            padding 20px 145px 20px 125px
+
+        .content-inner
+            width 100%
+            opacity 0
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%;
+
+            .row
+                width: 100%
 
     &.open
-        animation: checked-anim 1s ease both;
-        background-image: linear-gradient(239deg, #0094d9, #4b0997);
+        animation checked-anim .6s ease both
+
+        .content-inner
+            animation showBurger .2s forwards .6s
 
         .content
-            display: block
+            opacity 1
 
-.trigger {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
-    border-bottom-left-radius: 100%;
-    background: #4b0997;
-    width: 131px;
-    height: 181px;
-    right:0;
-    top:0;
-    position: absolute;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: 1.3px;
-    color: #ffffff;
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 63px;
-    width: 260px;
-    border-radius: 100%;
-    height: 260px;
-    box-sizing: border-box;
-    transform: translateX(50%) translateY(-30%);
-    cursor: pointer
+    .navigation-container
+        h4
+            font-size: 18px;
 
-    .text {
+        @media $media_md
+
+            font-size: 22px
+            min-height: 700px
+        
+        @media $media_lg
+            min-height: 600px
+
+    .nav-ca
+        margin-bottom: 20px;
+
+        h4
+            font-size: 22px;
+            opacity:1;
+            line-height: 1.3;
+
+            @media $media_md
+                font-size: 32px
+
+        p
+            font-size: 16px;
+            line-height: 1.56;
+
+            @media $media_md
+                font-size: 18px;
+
+    .address 
+        font-size: 16px
+        padding-right: 32px;
+        font-weight: bold;
+        line-height: 1.36;
+        color: #ffffff;
+
+        @media $media_md
+            font-size: 22px
+
+        img
+            display block
+            margin-right: 15px;
+            margin-bottom: 10px;
+
+            @media $media_md
+                display: inline-block
+                margin-bottom: 0
+
+.address-container {
+    margin-top: auto;
+    margin-bottom: 20px;
+    padding-bottom: 40px;
+}
+
+
+.trigger 
+    box-shadow 0 2px 5px rgba(0,0,0,0.26)
+    border-bottom-left-radius 100%
+    background #4b0997
+    right 0
+    z-index 9999
+    top 0
+    position absolute
+    font-size 14px
+    font-weight bold
+    font-style normal
+    font-stretch normal
+    line-height normal
+    letter-spacing 1.3px
+    color #ffffff
+    text-transform uppercase
+    text-align center
+    padding-top 63px
+    width $triggerW * 2
+    border-radius 100%
+    height $triggerW * 2
+    box-sizing border-box
+    cursor pointer
+    transform: translateX(50%) translateY(-50%);
+
+
+    @media $media_lg {
+        width $triggerW * 2 * 1.3
+        height $triggerW * 2 * 1.8
+        transform translateX(50%) translateY(-50%)
+        border-top-right-radius: 250px;
+    }
+
+    .text 
         position: absolute;
-        bottom: 88px;
-        left: 19px;
-        width: 110px;
+        left: 0;
+        width: $triggerW;
         text-align: center;
         z-index: -1;
-    }
-}
-#menu {
-    z-index: 9998;
-}
+        bottom: 50px;
+        padding-left: ($triggerW / 10);
+
+        @media $media_lg {
+            width $triggerW * 1.3
+            bottom: 87px;
+        }
+
+@keyframes checked-anim 
+    50% 
+        width 100vw
+        height 200vh
+    
+    100% 
+        width 100%
+        height 100%
+        border-radius 0
+    
+@keyframes not-checked-anim 
+    0% 
+        width 100vw
+        height 200vh
+
+@keyframes showBurger 
+    0% 
+        opacity 1
+    
+    100% 
+        opacity 1

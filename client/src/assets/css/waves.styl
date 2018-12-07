@@ -1,0 +1,83 @@
+body
+  header .waveWrapperInner
+    background: linear-gradient(127deg, #a709ff, #0094d9);
+    background-size: 200% 200%;
+  footer .waveWrapperInner
+    background: linear-gradient(127deg, #0094d9, #a709ff);
+    background-size: 200% 200%;
+
+  header.animate .waveWrapperInner
+    animation: Gradient 14s ease infinite;
+
+    .waveTop
+      animation: move_wave 40s linear infinite;
+    .waveMiddle
+      animation: move_wave 50s linear infinite;
+    .waveBottom
+      animation: move_wave 60s linear infinite;
+
+  footer.animate .waveWrapperInner
+    animation: Gradient 14s ease infinite;
+
+    .waveTop
+      animation: move_wave 100s linear infinite;
+
+  &.bg-orange
+    header .waveWrapperInner
+      background-image: linear-gradient(306deg, #4b0997, #b48214);
+    footer .waveWrapperInner
+      background-image: linear-gradient(306deg, #b48214, #4b0997);
+
+  &.bg-blue-green
+    header .waveWrapperInner
+      background-image: linear-gradient(307deg, #4b0997, #14b472);
+    footer .waveWrapperInner
+      background-image: linear-gradient(307deg, #14b472, #4b0997);
+  
+  &.bg-purple-red
+    header .waveWrapperInner
+      background-image: linear-gradient(109deg, #a050fc, #4b0997);
+    footer .waveWrapperInner
+      background-image: linear-gradient(109deg, #4b0997, #a050fc);
+  
+  &.bg-purple
+    header .waveWrapperInner
+      background-image: linear-gradient(236deg, #a050fc, #4b0997);
+    footer .waveWrapperInner
+      background-image: linear-gradient(236deg, #4b0997, #a050fc);
+
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+
+  25% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.6);
+  }
+
+  50% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+
+  75% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.6);
+  }
+
+  100% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+}
