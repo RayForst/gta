@@ -5,6 +5,8 @@ import { sync } from "vuex-router-sync";
 import store from "./store";
 import * as VueGoogleMaps from "vue2-google-maps";
 import "@/scripts/animation";
+import VueTelInput from "vue-tel-input";
+import "vue-tel-input/dist/vue-tel-input.css";
 
 var truncateFilter = function(text, length, clamp) {
   clamp = clamp || "...";
@@ -25,6 +27,8 @@ Vue.use(VueGoogleMaps, {
     libraries: "places"
   }
 });
+
+Vue.use(VueTelInput);
 
 new Vue({
   router,
