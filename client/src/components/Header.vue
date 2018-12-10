@@ -108,11 +108,12 @@ export default {
     };
   },
   methods: {
-    async get() {
+    get() {
       if (!this.contentKey) return;
-      const blockInfo = (await contentService.head.get({
-        page: this.contentKey
-      })).data;
+
+      const blockInfo = this.$store.state.settings.headings.filter(
+        obj => obj.page === this.contentKey
+      )[0];
 
       this.title = blockInfo.title;
       this.caption = blockInfo.caption;
@@ -158,7 +159,11 @@ export default {
     }
   },
   mounted() {
-    this.setContentKey(this.page);
+    let that = this;
+
+    setTimeout(function(){
+       that.setContentKey(that.page);
+    }, 1000)
     //this.get();
   }
 };

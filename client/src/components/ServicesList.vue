@@ -1,5 +1,5 @@
 <template lang="pug">
-  section
+  section.content-wrap
     .container-fluid.mid
       .row(v-if="gallery !== 'true'")
         .col-xs-12.section-heading

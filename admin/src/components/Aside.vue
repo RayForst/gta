@@ -10,14 +10,8 @@
         router-link(:to="{ name: 'what-we-do' }")
           span What we do
       li.treeview
-        router-link(:to="{ name: 'service' }")
-          span Service
-      li.treeview
         router-link(:to="{ name: 'works' }")
-          span Works
-      li.treeview
-        router-link(:to="{ name: 'works-project' }")
-          span Works Project
+          span Our Works
       li.treeview
         router-link(:to="{ name: 'about' }")
           span About us

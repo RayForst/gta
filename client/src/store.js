@@ -13,6 +13,8 @@ export default new Vuex.Store({
     },
     navigation: {},
     settings: {
+      meta: null,
+      headings: null,
       phone: "+1 (416) 522-4501",
       email: "hello@gtaimagesolutions.com",
       address: "790 Eglinton Ave East Toronto, ON M4G 2L1",
@@ -43,10 +45,32 @@ export default new Vuex.Store({
       }
     }
   },
+  getters: {
+    meta: state => {
+      let routeName = state.route.name;
+      if (!state.settings.meta) return null;
+
+      let metaForPage = state.settings.meta.filter(
+        obj => obj.page === routeName
+      );
+
+      console.log("returning meta for name" + routeName, metaForPage);
+      return metaForPage.length ? metaForPage[0] : null;
+    }
+  },
   mutations: {
     setHeader(state, payload) {
       state.headerData = payload;
+    },
+    setSettings(state, payload) {
+      console.log("set settings", payload.meta);
+      state.settings.meta = payload.meta;
+      state.settings.headings = payload.headings;
     }
   },
-  actions: {}
+  actions: {
+    setSettings({ commit }, data) {
+      commit("setSettings", data);
+    }
+  }
 });

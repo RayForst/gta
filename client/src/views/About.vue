@@ -1,5 +1,6 @@
 <template lang="pug">
   section
+    app-meta
     app-about-us
     .spacer
     app-why-us
@@ -14,13 +15,15 @@ import appAboutUs from "@/components/AboutUs";
 import appWhyUs from "@/components/WhyUs";
 import appTeam from "@/components/Team";
 import appReviews from "@/components/Reviews";
+import appMeta from "@/components/Meta";
 
 export default {
   components: {
     appAboutUs,
     appWhyUs,
     appReviews,
-    appTeam
+    appTeam,
+    appMeta
   },
   mounted() {
     document.body.className = "";

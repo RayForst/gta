@@ -1,18 +1,12 @@
 <template lang="pug">
-  .box.box-default
-    .box-header.with-border
-      h3.box-title Content
-      .box-tools.pull-right
-        button.btn.btn-box-toolbtn.btn-box-tool
-          i.fa.fa-minus
-    form.box-body(@submit.prevent="save")
-      .form-group
-        label(for="testid-2") Description
-        wysiwyg#testid-2(v-model="description")
-      .form-group
-        label(for="r2") Short Description
-        textarea#r2.form-control(v-model="shortDescription" placeholder="text")
-      button.btn.btn-block.btn-success Save
+  form(@submit.prevent="save")
+    .form-group
+      label(for="testid-2") Description
+      wysiwyg#testid-2(v-model="description")
+    .form-group
+      label(for="r2") Short Description
+      textarea#r2.form-control(v-model="shortDescription" placeholder="text")
+    button.btn.btn-block.btn-success Save
 </template>
 
 <script>

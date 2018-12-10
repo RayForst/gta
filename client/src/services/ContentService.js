@@ -1,8 +1,8 @@
 import Api from "@/services/Api";
 
 export default {
-  meta: {
-    get: credentials => Api().get("content/meta", { params: credentials })
+  settings: {
+    get: () => Api().get("api/settings")
   },
   head: {
     get: credentials => Api().get("content/head", { params: credentials })

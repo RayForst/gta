@@ -18,17 +18,33 @@
 </template>
 
 <script>
+import AuthenticationService from "@/services/AuthenticationService";
+
 export default {
-  data () {
+  data() {
     return {
-      login: '',
-      password: '',
-    }
+      login: "",
+      password: ""
+    };
   },
   methods: {
-    sign () {
-      console.log('sign try')
+    async sign() {
+      try {
+        const response = (await AuthenticationService.login({
+          login: this.login,
+          password: this.password
+        })).data;
+
+        console.log(response);
+
+        this.$store.dispatch("setToken", response.token);
+        this.$store.dispatch("setUser", response.user);
+
+        this.$router.push("dashboard");
+      } catch (err) {
+        console.warn(err);
+      }
     }
   }
-}
+};
 </script>

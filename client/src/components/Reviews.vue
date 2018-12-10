@@ -1,5 +1,5 @@
 <template lang="pug">
-  section
+  section.content-wrap
     .container-fluid
       .row
         .section-heading.col-xs-12

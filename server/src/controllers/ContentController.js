@@ -1,6 +1,29 @@
 import Models from '../models'
 
 module.exports = {
+    async getSettings(req, res) {
+        try {
+            const meta = await Models.Meta.findAll({
+                raw: true,
+            })
+            const headings = await Models.Head.findAll({
+                raw: true,
+            })
+
+            res.send(
+                meta && headings
+                    ? {
+                        meta,
+                        headings,
+                    }
+                    : {}
+            )
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
     async getMeta(req, res) {
         try {
             const meta = await Models.Meta.findOne({

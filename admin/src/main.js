@@ -9,8 +9,12 @@ import "./assets/css/main.styl";
 import router from "./router";
 import store from "./store/store";
 import wysiwyg from "vue-wysiwyg";
+import { sync } from "vuex-router-sync";
 
 Vue.config.productionTip = false;
+
+sync(store, router);
+
 Vue.use(wysiwyg, {});
 new Vue({
   router,

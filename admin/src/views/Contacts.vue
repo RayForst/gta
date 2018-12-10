@@ -1,20 +1,27 @@
 <template lang="pug">
   dev
     section.content-header
-      h1 Contacts Page
+      h1 Contact us
     section.content
-      app-meta
-      app-head(page="contacts")
+     app-tabs
+      app-tab(name="Meta" :selected="true")
+        app-meta(page="contacts")
+      app-tab(name="Head")
+        app-head(page="contacts")
 </template>
 
 <script>
-import appMeta from '@/components/content-blocks/Meta';
-import appHead from '@/components/content-blocks/Head';
+import appMeta from "@/components/content-blocks/Meta";
+import appHead from "@/components/content-blocks/Head";
+import appTabs from "@/components/Tabs";
+import appTab from "@/components/Tab";
 
 export default {
   components: {
     appMeta,
-    appHead
+    appHead,
+    appTabs,
+    appTab
   }
-}
+};
 </script>

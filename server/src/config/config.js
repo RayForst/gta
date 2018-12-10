@@ -9,4 +9,12 @@ export default {
             host: 'localhost',
         },
     },
+    authentication: {
+        jwtSecret: process.env.JWT_SECRET || 'secret',
+    },
+    admin: {
+        name: 'Admin',
+        login: 'gtaadmin',
+        password: '1234',
+    },
 }

@@ -16,5 +16,24 @@
           li.dropdown.user.user-menu
             a.dropdown-toggle
               img.user-image(src="../assets/img/admin_pic.jpg", alt="")
-              span.hidden-xs John Smith
+              span.hidden-xs {{ $store.state.user.name }}
+          li.dropdown.messages-menu(title="Logout" @click="logout")
+            a.dropdown-toggle
+              i.glyphicon.glyphicon-log-out
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("setToken", null);
+      this.$store.dispatch("setUser", null);
+
+      this.$router.push({ name: "login" });
+    }
+  }
+};
+</script>

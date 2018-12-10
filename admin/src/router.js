@@ -3,9 +3,7 @@ import Router from "vue-router";
 import appLogin from "./views/Login.vue";
 import appIndex from "./views/Index.vue";
 import appWhatWeDo from "./views/WhatWeDo.vue";
-import appService from "./views/Service.vue";
 import appWorks from "./views/Works.vue";
-import appWorksProject from "./views/WorksProject.vue";
 import appAbout from "./views/About.vue";
 import appContacts from "./views/Contacts.vue";
 import appSettings from "./views/Settings.vue";
@@ -41,19 +39,9 @@ export default new Router({
       component: appWhatWeDo
     },
     {
-      path: "/service",
-      name: "service",
-      component: appService
-    },
-    {
       path: "/works",
       name: "works",
       component: appWorks
-    },
-    {
-      path: "/works/project",
-      name: "works-project",
-      component: appWorksProject
     },
     {
       path: "/about",

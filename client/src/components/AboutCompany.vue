@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.overflow-h
+  section.overflow-h.content-wrap
     .container-fluid.mid
       .row
         .col-xs-12.section-heading

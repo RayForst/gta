@@ -7,6 +7,8 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import "@/scripts/animation";
 import VueTelInput from "vue-tel-input";
 import "vue-tel-input/dist/vue-tel-input.css";
+import Meta from "vue-meta";
+
 
 var truncateFilter = function(text, length, clamp) {
   clamp = clamp || "...";
@@ -29,6 +31,7 @@ Vue.use(VueGoogleMaps, {
 });
 
 Vue.use(VueTelInput);
+Vue.use(Meta);
 
 new Vue({
   router,

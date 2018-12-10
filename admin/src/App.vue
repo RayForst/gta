@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import appNotification from '@/components/NotificationCenter';
-import appHeader from '@/components/Header';
-import appFooter from '@/components/Footer';
-import appAside from '@/components/Aside';
+import appNotification from "@/components/NotificationCenter";
+import appHeader from "@/components/Header";
+import appFooter from "@/components/Footer";
+import appAside from "@/components/Aside";
 
 export default {
   components: {
@@ -27,11 +27,19 @@ export default {
     appAside
   },
   beforeCreate() {
-    if (this.$store.state.isAuthorized) {
-      document.body.classList.add('skin-black');
+    console.log(this.$store.state.route.path);
+
+    document.body.classList.add("skin-black");
+
+    if (
+      !this.$store.state.isAuthorized &&
+      this.$store.state.route.path != "/"
+    ) {
+      this.$router.push({ name: "login" });
     }
+    //}
   }
-}
+};
 </script>
 
 <style lang="stylus">

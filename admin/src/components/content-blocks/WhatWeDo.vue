@@ -1,19 +1,10 @@
 <template lang="pug">
   .box.box-default
     .box-header.with-border
-      h3.box-title What we do
+      h3.box-title Add
       .box-tools.pull-right
         button.btn.btn-box-toolbtn.btn-box-tool
           i.fa.fa-minus
-    .row
-      .col-xs-12
-        div(v-for="item in items" :key="item.id")
-          span {{ item.id }}
-          span {{ item.title }}
-          span {{ item.slug }}
-          span {{ item.icon }}.svg
-          span(@click="edit(item.id)")
-            u Edit
     form.box-body(@submit.prevent="save")
       .form-group
         label(for="r1") Title

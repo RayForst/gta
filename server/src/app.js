@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 require('./routes')(app)
+require('./commands')(app)
 
 models.sequelize.sync().then(() => {
     app.listen(config.port)
