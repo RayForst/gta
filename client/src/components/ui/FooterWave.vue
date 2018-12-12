@@ -1,7 +1,7 @@
 <template lang="pug">
    .waveWrapper.waveAnimation
       .waveWrapperInner.bgTop
-        .wave.waveTop(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')")
+        .wave.waveTop(:style="{ backgroundImage: 'url(' + require('../../assets/img/wave-top.png') + ')'}")
 </template>
 
 <style lang="stylus" scoped>
