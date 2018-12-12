@@ -1,12 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import appIndex from "./views/Index.vue";
-import appWhatWeDo from "./views/WhatWeDo.vue";
-import appWhatWeDoProject from "./views/WhatWeDoProject";
-import appWorks from "./views/Works.vue";
-import appWorksProject from "./views/WorksProject.vue";
-import appAbout from "./views/About.vue";
-import appContacts from "./views/Contacts.vue";
 
 Vue.use(Router);
 
@@ -19,39 +12,39 @@ export default new Router({
     {
       path: "/",
       name: "index",
-      component: appIndex
+      component: () => import("./views/Index.vue")
     },
     {
       path: "/what-we-do",
       name: "what-we-do",
-      component: appWhatWeDo
+      component: () => import("./views/WhatWeDo.vue")
     },
     {
       path: "/what-we-do/:slug",
       name: "what-we-do-item",
       props: true,
-      component: appWhatWeDoProject
+      component: () => import("./views/WhatWeDoProject.vue")
     },
     {
       path: "/works",
       name: "works",
-      component: appWorks
+      component: () => import("./views/Works.vue")
     },
     {
       path: "/works/:slug",
       name: "works-project",
       props: true,
-      component: appWorksProject
+      component: () => import("./views/WorksProject.vue")
     },
     {
       path: "/about",
       name: "about",
-      component: appAbout
+      component: () => import("./views/About.vue")
     },
     {
       path: "/contacts",
       name: "contacts",
-      component: appContacts
+      component: () => import("./views/Contacts.vue")
     }
   ]
 });
