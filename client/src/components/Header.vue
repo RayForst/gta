@@ -2,11 +2,11 @@
     header.main
       .waveWrapper.waveAnimation
         .waveWrapperInner.bgTop
-          .wave.waveTop(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')")
+          .wave.waveTop(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-top.png') + ')'}")
         .waveWrapperInner.bgMiddle
-          .wave.waveMiddle(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')")
+          .wave.waveMiddle(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-mid.png') + ')'}")
         .waveWrapperInner.bgBottom
-          .wave.waveBottom(style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')")
+          .wave.waveBottom(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-bot.png') + ')'}")
       .container-fluid.nav-container
         nav.row
           .navigation-links.col-xs-12
@@ -161,9 +161,9 @@ export default {
   mounted() {
     let that = this;
 
-    setTimeout(function(){
-       that.setContentKey(that.page);
-    }, 1000)
+    setTimeout(function() {
+      that.setContentKey(that.page);
+    }, 1000);
     //this.get();
   }
 };
