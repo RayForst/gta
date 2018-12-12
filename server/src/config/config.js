@@ -7,6 +7,7 @@ export default {
         options: {
             dialect: 'mysql',
             host: 'localhost',
+            insecureAuth: true,
         },
     },
     authentication: {
