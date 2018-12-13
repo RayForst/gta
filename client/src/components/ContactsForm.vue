@@ -1,43 +1,49 @@
 <template lang="pug">
-  .container-fluid.mid
-    .row.bottom-md
-      .col-xs-12.col-md-7
-        form.gta-form
-          .row.center-xs.start-md
-            .col-xs-12.col-sm-5.input-container.start-sm
-              span.custom-dropdown
-                select(name='subject')
-                  option(value="1") Payment question
-                  option(value="2") Life meaning question
-                  option(value="3") Drug question
-            .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
-              .gta-input
-                label(for='#formName') Full Name
-                input(type="text" id="formName" name='name' required)
-          .row.center-xs.start-md
-            .col-xs-12.col-sm-5.input-container.start-sm
-              .gta-tel-input
-                label.gta-label(for='#formPhone') Phone
-                vue-tel-input(v-model="phone"
-                      @onInput="onInput"
-                      :preferredCountries="['ca', 'us']")
-            .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
-              .gta-input
-                label(for='#formEmail') E-mail
-                input(type="email" id="formEmail" name='email' required)
-          .row.center-xs.start-md
-            .col-xs-12.col-sm-11.input-container.start-sm
-              .gta-textarea
-                label.gta-label(for='#formMesssge') Message
-                textarea(required id="formMesssge" name="message", cols="30", rows="6" placeholder="Hi guys, we want to cooporate…")
-          .row.result-wrap
-            .col-xs-12.center-xs.start-md.button-wrap
-              button.ui-btn.gta-form__button.button.button-primary.button-big Send
-            .col-xs-12.primary.gta-form__response(v-if="success")
-              | Thank You for contacting Us! If you have any more questions, click here to write a new message.
-      .col-xs-12.col-md-5.first-xs.last-md
-        .image-wrap
-            img(src="../assets/img/gta-house.svg", alt="")
+  section.relative
+    <div class="morph-wrap">
+      <svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">
+        <path d="M 415.6,206.3 C 407.4,286.6 438.1,373.6 496.2,454.8 554.3,536.1 497,597.2 579.7,685.7 662.4,774.1 834.3,731.7 898.5,653.4 962.3,575 967.1,486 937.7,370 909.3,253.9 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z"/>
+      </svg>
+    </div>
+    .container-fluid.mid
+      .row.bottom-md
+        .col-xs-12.col-md-7
+          form.gta-form
+            .row.center-xs.start-md
+              .col-xs-12.col-sm-5.input-container.start-sm
+                span.custom-dropdown
+                  select(name='subject')
+                    option(value="1") Payment question
+                    option(value="2") Life meaning question
+                    option(value="3") Drug question
+              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
+                .gta-input
+                  label(for='#formName') Full Name
+                  input(type="text" id="formName" name='name' required)
+            .row.center-xs.start-md
+              .col-xs-12.col-sm-5.input-container.start-sm
+                .gta-tel-input
+                  label.gta-label(for='#formPhone') Phone
+                  vue-tel-input(v-model="phone"
+                        @onInput="onInput"
+                        :preferredCountries="['ca', 'us']")
+              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
+                .gta-input
+                  label(for='#formEmail') E-mail
+                  input(type="email" id="formEmail" name='email' required)
+            .row.center-xs.start-md
+              .col-xs-12.col-sm-11.input-container.start-sm
+                .gta-textarea
+                  label.gta-label(for='#formMesssge') Message
+                  textarea(required id="formMesssge" name="message", cols="30", rows="6" placeholder="Hi guys, we want to cooporate…")
+            .row.result-wrap
+              .col-xs-12.center-xs.start-md.button-wrap
+                button.ui-btn.gta-form__button.button.button-primary.button-big Send
+              .col-xs-12.primary.gta-form__response(v-if="success")
+                | Thank You for contacting Us! If you have any more questions, click here to write a new message.
+        .col-xs-12.col-md-5.first-xs.last-md
+          .image-wrap
+              img(src="../assets/img/gta-house.svg", alt="")
 </template>
 
 <script>

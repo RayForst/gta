@@ -2,7 +2,7 @@
   section
     app-meta
     .spacer
-    app-what-we-do(gallery="true")
+    app-what-we-do(gallery="true" morph="true")
     .spacer
     app-reviews
 </template>

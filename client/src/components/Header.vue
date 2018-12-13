@@ -18,7 +18,7 @@
       .container-fluid.mid
         template(v-if="!itemView")
           template(v-if="contentKey === 'index'")
-            .row
+            .row.header-padding
               .col-xs-12.col-sm-6
                 h1 {{ title }}
                 p.heading-caption {{ caption }}
@@ -36,7 +36,7 @@
                     .line.line-2
                     //icon-graphics3
           template(v-else-if="contentKey !== 'error'")
-            .row.middle-xs
+            .row.middle-xs.header-padding
               .col-xs-12.col-sm-7.col-md-8
                 h1 {{ title }}
                 p.heading-caption {{ caption }}
@@ -50,7 +50,7 @@
               router-link(:to="{ name: itemView.breadcrumbs[0].route }") {{ itemView.breadcrumbs[0].name }}
               | / 
               span {{ itemView.breadcrumbs[1].name }}
-          .row.middle-xs
+          .row.middle-xs.header-padding
             .col-xs-12.col-sm-7.col-md-8
               template(v-if="typeof itemView.icon === 'string'")
                 .row.icon-heading.align-center
@@ -191,6 +191,10 @@ header {
   @media only screen and (min-width: 64em) {
     padding-bottom: 120px;
   }
+}
+
+.header-padding {
+  padding-bottom: 80px;
 }
 
 nav {

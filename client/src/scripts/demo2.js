@@ -11,77 +11,85 @@ import "./scrollMonitor"; // if you're not using require, you can use the scroll
  * Copyright 2017, Codrops
  * http://www.codrops.com
  */
-function initMorph() {
-  let DOM = {};
-  DOM.svg = document.querySelector(".morph");
-  DOM.shapeEl = DOM.svg.querySelector("path");
+function initMorph(el) {
+  return;
+  console.log("we go with", el);
+  function initSingleMorph(el) {
+    let DOM = {};
+    DOM.svg = el;
+    DOM.shapeEl = DOM.svg.querySelector("path");
 
-  const shapes = [
-    {
-      path:
-        "M 415.6,206.3 C 407.4,286.6 438.1,373.6 496.2,454.8 554.3,536.1 497,597.2 579.7,685.7 662.4,774.1 834.3,731.7 898.5,653.4 962.3,575 967.1,486 937.7,370 909.3,253.9 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z",
-      pathAlt:
-        "M 415.6,206.3 C 407.4,286.6 415.5,381.7 473.6,462.9 531.7,544.2 482.5,637.6 579.7,685.7 676.9,733.8 826.2,710.7 890.4,632.4 954.2,554 926.8,487.6 937.7,370 948.6,252.4 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z",
-      scaleX: 1.9,
-      scaleY: 1,
-      rotate: 0,
-      tx: 0,
-      ty: 100,
-      fill: {
-        color: "#d65640",
-        duration: 500,
-        easing: "linear"
-      },
-      animation: {
-        path: {
-          duration: 1000,
-          easing: "easeInOutQuad"
+    const shapes = [
+      {
+        path:
+          "M 415.6,206.3 C 407.4,286.6 438.1,373.6 496.2,454.8 554.3,536.1 497,597.2 579.7,685.7 662.4,774.1 834.3,731.7 898.5,653.4 962.3,575 967.1,486 937.7,370 909.3,253.9 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z",
+        pathAlt:
+          "M 415.6,206.3 C 407.4,286.6 415.5,381.7 473.6,462.9 531.7,544.2 482.5,637.6 579.7,685.7 676.9,733.8 826.2,710.7 890.4,632.4 954.2,554 926.8,487.6 937.7,370 948.6,252.4 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z",
+        scaleX: 1.9,
+        scaleY: 1,
+        rotate: 0,
+        tx: 0,
+        ty: 100,
+        fill: {
+          color: "#d65640",
+          duration: 500,
+          easing: "linear"
         },
-        svg: {
-          duration: 1000,
-          easing: "easeInOutQuad"
+        animation: {
+          path: {
+            duration: 1000,
+            easing: "easeInOutQuad"
+          },
+          svg: {
+            duration: 1000,
+            easing: "easeInOutQuad"
+          }
         }
       }
-    }
-  ];
+    ];
 
-  const initShapeLoop = function(pos) {
-    pos = pos || 0;
-    anime.remove(DOM.shapeEl);
-    anime({
-      targets: DOM.shapeEl,
-      easing: "linear",
-      d: [
-        { value: shapes[pos].pathAlt, duration: 1500 },
-        { value: shapes[pos].path, duration: 1500 }
-      ],
-      loop: true,
-      fill: {
-        value: "rgba(#4a90e2, 0.05)",
-        duration: shapes[pos].fill.duration,
-        easing: shapes[pos].fill.easing
-      },
-      direction: "alternate"
-    });
-  };
+    const initShapeLoop = function(pos) {
+      pos = pos || 0;
+      anime.remove(DOM.shapeEl);
+      anime({
+        targets: DOM.shapeEl,
+        easing: "linear",
+        d: [
+          { value: shapes[pos].pathAlt, duration: 1500 },
+          { value: shapes[pos].path, duration: 1500 }
+        ],
+        loop: true,
+        fill: {
+          value: "rgba(#4a90e2, 0.05)",
+          duration: shapes[pos].fill.duration,
+          easing: shapes[pos].fill.easing
+        },
+        direction: "alternate"
+      });
+    };
 
-  const initShapeEl = function() {
-    anime.remove(DOM.svg);
-    anime({
-      targets: DOM.svg,
-      duration: 1,
-      easing: "linear",
-      scaleX: shapes[0].scaleX,
-      scaleY: shapes[0].scaleY,
-      translateX: shapes[0].tx + "px",
-      translateY: shapes[0].ty + "px",
-      rotate: shapes[0].rotate + "deg"
-    });
+    const initShapeEl = function() {
+      anime.remove(DOM.svg);
+      anime({
+        targets: DOM.svg,
+        duration: 1,
+        easing: "linear",
+        scaleX: shapes[0].scaleX,
+        scaleY: shapes[0].scaleY,
+        translateX: shapes[0].tx + "px",
+        translateY: shapes[0].ty + "px",
+        rotate: shapes[0].rotate + "deg"
+      });
 
-    initShapeLoop();
-  };
+      initShapeLoop();
+    };
 
-  initShapeEl();
+    initShapeEl();
+  }
+
+  document.querySelectorAll(".morph").forEach(function(el, i) {
+    initSingleMorph(el);
+  });
 
   // return;
   // // Helper vars and functions.

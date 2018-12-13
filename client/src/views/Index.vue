@@ -3,7 +3,7 @@
     app-meta
     app-what-we-do(gallery="false")
     .spacer
-    app-reviews
+    app-reviews(morph="true")
     .spacer
     app-about-company
     .spacer.hide_md
