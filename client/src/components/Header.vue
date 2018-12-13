@@ -35,7 +35,7 @@
                   div.graph.graph-3
                     .line.line-2
                     //icon-graphics3
-          template(v-else)
+          template(v-else-if="contentKey !== 'error'")
             .row.middle-xs
               .col-xs-12.col-sm-7.col-md-8
                 h1 {{ title }}
@@ -109,6 +109,7 @@ export default {
   },
   methods: {
     get() {
+      console.log("in gett");
       if (!this.contentKey) return;
 
       const blockInfo = this.$store.state.settings.headings.filter(
@@ -119,29 +120,35 @@ export default {
       this.caption = blockInfo.caption;
     },
     setContentKey(newV) {
-      switch (newV) {
-        case "/what-we-do":
-          this.contentKey = "what-we-do";
-          break;
-        case "/works":
-          this.contentKey = "works";
-          break;
-        case "/contacts":
-          this.contentKey = "contacts";
-          break;
-        case "/about":
-          this.contentKey = "about";
-          break;
-        case "/":
-          this.contentKey = "index";
-          break;
-        default:
-          this.contentKey = null;
-      }
+      console.log("SET COONTENT KEY", newV, this.$store.state.route.name);
 
-      if (this.contentKey) {
+      if (this.$store.state.route.name === "error") {
+        this.contentKey = "error";
         this.$store.commit("setHeader", null);
-        this.get();
+      } else {
+        switch (newV) {
+          case "/what-we-do":
+            this.contentKey = "what-we-do";
+            break;
+          case "/works":
+            this.contentKey = "works";
+            break;
+          case "/contacts":
+            this.contentKey = "contacts";
+            break;
+          case "/about":
+            this.contentKey = "about";
+            break;
+          case "/":
+            this.contentKey = "index";
+            break;
+          default:
+            this.contentKey = null;
+        }
+        if (this.contentKey) {
+          this.$store.commit("setHeader", null);
+          this.get();
+        }
       }
     }
   },
@@ -150,6 +157,7 @@ export default {
       return this.$store.state.route.path;
     },
     itemView() {
+      console.log("getting item view", this.$store.state.headerData);
       return this.$store.state.headerData;
     }
   },
@@ -172,16 +180,16 @@ export default {
 <style lang="stylus" scoped>
 header {
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: 25px;
   margin-bottom: 20px;
   overflow: hidden;
 
   @media only screen and (min-width: 48em) {
-    padding-bottom: 140px;
+    padding-bottom: 70px;
   }
 
   @media only screen and (min-width: 64em) {
-    padding-bottom: 200px;
+    padding-bottom: 120px;
   }
 }
 

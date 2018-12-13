@@ -2,7 +2,7 @@ import Api from "@/services/Api";
 
 export default {
   settings: {
-    get: () => Api().get("api/settings")
+    get: () => Api().get("/settings")
   },
   head: {
     get: credentials => Api().get("content/head", { params: credentials })

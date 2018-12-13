@@ -11,7 +11,7 @@ module.exports = app => {
 
     app.post('/admin/login', AuthenticationController.login)
 
-    app.get('/api/settings', ContentController.getSettings)
+    app.get('/settings', ContentController.getSettings)
 
     app.get('/content/meta', ContentController.getMeta)
     app.post('/content/meta', ContentController.saveMeta)
