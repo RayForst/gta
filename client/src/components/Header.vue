@@ -29,12 +29,12 @@
                 .graphics
                   div.graph.graph-1
                     .line
-                    //icon-graphics1
+                    icon-graphics1
                   div.graph.graph-2
-                    //icon-graphics2
+                    icon-graphics2
                   div.graph.graph-3
                     .line.line-2
-                    //icon-graphics3
+                    icon-graphics3
           template(v-else-if="contentKey !== 'error'")
             .row.middle-xs.header-padding
               .col-xs-12.col-sm-7.col-md-8
@@ -68,15 +68,15 @@
 
 <script>
 import contentService from "@/services/ContentService";
-//import iconGraphics1 from "@/components/icons/Graphics1";
-//import iconGraphics2 from "@/components/icons/Graphics2";
-//import iconGraphics3 from "@/components/icons/Graphics3";
+import iconGraphics1 from "@/components/icons/Graphics1";
+import iconGraphics2 from "@/components/icons/Graphics2";
+import iconGraphics3 from "@/components/icons/Graphics3";
 
 export default {
   components: {
-    //iconGraphics1,
-    //iconGraphics2,
-    //iconGraphics3
+    iconGraphics1,
+    iconGraphics2,
+    iconGraphics3
   },
   data() {
     return {
