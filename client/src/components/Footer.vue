@@ -13,7 +13,7 @@
               .col-xs-12.col-md-5.center-xs.start-sm
                 router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
         .row.content
-          .col-xs-12.col-sm-5.col-md-3.address.last-xs.first-sm
+          .col-xs-12.col-sm-5.col-md-3.address-wrap.last-xs.first-sm
             .address
               img(
                 src="../assets/img/flag-can.png" 
@@ -63,6 +63,10 @@ footer {
   }
 }
 
+.waveWrapper {
+  bottom: -2px;
+}
+
 .copyright {
   opacity: 0.5;
   font-size: 11px;
@@ -80,7 +84,7 @@ footer {
   padding: 80px 0 35px 0;
 }
 
-.address {
+.address-wrap {
   display: flex;
   align-items: flex-start;
   flex-direction: column;

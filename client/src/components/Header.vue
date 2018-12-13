@@ -29,12 +29,12 @@
                 .graphics
                   div.graph.graph-1
                     .line
-                    icon-graphics1
+                    img(src="../assets/img/00.png", srcset="../assets/img/00@2x.png 2x" alt="")
                   div.graph.graph-2
-                    icon-graphics2
+                    img(src="../assets/img/01.png", srcset="../assets/img/01@2x.png 2x" alt="")
                   div.graph.graph-3
                     .line.line-2
-                    icon-graphics3
+                    img(src="../assets/img/02.png", srcset="../assets/img/02@2x.png 2x" alt="")
           template(v-else-if="contentKey !== 'error'")
             .row.middle-xs.header-padding
               .col-xs-12.col-sm-7.col-md-8

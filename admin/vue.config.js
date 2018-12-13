@@ -1,7 +1,5 @@
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'prod'
-    ? '/admin/'
-    : '/'
+  assetsDir: "admin/",
   lintOnSave: false,
   configureWebpack: {
     module: {
