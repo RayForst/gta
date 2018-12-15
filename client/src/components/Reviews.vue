@@ -1,10 +1,6 @@
 <template lang="pug">
   section.content-wrap.relative
-    <div class="morph-wrap" v-if="morph">
-      <svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">
-        <path d="M 415.6,206.3 C 407.4,286.6 438.1,373.6 496.2,454.8 554.3,536.1 497,597.2 579.7,685.7 662.4,774.1 834.3,731.7 898.5,653.4 962.3,575 967.1,486 937.7,370 909.3,253.9 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z"/>
-      </svg>
-    </div>
+    ui-morph(v-if="morph")
     .container-fluid
       .row
         .section-heading.col-xs-12
@@ -35,11 +31,13 @@
 import contentService from "@/services/ContentService";
 import carousel from "vue-owl-carousel";
 import iconArrow from "@/components/icons/Arrow";
+import uiMorph from "@/components/ui/Morph";
 
 export default {
   components: {
     carousel,
-    iconArrow
+    iconArrow,
+    uiMorph
   },
   data() {
     return {

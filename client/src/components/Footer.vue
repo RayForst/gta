@@ -1,6 +1,6 @@
 <template lang="pug">
     footer.main
-      app-footer-waves
+      icon-waves(position="top")
       .container-fluid
         .row.ca
           .col-xs-12.col-sm-5.col-md-3.align-start.center-xs.start-sm
@@ -35,6 +35,7 @@ import appFooterWaves from "@/components/ui/FooterWave";
 import appNavigation from "@/components/ui/Navigation";
 import appCaNavigation from "@/components/ui/CaNavigation";
 import appContacts from "@/components/ui/Contacts";
+import iconWaves from "@/components/icons/Waves";
 
 export default {
   data() {
@@ -44,7 +45,8 @@ export default {
     appFooterWaves,
     appNavigation,
     appCaNavigation,
-    appContacts
+    appContacts,
+    iconWaves
   }
 };
 </script>
@@ -59,7 +61,7 @@ footer {
   }
 
   @media only screen and (min-width: 48em) {
-    padding-top: 160px;
+    padding-top: 100px;
   }
 }
 

@@ -1,12 +1,5 @@
 <template lang="pug">
     header.main
-      .waveWrapper.waveAnimation
-        .waveWrapperInner.bgTop
-          .wave.waveTop(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-top.png') + ')'}")
-        .waveWrapperInner.bgMiddle
-          .wave.waveMiddle(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-mid.png') + ')'}")
-        .waveWrapperInner.bgBottom
-          .wave.waveBottom(:style="{ backgroundImage: 'url(' + require('../assets/img/wave-bot.png') + ')'}")
       .container-fluid.nav-container
         nav.row
           .navigation-links.col-xs-12
@@ -64,6 +57,7 @@
                 p.heading-caption {{ itemView.caption }}
             .col-xs-12.col-sm-5.col-md-4.center-xs
               router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+      icon-waves
 </template>
 
 <script>
@@ -71,12 +65,14 @@ import contentService from "@/services/ContentService";
 import iconGraphics1 from "@/components/icons/Graphics1";
 import iconGraphics2 from "@/components/icons/Graphics2";
 import iconGraphics3 from "@/components/icons/Graphics3";
+import iconWaves from "@/components/icons/Waves";
 
 export default {
   components: {
     iconGraphics1,
     iconGraphics2,
-    iconGraphics3
+    iconGraphics3,
+    iconWaves
   },
   data() {
     return {
@@ -228,6 +224,7 @@ nav a {
   opacity: 0.5;
   text-transform: uppercase;
   padding: 10px;
+  z-index: 4;
 
   &:not(.logo) {
     margin-top: 55px;
@@ -255,40 +252,6 @@ nav a {
   align-items: flex-start;
 }
 
-.waveWrapper {
-  overflow: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  margin: auto;
-  z-index: -1;
-}
-
-.waveWrapperInner {
-  position: absolute;
-  width: 100%;
-  overflow: hidden;
-  height: 100%;
-  top: -1px;
-  background-image: linear-gradient(127deg, #a709ff, #0094d9);
-
-  &.bgTop {
-    z-index: 15;
-    opacity: 0.3;
-  }
-
-  &.bgMiddle {
-    z-index: 10;
-    opacity: 0.3;
-  }
-
-  &.bgBottom {
-    z-index: 5;
-  }
-}
-
 .crumbs-hero {
   margin-top: -20px;
 }
@@ -298,58 +261,6 @@ nav a {
 
   @media only screen and (min-width: 64em) {
     margin-bottom: 0;
-  }
-}
-
-.wave {
-  position: absolute;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background-repeat: repeat no-repeat;
-  background-position: 0 bottom;
-  transform-origin: center bottom;
-  will-change: transform;
-  transform: translateX(0) translateZ(0) scaleY(1);
-
-  &.waveTop {
-    background-size: 84% 40px;
-
-    @media only screen and (min-width: 48em) {
-      background-size: 84% 120px;
-    }
-
-    @media only screen and (min-width: 64em) {
-      background-size: 84% 160px;
-    }
-  }
-
-  &.waveMiddle {
-    animation-delay: 2s;
-    background-position-x: -20%;
-    background-size: 80% 30px;
-
-    @media only screen and (min-width: 48em) {
-      background-size: 80% 100px;
-    }
-
-    @media only screen and (min-width: 64em) {
-      background-size: 80% 130px;
-    }
-  }
-
-  &.waveBottom {
-    animation-delay: 1s;
-    background-position-x: 30%;
-    background-size: 76% 20px;
-
-    @media only screen and (min-width: 48em) {
-      background-size: 76% 70px;
-    }
-
-    @media only screen and (min-width: 64em) {
-      background-size: 76% 100px;
-    }
   }
 }
 

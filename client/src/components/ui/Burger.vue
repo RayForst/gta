@@ -1,8 +1,10 @@
 <template lang="pug">
   #menu(ref="menu")
     .trigger(@click.self="openmenu($event)")
+      .anim-wrap(@click.self="openmenu($event)")
+        icon-blob
       .text(@click.self="openmenu($event)") {{ triggerText }}
-    .content
+    .content(@click="close($event)")
       .content-inner
         .row.navigation-container
           .col-xs-12.start-sm
@@ -16,9 +18,9 @@
                     app-ca-navigation
                   .col-xs-12.col-md-5.col-lg-12
                     router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote 
-              .col-xs-12.col-md-6.col-lg-4
+              .col-xs-12.col-md-6.col-lg-3.col-lg-offset-1
                 app-navigation
-              .col-xs-12.col-md-6.col-lg-4
+              .col-xs-12.col-md-6.col-lg-3.col-lg-offset-1
                 app-contacts
         .address-container
           .address
@@ -34,6 +36,7 @@
 import appNavigation from "@/components/ui/Navigation";
 import appCaNavigation from "@/components/ui/CaNavigation";
 import appContacts from "@/components/ui/Contacts";
+import iconBlob from "@/components/icons/Blob";
 
 export default {
   data() {
@@ -45,7 +48,8 @@ export default {
   components: {
     appNavigation,
     appCaNavigation,
-    appContacts
+    appContacts,
+    iconBlob
   },
   methods: {
     openmenu(ev) {
@@ -64,6 +68,13 @@ export default {
       if (!menu.classList.contains("mounted")) {
         this.$refs.menu.classList.add("mounted");
       }
+    },
+    close(ev) {
+      //console.log(ev.target.tagName);
+      if (ev.target.tagName === "A" || ev.target.parentNode.tagName === "A") {
+        this.openmenu();
+      }
+      //alert("close");
     }
   },
   mounted() {
@@ -71,3 +82,41 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus">
+.anim-wrap {
+  position: absolute;
+  right: -16.5rem;
+  top: -13rem;
+
+  @media only screen and (min-width: 84em) {
+    right: -14.5rem;
+    top: -12rem;
+  }
+}
+
+.text {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  bottom: 50px;
+  padding-left: 0;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.3px;
+  color: #ffffff;
+  text-transform: uppercase;
+  top: 0;
+  width: auto;
+  padding: 34px 16px;
+  cursor: pointer;
+
+  @media only screen and (min-width: 84em) {
+    padding: 50px 30px;
+  }
+}
+</style>
