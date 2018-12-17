@@ -7,10 +7,30 @@
     height="330"
     class="css-glamorous-svg--98o1ry icon Menu"
   >
-    <circle id="Circle1" class="css-glamorous-circle--1shryo8 primary"></circle>
-    <circle id="Circle2" class="css-glamorous-circle--1shryo8 secondary"></circle>
-    <circle id="Circle3" class="css-glamorous-circle--1shryo8 tertiary"></circle>
-    <circle id="Circle4" class="css-glamorous-circle--1shryo8 base"></circle>
+    <circle
+      id="Circle1"
+      stroke-dashoffset="0"
+      stroke-dasharray="0"
+      class="css-glamorous-circle--1shryo8 primary"
+    ></circle>
+    <circle
+      id="Circle2"
+      stroke-dashoffset="0"
+      stroke-dasharray="0"
+      class="css-glamorous-circle--1shryo8 secondary"
+    ></circle>
+    <circle
+      id="Circle3"
+      stroke-dashoffset="0"
+      stroke-dasharray="0"
+      class="css-glamorous-circle--1shryo8 tertiary"
+    ></circle>
+    <circle
+      id="Circle4"
+      stroke-dashoffset="0"
+      stroke-dasharray="0"
+      class="css-glamorous-circle--1shryo8 base"
+    ></circle>
   </svg>
 </template>
 
@@ -68,5 +88,10 @@ svg {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+}
+
+circle {
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
 }
 </style>

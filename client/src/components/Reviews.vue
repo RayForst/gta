@@ -84,7 +84,7 @@ export default {
     width: 290px;
     height: 290px;
     border-radius: 5px;
-    box-shadow: 0 0 40px 0 rgba(9, 39, 75, 0.11);
+    box-shadow: 0 0 27px 0 rgba(9, 39, 75, 0.11);
     background: rgba(255, 255, 255, 1);
     padding: 30px 25px 25px 25px;
     box-sizing: border-box;
