@@ -1,4 +1,4 @@
-$triggerW = 125px;
+$triggerW = 100px;
 
 #menu 
     position fixed
@@ -12,6 +12,10 @@ $triggerW = 125px;
     z-index 9998
     background-image linear-gradient(239deg, #0094d9, #4b0997)
 
+    @media $media_lg {
+        width: 125px;
+        height: 125px;
+    }
     &.mounted
         animation not-checked-anim .2s both
 

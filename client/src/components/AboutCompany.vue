@@ -104,4 +104,10 @@ export default {
     }
   }
 }
+
+.line {
+  @media only screen and (min-width: 1500px) {
+    display: none;
+  }
+}
 </style>
