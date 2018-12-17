@@ -8,6 +8,7 @@
     app-team
     .spacer
     app-reviews
+    .spacer
 </template>
 
 <script>

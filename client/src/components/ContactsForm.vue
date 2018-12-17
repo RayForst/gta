@@ -1,10 +1,6 @@
 <template lang="pug">
   section.relative
-    <div class="morph-wrap">
-      <svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">
-        <path d="M 415.6,206.3 C 407.4,286.6 438.1,373.6 496.2,454.8 554.3,536.1 497,597.2 579.7,685.7 662.4,774.1 834.3,731.7 898.5,653.4 962.3,575 967.1,486 937.7,370 909.3,253.9 937.7,201.5 833.4,105.4 729.3,9.338 602.2,13.73 530.6,41.91 459,70.08 423.9,126.1 415.6,206.3 Z"/>
-      </svg>
-    </div>
+    ui-morph(type="morph7" size="medium")
     .container-fluid.mid
       .row.bottom-md
         .col-xs-12.col-md-7
@@ -47,12 +43,17 @@
 </template>
 
 <script>
+import uiMorph from "@/components/ui/Morph";
+
 export default {
   data() {
     return {
       phone: "",
       success: false
     };
+  },
+  components: {
+    uiMorph
   },
   methods: {
     onInput({ number, isValid, country }) {
@@ -184,11 +185,16 @@ label {
     padding: 5px 16px 5px 16px;
     margin: 3px 0;
     box-sizing: border-box;
+    background: transparent;
 
     &:focus {
       outline: #0094d9 auto 5px;
     }
   }
+}
+
+input {
+  background: transparent;
 }
 
 textarea {

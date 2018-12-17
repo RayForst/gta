@@ -1,6 +1,6 @@
 <template lang="pug">
   section.content-wrap.relative
-    ui-morph(v-if="morph")
+    ui-morph(v-if="morph" type="morph1" size="large")
     .container-fluid
       .row
         .section-heading.col-xs-12

@@ -5,6 +5,7 @@
     app-what-we-do(gallery="true" morph="true")
     .spacer
     app-reviews
+    .spacer
 </template>
 
 <script>
