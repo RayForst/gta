@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import appFooterWaves from "@/components/ui/FooterWave";
 import appNavigation from "@/components/ui/Navigation";
 import appCaNavigation from "@/components/ui/CaNavigation";
 import appContacts from "@/components/ui/Contacts";
@@ -42,7 +41,6 @@ export default {
     return {};
   },
   components: {
-    appFooterWaves,
     appNavigation,
     appCaNavigation,
     appContacts,

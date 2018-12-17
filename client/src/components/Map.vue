@@ -1,7 +1,7 @@
 <template lang="pug">
   GmapMap(
-    :center="{lat:10, lng:10}"
-    :zoom="7"
+    :center="coords"
+    :zoom="15"
     map-type-id="terrain"
     style="width: 100%; height: 500px")
     GmapMarker(
@@ -12,3 +12,17 @@
       :draggable="true"
       @click="center=m.position")
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      coords: {
+        lat: 43.7132835,
+        lng: -79.3691667
+      },
+      markers: []
+    };
+  }
+};
+</script>

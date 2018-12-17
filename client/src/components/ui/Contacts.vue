@@ -1,11 +1,13 @@
 <template lang="pug">
   section.contacts
     h4 Feel free to contact us
-    div
+    div.link-wrap
       a(:href="'tel:' + phoneRaw") {{ $store.state.settings.phone }}
-    div
+    div.link-wrap
       a(:href="'mailto:' + $store.state.settings.email") {{ $store.state.settings.email }}
-    div.social
+    div.link-wrap
+      a -
+    div.social.link-wrap
       a(
         :href="$store.state.settings.facebook"
         title="Facebook"
@@ -65,10 +67,15 @@ h4 {
   }
 }
 
+.link-wrap {
+  display: flex;
+  height: 37px;
+}
+
 a {
   font-size: 16px;
   font-weight: bold;
-  line-height: 1.78;
+  line-height: 37px;
   color: #fff;
   text-decoration: none;
 
@@ -78,8 +85,6 @@ a {
 }
 
 .social {
-  margin-top: 30px;
-
   a {
     margin-right: 30px;
   }

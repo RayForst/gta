@@ -8,8 +8,7 @@ import "@/scripts/animation";
 import VueTelInput from "vue-tel-input";
 import "vue-tel-input/dist/vue-tel-input.css";
 import Meta from "vue-meta";
-import '@/scripts/fontLoader';
-
+import "@/scripts/fontLoader";
 
 var truncateFilter = function(text, length, clamp) {
   clamp = clamp || "...";
@@ -27,7 +26,8 @@ sync(store, router);
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyBiqPVo8Anjm534FSZ4-89L1H1yZxfQWvU",
-    libraries: "places"
+    libraries: "places",
+    installComponents: true
   }
 });
 

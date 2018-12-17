@@ -62,16 +62,10 @@
 
 <script>
 import contentService from "@/services/ContentService";
-import iconGraphics1 from "@/components/icons/Graphics1";
-import iconGraphics2 from "@/components/icons/Graphics2";
-import iconGraphics3 from "@/components/icons/Graphics3";
 import iconWaves from "@/components/icons/Waves";
 
 export default {
   components: {
-    iconGraphics1,
-    iconGraphics2,
-    iconGraphics3,
     iconWaves
   },
   data() {

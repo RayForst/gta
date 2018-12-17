@@ -28,7 +28,7 @@ h4 {
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-  line-height: 2.71;
+  line-height: 37px;
   letter-spacing: normal;
   color: #ffffff;
   text-decoration: none;
