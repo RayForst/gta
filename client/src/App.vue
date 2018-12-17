@@ -37,19 +37,16 @@ export default {
     async getSettings() {
       const data = (await contentService.settings.get()).data;
       this.$store.dispatch("setSettings", data);
-      this.isLoaded = true;
+      let that = this;
+      setTimeout(function() {
+        that.isLoaded = true;
+      }, 100);
     }
   },
   beforeMount() {
     this.getSettings();
   },
-  mounted() {
-    //this.isLoaded = true;
-    setTimeout(function() {
-      console.log("trying to morph");
-      Morph();
-    }, 3000);
-  }
+  mounted() {}
 };
 </script>
 

@@ -110,8 +110,6 @@ export default {
       this.caption = blockInfo.caption;
     },
     setContentKey(newV) {
-      console.log("SET COONTENT KEY", newV, this.$store.state.route.name);
-
       if (this.$store.state.route.name === "error") {
         this.contentKey = "error";
         this.$store.commit("setHeader", null);
@@ -161,7 +159,7 @@ export default {
 
     setTimeout(function() {
       that.setContentKey(that.page);
-    }, 1000);
+    }, 100);
     //this.get();
   }
 };

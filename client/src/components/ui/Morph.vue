@@ -79,7 +79,6 @@ export default {
     return {
       loaded: false,
       color: "rgba(74, 144, 226, 0.05)",
-      duration: 4000,
       shapes: {
         small: {
           viewbox: "0 0 397 305",
@@ -91,7 +90,8 @@ export default {
           scaleY: 1,
           rotate: 0,
           tx: 0,
-          ty: 100
+          ty: 100,
+          duration: 4000
         },
         medium: {
           viewbox: "0 0 969 606",
@@ -103,7 +103,8 @@ export default {
           scaleY: 1,
           rotate: 0,
           tx: 0,
-          ty: 100
+          ty: 100,
+          duration: 4000
         },
         large: {
           viewbox: "0 0 1400 800",
@@ -115,7 +116,8 @@ export default {
           scaleY: 1,
           rotate: 0,
           tx: 0,
-          ty: 100
+          ty: 100,
+          duration: 2000
         }
       }
     };
@@ -143,8 +145,14 @@ export default {
         targets: that.$refs.shape,
         easing: "linear",
         d: [
-          { value: that.shapes[size].end, duration: that.duration },
-          { value: that.shapes[size].start, duration: that.duration }
+          {
+            value: that.shapes[size].end,
+            duration: that.shapes[size].duration
+          },
+          {
+            value: that.shapes[size].start,
+            duration: that.shapes[size].duration
+          }
         ],
         loop: true,
         direction: "alternate"
