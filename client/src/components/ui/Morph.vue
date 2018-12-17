@@ -79,7 +79,7 @@ export default {
     return {
       loaded: false,
       color: "rgba(74, 144, 226, 0.05)",
-      duration: 10000,
+      duration: 4000,
       shapes: {
         small: {
           viewbox: "0 0 397 305",

@@ -3,23 +3,10 @@
     data-icon-name="blob"
     id="organic-blob"
     xmlns="http://www.w3.org/2000/svg"
-    filter="url(#goo)"
     width="400"
     height="330"
     class="css-glamorous-svg--98o1ry icon Menu"
   >
-    <defs>
-      <filter id="goo">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
-        <feColorMatrix
-          in="blur"
-          mode="matrix"
-          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-          result="goo"
-        ></feColorMatrix>
-        <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
-      </filter>
-    </defs>
     <circle id="Circle1" class="css-glamorous-circle--1shryo8 primary"></circle>
     <circle id="Circle2" class="css-glamorous-circle--1shryo8 secondary"></circle>
     <circle id="Circle3" class="css-glamorous-circle--1shryo8 tertiary"></circle>

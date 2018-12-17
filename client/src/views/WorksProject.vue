@@ -47,6 +47,7 @@
     app-why-us
     .spacer
     app-reviews
+    .spacer
 </template>
 
 <script>
