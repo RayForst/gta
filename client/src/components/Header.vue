@@ -150,9 +150,9 @@ export default {
     }
   },
   watch: {
-    // page(newV, old) {
-    //   this.setContentKey(newV);
-    // }
+    page(newV, old) {
+      this.setContentKey(newV);
+    }
   },
   mounted() {
     let that = this;
