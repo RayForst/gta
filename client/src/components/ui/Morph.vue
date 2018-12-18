@@ -52,8 +52,6 @@
     top: -150px;
 
     &.morph3 {
-      // height: 1800px;
-      // top: 0;
       .morph {
         height: 100%;
       }
@@ -129,16 +127,12 @@ export default {
     },
     viewbox() {
       let that = this;
-      console.log("VIEWBOX", this.size, this.shapes[that.size].viewbox);
       return this.shapes[this.size].viewbox;
     }
   },
   mounted() {
     const that = this;
     const size = this.size;
-    // this.loaded = true;
-
-    console.log("LOADEDD 2");
     const initShapeLoop = function(pos) {
       anime.remove(that.$refs.shape);
       anime({

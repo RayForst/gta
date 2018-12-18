@@ -13,32 +13,30 @@
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
     return {
       text: null
-    }
+    };
   },
   methods: {
     async save() {
       await contentService.aboutCompany.save({
         text: this.text
-      })
+      });
     },
     async get() {
-       const meta = (await contentService.aboutCompany.get({
+      const meta = (await contentService.aboutCompany.get({
         id: 1
-      })).data
-
-      console.log(meta)
+      })).data;
 
       this.text = meta.text;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>

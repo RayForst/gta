@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     get() {
-      console.log("in gett");
+      console.log("in gett", this.contentKey);
       if (!this.contentKey) return;
 
       const blockInfo = this.$store.state.settings.headings.filter(
@@ -150,16 +150,17 @@ export default {
     }
   },
   watch: {
-    page(newV, old) {
-      this.setContentKey(newV);
-    }
+    // page(newV, old) {
+    //   this.setContentKey(newV);
+    // }
   },
   mounted() {
     let that = this;
 
-    setTimeout(function() {
-      that.setContentKey(that.page);
-    }, 100);
+    console.log("test", that.page, this.$store.state.route.path);
+    // setTimeout(function() {
+    that.setContentKey(that.page);
+    // }, 100);
     //this.get();
   }
 };

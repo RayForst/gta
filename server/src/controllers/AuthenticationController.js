@@ -41,7 +41,6 @@ module.exports = {
                 token: jwtSignUser(userJson),
             })
         } catch (err) {
-            console.log(err)
             res.status(500).send({
                 error: 'An error has occureed trring to log in',
             })
@@ -49,8 +48,6 @@ module.exports = {
     },
     async registerAdmin() {
         try {
-            console.log('CREATING ADMIIN')
-            console.log(config.admin)
             const user = await Models.User.create(config.admin)
             return user.toJSON()
         } catch (err) {

@@ -15,7 +15,7 @@
         .col-xs-12.col-md-6.end-xs
           .image-wrap
             .line
-            img(src="../assets/img/gta-house.svg", alt="")
+            img(src="../assets/img/gta-house.png", srcset="../assets/img/gta-house@2x.png 2x" alt="")
 </template>
 
 <script>

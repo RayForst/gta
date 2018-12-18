@@ -65,7 +65,6 @@ export default {
       this.shortDescription = content.shortDescription;
       this.articleTitle = content.articleTitle;
 
-      console.log(content);
       this.$store.commit("setHeader", {
         title: content.title,
         icon: content.icon + ".svg",

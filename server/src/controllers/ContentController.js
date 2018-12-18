@@ -272,8 +272,6 @@ module.exports = {
         }
     },
     async saveWhyUs(req, res) {
-        console.log('here we go')
-
         try {
             let service = req.body.id
                 ? await Models.WhyUs.findOne({

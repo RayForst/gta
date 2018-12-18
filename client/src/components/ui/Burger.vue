@@ -70,11 +70,9 @@ export default {
       }
     },
     close(ev) {
-      //console.log(ev.target.tagName);
       if (ev.target.tagName === "A" || ev.target.parentNode.tagName === "A") {
         this.openmenu();
       }
-      //alert("close");
     }
   },
   mounted() {

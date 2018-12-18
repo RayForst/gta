@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import contentService from '@/services/ContentService'
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
@@ -33,35 +33,30 @@ export default {
       title: null,
       shortDescription: null,
       slug: null
-    }
+    };
   },
   methods: {
     async save() {
-     // this.error = ''
+      // this.error = ''
 
       await contentService.whatWeDo.save({
         title: this.title,
         shortDescription: this.shortDescription,
         slug: this.slug
-      })
+      });
 
-      this.title = null
-      this.shortDescription = null
-      this.slug = null
+      this.title = null;
+      this.shortDescription = null;
+      this.slug = null;
       this.get();
     },
     async get() {
-      const list = (await contentService.whatWeDo.get()).data
-
-      console.log(list)
-
+      const list = (await contentService.whatWeDo.get()).data;
       this.items = list;
-      // this.description = meta.description;
-      // this.keywords = meta.keywords;
     }
   },
   mounted() {
-    this.get()
+    this.get();
   }
-}
+};
 </script>

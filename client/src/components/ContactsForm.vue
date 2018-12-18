@@ -39,7 +39,7 @@
                 | Thank You for contacting Us! If you have any more questions, click here to write a new message.
         .col-xs-12.col-md-5.first-xs.last-md
           .image-wrap
-              img(src="../assets/img/gta-house.svg", alt="")
+              img(src="../assets/img/gta-house.png", srcset="../assets/img/gta-house@2x.png 2x" alt="")
 </template>
 
 <script>

@@ -54,7 +54,6 @@ export default new Vuex.Store({
         obj => obj.page === routeName
       );
 
-      console.log("returning meta for name" + routeName, metaForPage);
       return metaForPage.length ? metaForPage[0] : null;
     }
   },
@@ -63,7 +62,6 @@ export default new Vuex.Store({
       state.headerData = payload;
     },
     setSettings(state, payload) {
-      console.log("set settings", payload.meta);
       state.settings.meta = payload.meta;
       state.settings.headings = payload.headings;
     }

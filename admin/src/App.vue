@@ -27,8 +27,6 @@ export default {
     appAside
   },
   beforeCreate() {
-    console.log(this.$store.state.route.path);
-
     document.body.classList.add("skin-black");
 
     if (

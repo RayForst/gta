@@ -39,7 +39,6 @@ module.exports = {
                 }
                 res.send(works.toJSON())
             } else {
-                console.log('no id')
                 works = await Models.Work.findAll({
                     raw: true,
                 })

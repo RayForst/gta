@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
       app-burger
-      app-header
+      app-header(v-if="isLoaded")
       section.content
         router-view(v-if="isLoaded")
       app-footer
@@ -12,7 +12,6 @@ import appBurger from "@/components/ui/Burger";
 import appHeader from "@/components/Header";
 import appFooter from "@/components/Footer";
 import contentService from "@/services/ContentService";
-import Morph from "@/scripts/demo2.js";
 
 export default {
   metaInfo: {
@@ -38,9 +37,7 @@ export default {
       const data = (await contentService.settings.get()).data;
       this.$store.dispatch("setSettings", data);
       let that = this;
-      setTimeout(function() {
-        that.isLoaded = true;
-      }, 100);
+      that.isLoaded = true;
     }
   },
   beforeMount() {
