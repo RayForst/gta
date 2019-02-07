@@ -30,7 +30,7 @@ module.exports = {
             if (!isPasswordValid) {
                 return res.status(403).send({
                     error: true,
-                    message: 'The login information was incorrect 2',
+                    message: 'The login information was incorrect',
                 })
             }
 

@@ -12,17 +12,20 @@
         .col-xs-12.col-md-5.relative
           p {{ shortDescription }}
         .col-xs-12.col-md-6.col-md-offset-1
-          .carousel-wrap.owl-dots-left
+          .carousel-wrap.owl-dots-left(v-if="gallery")
             carousel(loop=true :items=1 :dots="true" :nav="false")
-              <img src="https://placeimg.com/200/200/any?1">
-              <img src="https://placeimg.com/200/200/any?2">
-              <img src="https://placeimg.com/200/200/any?3">
-              <img src="https://placeimg.com/200/200/any?4">
+              <img v-for="(src, index) in gallery" :src="src" @click="() => showImg(index)">
+            vue-easy-lightbox(
+              :visible="galleryVisible"
+              :imgs="gallery"
+              :index="index"
+              @hide="handleHide"
+            )
       .row.desc-wrap
         .col-xs-12.col-sm-6
           .desc(v-html="description")
         .col-xs-12.col-sm-6
-          .desc(v-html="description")
+          .desc(v-html="description2")
       app-c-a
       .spacer
     app-why-us(morph="true")
@@ -51,8 +54,12 @@ export default {
   data() {
     return {
       description: null,
+      description2: null,
       shortDescription: null,
-      articleTitle: null
+      articleTitle: null,
+      gallery: false,
+      galleryVisible: false,
+      index: 0
     };
   },
   methods: {
@@ -62,8 +69,17 @@ export default {
       })).data;
 
       this.description = content.description;
+      this.description2 = content.description2;
       this.shortDescription = content.shortDescription;
       this.articleTitle = content.articleTitle;
+
+      console.log('content', content)
+
+      if ( content.gallery && content.gallery.indexOf(',') > -1) {
+        this.gallery = content.gallery.split(',').map(function(image){
+          return require('./../../../uploads/'+image)
+        })
+      }
 
       this.$store.commit("setHeader", {
         title: content.title,
@@ -78,6 +94,13 @@ export default {
           }
         ]
       });
+    },
+    showImg (index, key) {
+        this.index = index
+        this.galleryVisible = true
+    },
+    handleHide () {
+      this.galleryVisible = false
     }
   },
   mounted() {

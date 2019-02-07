@@ -9,6 +9,9 @@ import VueTelInput from "vue-tel-input";
 import "vue-tel-input/dist/vue-tel-input.css";
 import Meta from "vue-meta";
 import "@/scripts/fontLoader";
+import Lightbox from 'vue-easy-lightbox'
+
+Vue.use(Lightbox)
 
 var truncateFilter = function(text, length, clamp) {
   clamp = clamp || "...";
@@ -30,6 +33,8 @@ Vue.use(VueGoogleMaps, {
     installComponents: true
   }
 });
+// Vue.component('marker', VueGoogleMaps.Marker);
+
 
 Vue.use(VueTelInput);
 Vue.use(Meta);

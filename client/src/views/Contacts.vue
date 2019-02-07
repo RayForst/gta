@@ -3,6 +3,7 @@
     app-meta
     app-contacts-form
     app-map
+    .spacer
 </template>
 
 <script>

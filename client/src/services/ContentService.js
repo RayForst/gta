@@ -32,5 +32,11 @@ export default {
   },
   blockInfo: {
     get: credentials => Api().get("content/block-info", { params: credentials })
+  },
+  contactRequest: {
+    save: credentials => Api().post("contacts", credentials)
+  },
+  gallery: {
+    get: credentials => Api().get("gallery", { params: credentials })
   }
 };

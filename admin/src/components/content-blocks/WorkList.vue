@@ -22,7 +22,8 @@
               td {{ item.slug }}
               td {{ item.category }}
               td
-                u(@click="edit(item.id)") Edit
+                span.edit(@click="edit(item.id)") Edit
+                span.delete(@click="remove(item.id)") Delete
 </template>
 
 <script>
@@ -37,11 +38,32 @@ export default {
       items: []
     };
   },
+  computed: {
+    editId() {
+      return this.$store.state.ourWorksId
+    }
+  },
   methods: {
     async get() {
       const list = (await contentService.work.get()).data;
 
       this.items = list;
+    },
+    edit(id) {
+      this.$store.dispatch("ourWorksEdit", id);
+    },
+    async remove(id) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        this.$store.dispatch("ourWorksEdit", null);
+        await contentService.work.remove({id})
+        this.get(); 
+      }
+    }
+  },
+  watch: {
+    editId (newId, oldId) {
+      console.log('WATCH IN LIST')
+      this.get();
     }
   },
   mounted() {

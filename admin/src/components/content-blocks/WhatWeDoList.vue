@@ -2,9 +2,6 @@
   .box.box-default
     .box-header.with-border
       h3.box-title List
-      .box-tools.pull-right
-        button.btn.btn-box-toolbtn.btn-box-tool
-          i.fa.fa-minus
     .row
       .col-xs-12
         table.table.table-bordered.table-hover.dataTable
@@ -20,9 +17,11 @@
               td {{ item.id }}
               td {{ item.title }}
               td {{ item.slug }}
-              td {{ item.icon }}.svg
               td
-                u(@click="edit(item.id)") Edit
+                img(width="70" v-if="item.icon" :src="require('../../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
+              td
+                span.edit(@click="edit(item.id)") Edit
+                span.delete(@click="remove(item.id)") Delete
 </template>
 
 <script>
@@ -38,6 +37,17 @@ export default {
   methods: {
     async get() {
       this.items = (await contentService.whatWeDo.get()).data;
+    },
+    edit(id) {
+      console.log('edit id',id);
+       this.$store.dispatch("whatWeDoEdit", id);
+    },
+    async remove(id) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        this.$store.dispatch("whatWeDoEdit", null);
+        await contentService.whatWeDo.remove({id})
+        this.get();
+      }
     }
   },
   mounted() {

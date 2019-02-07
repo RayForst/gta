@@ -1,28 +1,32 @@
 <template lang="pug">
   GmapMap(
-    :center="coords"
-    :zoom="15"
+    :center="{lat: lat,lng: long}"
+    :zoom="10"
     map-type-id="terrain"
     style="width: 100%; height: 500px")
     GmapMarker(
-      :key="index"
-      v-for="(m, index) in markers"
-      :position="m.position"
+      :position="{lat: lat,lng: long}"
       :clickable="true"
       :draggable="true"
+      :icon="{ url: require('../assets/img/gta-marker.svg')}"
       @click="center=m.position")
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      coords: {
-        lat: 43.7132835,
-        lng: -79.3691667
-      },
-      markers: []
-    };
+    return {};
+  },
+  computed: {
+    lat() {
+      return this.$store.state.settings.lat ? this.$store.state.settings.lat : 0
+    },
+    long() {
+      return this.$store.state.settings.long ? this.$store.state.settings.long : 0
+    }
+  },
+  components: {
+    // - GmapMarker
   }
 };
 </script>

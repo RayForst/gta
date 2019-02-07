@@ -1,4 +1,59 @@
 import Models from '../models'
+const { validationResult } = require('express-validator/check')
+// const GoogleTokenProvider = require('refresh-token').GoogleTokenProvider
+// import config from './../config/config'
+// const nodemailer = require('nodemailer')
+
+// function sendMail(req) {
+//     return true
+//     const tokenProvider = new GoogleTokenProvider({
+//         refresh_token: config.smtp.refreshToken,
+//         client_id: config.smtp.clientId,
+//         client_secret: config.smtp.clientSecret,
+//     })
+
+//     tokenProvider.getToken((err, token) => {
+//         console.log(token)
+//         console.log(err)
+//         if (!err) {
+//             const transporter = nodemailer.createTransport({
+//                 host: 'smtp.gmail.com',
+//                 port: 465,
+//                 secure: true,
+//                 auth: {
+//                     type: 'OAuth2',
+//                     password: 'Molotrus6655',
+//                     user: 'sergeikalpakov@gmail.com',
+//                     clientId: config.clientId,
+//                     clientSecret: config.clientSecret,
+//                     refreshToken: config.refreshToken,
+//                     accessToken: token,
+//                 }
+//             })
+        
+//             const HelperOptions = {
+//                 from: 'GTA Website <admin@itdaddy.ca>',
+//                 to: config.mail,
+//                 subject: 'New contact request! + ' + req.body.subject,
+//                 text: `Text from contact form${JSON.stringify(req.body)}`,
+//                 html: `<h1>Text from contact form</h1>
+//                     <div>Subject: ${req.body.subject}</div>
+//                     <div>Client Fullname: ${req.body.name}</div>
+//                     <div>Client Email: ${req.body.email}</div>
+//                     <div>Client phone: ${req.body.phone}</div>
+//                     <div>Message: ${req.body.message}</div>
+//                 `, // html body
+//             }
+        
+//             transporter.sendMail(HelperOptions, (error) => {
+//                 if (error) console.log(error)
+//                 else console.log('Mail send Success')
+        
+//                 transporter.close()
+//             })
+//         } else console.log(err)
+//     })
+// }
 
 module.exports = {
     async getSettings(req, res) {
@@ -10,14 +65,62 @@ module.exports = {
                 raw: true,
             })
 
+            const settings = await Models.Settings.findAll({
+                limit: 1,
+                order: [ [ 'createdAt', 'DESC' ]]
+            })
+
             res.send(
                 meta && headings
                     ? {
                         meta,
                         headings,
+                        settings
                     }
                     : {}
             )
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async getKeySettings(req, res) {
+        try {
+            let record = await Models.Settings.findAll({
+                limit: 1,
+                order: [ 
+                    [ 'createdAt', 'DESC' ]
+                ]
+            })
+
+            res.send(record ? record : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async saveSettings(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
+        try {
+            let record = await Models.Settings.findAll({
+                limit: 1,
+                order: [ [ 'createdAt', 'DESC' ]]
+            })
+
+            if (!record.length) {
+                record = await Models.Settings.create(req.body)
+            } else {
+                await record[0].update(req.body)
+                record = record[0]
+            }
+            
+            res.send(record.toJSON())
         } catch (err) {
             res.status(400).send({
                 error: 'Something went wrong' + err,
@@ -37,6 +140,11 @@ module.exports = {
         }
     },
     async saveMeta(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
         try {
             let meta
             let alreadyExists = await Models.Meta.findOne({
@@ -44,8 +152,8 @@ module.exports = {
             })
 
             if (alreadyExists) {
+                await alreadyExists.update(req.body)
                 meta = alreadyExists
-                alreadyExists.update(req.body)
             } else {
                 meta = await Models.Meta.create(req.body)
             }
@@ -53,7 +161,7 @@ module.exports = {
             res.send(meta ? meta.toJSON() : {})
         } catch (err) {
             res.status(400).send({
-                error: 'Something went wrong' + err,
+                error: '500: Something went wrong!',
             })
         }
     },
@@ -70,6 +178,11 @@ module.exports = {
         }
     },
     async saveBlockInfo(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+        
         try {
             let blockInfo
             let alreadyExists = await Models.BlockInfo.findOne({
@@ -91,6 +204,11 @@ module.exports = {
         }
     },
     async saveService(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+        
         try {
             let service = req.body.slug
                 ? await Models.Service.findOne({
@@ -116,6 +234,7 @@ module.exports = {
             let services
 
             if (req.query.slug) {
+                console.log('SINGLE SELECT TEST')
                 services = await Models.Service.findOne({
                     where: { slug: req.query.slug },
                 })
@@ -126,14 +245,60 @@ module.exports = {
                         ''
                     )
                 }
-                res.send(services.toJSON())
+
+                let gallery = await Models.ImageGallery.findOne({
+                    where: { 
+                        keyword: 'what-we-do-'+services.id 
+                    },
+                })
+
+                services = services.toJSON()
+
+                if (gallery) {
+                    services.gallery = gallery.dataValues.images
+                } else {
+                    services.gallery = false
+                }
+
+                res.send(services)
             } else {
                 services = await Models.Service.findAll({
                     raw: true,
                 })
 
+                for (let i = 0; i < services.length; i++) { 
+                    let gallery = await Models.ImageGallery.findOne({
+                        where: { 
+                            keyword: 'what-we-do-'+services[i].id 
+                        },
+                    })
+
+                    console.log('LOOOKING FOR ID', services[i].id)
+                    
+                    console.log(gallery)
+                    
+                    if (gallery) {
+                        services[i].gallery = gallery.dataValues.images
+                    } else {
+                        services[i].gallery = false
+                    }
+                    services[i].title = 'tesstt'
+                }
+
                 res.send(services)
             }
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async deleteService(req, res) {
+        try {
+            await Models.Service.destroy({
+                where: { id: req.query.id },
+            })
+            res.send({})
         } catch (err) {
             res.status(400).send({
                 error: 'Something went wrong' + err,
@@ -153,6 +318,11 @@ module.exports = {
         }
     },
     async saveHead(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
         try {
             let meta
             let alreadyExists = await Models.Head.findOne({
@@ -186,6 +356,11 @@ module.exports = {
         }
     },
     async saveAboutCompany(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
         try {
             let meta
             let alreadyExists = await Models.AboutCompany.findOne({
@@ -220,12 +395,32 @@ module.exports = {
                     raw: true,
                 })
 
+                for (let i = 0; i < services.length; i++) { 
+                    let gallery = await Models.ImageGallery.findOne({
+                        where: { 
+                            keyword: 'work-'+services[i].id 
+                        },
+                    })
+
+                    services[i].gallery = gallery.dataValues.images
+                    services[i].title = 'tesstt'
+                }
+          
                 res.send(services)
             }
         } catch (err) {
             res.status(400).send({
                 error: 'Something went wrong' + err,
             })
+        }
+    },
+    async getGalleryObject(keyword) {
+        try {
+            return await Models.ImageGallery.findOne({
+                where: { keyword },
+            })
+        } catch (err) {
+            console.log(err)
         }
     },
     async saveCustomerReview(req, res) {
@@ -272,6 +467,11 @@ module.exports = {
         }
     },
     async saveWhyUs(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
         try {
             let service = req.body.id
                 ? await Models.WhyUs.findOne({
@@ -286,6 +486,18 @@ module.exports = {
             }
 
             res.send(service ? service.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async deleteWhyUs(req, res) {
+        try {
+            await Models.WhyUs.destroy({
+                where: { id: req.query.id },
+            })
+            res.send({})
         } catch (err) {
             res.status(400).send({
                 error: 'Something went wrong' + err,
@@ -313,6 +525,11 @@ module.exports = {
         }
     },
     async saveAbout(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+
         try {
             let meta
             let alreadyExists = await Models.About.findOne({
@@ -356,6 +573,11 @@ module.exports = {
         }
     },
     async saveTeam(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+        
         try {
             let service = req.body.id
                 ? await Models.Team.findOne({
@@ -376,4 +598,110 @@ module.exports = {
             })
         }
     },
+    async deleteTeam(req, res) {
+        try {
+            await Models.Team.destroy({
+                where: { id: req.query.id },
+            })
+            res.send({})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async getConctactRequest(req, res) {
+        try {
+            const records = await Models.ContactRequest.findAll({
+                raw: true,
+                order: [
+                    ['createdAt', 'DESC']
+                ]
+            })
+
+            res.send(records)
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async readConctactRequest(req, res) {
+        try {
+            let record = await Models.ContactRequest.findOne({
+                where: { id: req.query.id },
+            })
+
+            if (record) {
+                record.update({
+                    readed: true
+                })
+            } 
+
+            res.send(record ? record.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async saveConctactRequest(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+        
+        try {
+            const record = await Models.ContactRequest.create(req.body)
+            
+            // sendMail(req)
+            res.send(record ? record.toJSON() : {})
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async saveGallery(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        }
+        
+        try {
+            let record = await Models.ImageGallery.findOne({
+                where: { keyword: req.body.keyword },
+            })
+
+            if (record) {
+                console.log('reccorrd exists')
+                record.update(req.body)
+            } else {
+                console.log('reccorrd dos not exists')
+                record = await Models.ImageGallery.create(req.body)
+            }
+            
+            res.send(record ? record.toJSON() : {})
+        } catch (err) {
+            console.log(err)
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    },
+    async getGallery(req, res) {
+        try {
+            console.log('route hit')
+            const records = await Models.ImageGallery.findOne({
+                where: { keyword: req.query.keyword },
+            })
+
+            res.send(records ? records.toJSON() : {})
+        } catch (err) {
+            res.status(400).send({
+                error: 'Something went wrong' + err,
+            })
+        }
+    }
 }

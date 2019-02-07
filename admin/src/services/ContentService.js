@@ -16,11 +16,13 @@ export default {
   },
   whyUs: {
     get: credentials => Api().get("content/why-us", { params: credentials }),
-    save: credentials => Api().post("content/why-us", credentials)
+    save: credentials => Api().post("content/why-us", credentials),
+    remove: credentials => Api().delete("content/why-us", { params: credentials })
   },
   work: {
     get: credentials => Api().get("content/work", { params: credentials }),
-    save: credentials => Api().post("content/work", credentials)
+    save: credentials => Api().post("content/work", credentials),
+    remove: credentials => Api().delete("content/work", { params: credentials })
   },
   customerReview: {
     get: credentials =>
@@ -38,11 +40,28 @@ export default {
   },
   team: {
     get: credentials => Api().get("content/team", { params: credentials }),
-    save: credentials => Api().post("content/team", credentials)
+    save: credentials => Api().post("content/team", credentials),
+    remove: credentials => Api().delete("content/team", { params: credentials })
   },
   whatWeDo: {
     get: credentials =>
       Api().get("content/what-we-do", { params: credentials }),
-    save: credentials => Api().post("content/what-we-do", credentials)
+    save: credentials => Api().post("content/what-we-do", credentials),
+    remove: credentials => Api().delete("content/what-we-do", { params: credentials })
+  },
+  upload: {
+    save: credentials => Api().post("upload", credentials)
+  },
+  settings: {
+    get: credentials => Api().get("contacts/keys", credentials),
+    save: credentials => Api().post("settings", credentials)
+  },
+  contacts: {
+    get: credentials => Api().get("contacts", credentials),
+    read: credentials => Api().get("/contacts/read", { params: credentials })
+  },
+  gallery: {
+    save: credentials => Api().post("save-gallery", credentials),
+    get: credentials => Api().get("gallery", { params: credentials })
   }
 };

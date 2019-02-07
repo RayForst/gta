@@ -5,10 +5,10 @@ body
   color: #fff;
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
-
+  // -webkit-animation: Gradient 15s ease infinite 2s;
+  // -moz-animation: Gradient 15s ease infinite 2s;
+  // animation: Gradient 15s ease infinite 2s;
+	
 @-webkit-keyframes Gradient {
 	0% {
 		background-position: 0% 50%
@@ -51,8 +51,8 @@ body
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-	height 100%
-	overflow hidden
+	height: 100%;
+	overflow: hidden;
 }
 
 .content-wrapper 
@@ -65,3 +65,94 @@ body
 .btn-grp
 	button, a
 		margin-right: 5px
+
+.skin-black .main-sidebar
+	transform: translateX(-230px);
+	transition: transform .4s ease;
+	width: 230px;
+
+	@media (min-width: 768px)
+		width: 50px;
+
+.content-wrapper, .main-footer
+	@media (min-width: 768px)
+		margin-left: 0px !important;
+	transition: transform .4s ease, margin .4s ease;
+
+@media (min-width: 768px)
+	.main-header .logo>.logo-mini
+		display: block;
+		margin-left: -15px;
+		margin-right: -15px;
+		font-size: 18px;
+
+	.main-header .logo
+		width: 50px;
+
+	.main-header .navbar
+		margin-left: 50px !important;
+	 
+#app
+	&.asideOpen
+		.main-sidebar
+			transform: translateX(0);
+			width: 230px;
+		
+
+		.content-wrapper, 
+		.main-footer
+			@media (max-width: 767px)
+				transform: translate(230px, 0);
+
+			@media (min-width: 768px)
+				margin-left: 230px !important;
+
+
+		.main-header .logo>.logo-mini
+			display: none;
+		
+		@media (min-width: 768px)
+			.logo
+				width: 230px;
+
+			.main-header .navbar
+				margin-left: 230px !important;
+
+
+.skin-black .sidebar-menu .treeview-menu > li > a
+	&.router-link-active
+		color: #fff;
+
+.req-star
+	color: #dd4b39
+
+textarea.form-control
+	min-height: 140px;
+
+.success-status
+	padding: 0 10px
+	color:#00a65a
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+span.edit
+	text-decoration: none;
+	cursor: pointer;
+	color: #00c0ef;
+	font-weight: bold;
+
+
+span.delete
+	text-decoration: none;
+	cursor: pointer;
+	color: #dd4b39;
+	padding: 0 6px;
+	font-weight: bold;
+
+.uploaded-image
+	max-height: 100px;

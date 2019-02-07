@@ -153,7 +153,7 @@ a, button
   font-size: 18px
   line-height: 1.72
   color: #ffffff
-  max-width: 520px
+  max-width: 500px
   margin-bottom: 30px
 
 .graphics-wrap
@@ -329,10 +329,8 @@ section
   height: 50px
   border-radius: 100%;
   overflow: hidden;
-
-  img
-    display: block;
-    width: 100%;
+  background-position: center center;
+  background-size:cover;
 
 .spacer
   height: 70px;
@@ -364,5 +362,33 @@ section .owl-theme .owl-nav [class*='owl-']
 
 a:active {
   background: none !important;
+}
 
+.desc-wrap {
+  ul, ol {
+    //margin-top: 0;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0094d9;
+    text-decoration: none;
+    transition: color +$transition_link;
+
+    &:hover {
+      color:#fff100;
+    }
+    .icon {
+      margin-left: 6px
+    }
+  }
+
+  p {
+    margin: 0;
+  }
 }

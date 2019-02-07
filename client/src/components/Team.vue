@@ -8,7 +8,7 @@
       .row
           .col-xs-12.col-sm-6.col-md-4.col-lg-3.person-item(v-for="item in list" :key="item.id")
               div.user-photo-wrap
-                .user-photo(:style="{ backgroundImage: 'url(' + require('../assets/img/userpic.jpeg') + ')' }")
+                .user-photo(v-if="item.image" :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.image) + ')' }")
               div.name {{ item.fullname }}
               div.pos {{ item.position }}
 </template>
@@ -67,11 +67,18 @@ export default {
 .user-photo-wrap {
   position: relative;
   margin-bottom: 30px;
+  overflow: hidden;
 
   &:before {
     content: '';
     display: block;
     padding-top: 100%;
+  }
+  
+  &:hover {
+    .user-photo {
+      transform: scale(1.1);
+    }
   }
 
   .user-photo {
@@ -81,6 +88,7 @@ export default {
     height: 100%;
     width: 100%;
     background-size: cover;
+     transition: transform .3s ease;
   }
 }
 

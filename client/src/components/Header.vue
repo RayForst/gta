@@ -34,7 +34,7 @@
                 h1 {{ title }}
                 p.heading-caption {{ caption }}
               .col-xs-12.col-sm-5.col-md-4.center-xs
-                router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+                router-link.ui-btn(v-if="showContactButton" :to="{ name: 'contacts' }") Request a quote
         template(v-else-if="itemView.title")
           .row.middle-xs.crumbs-hero
             .col-xs-12.breadcrumbs
@@ -73,6 +73,7 @@ export default {
       contentKey: "index",
       title: null,
       caption: null,
+      showContactButton: false,
       routes: [
         {
           text: "What we do",
@@ -110,6 +111,7 @@ export default {
       this.caption = blockInfo.caption;
     },
     setContentKey(newV) {
+      this.showContactButton = true;
       if (this.$store.state.route.name === "error") {
         this.contentKey = "error";
         this.$store.commit("setHeader", null);
@@ -122,6 +124,7 @@ export default {
             this.contentKey = "works";
             break;
           case "/contacts":
+            this.showContactButton = false;
             this.contentKey = "contacts";
             break;
           case "/about":
@@ -157,11 +160,7 @@ export default {
   mounted() {
     let that = this;
 
-    console.log("test", that.page, this.$store.state.route.path);
-    // setTimeout(function() {
     that.setContentKey(that.page);
-    // }, 100);
-    //this.get();
   }
 };
 </script>

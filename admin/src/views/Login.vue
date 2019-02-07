@@ -12,6 +12,11 @@
         .form-group.has-feedback
           input.form-control(v-model="password" type="password" placeholder="Password")
           span.glyphicon.glyphicon-lock.form-control-feedback
+        .form-group.has-error(
+          v-if="error"
+        )
+          span.help-block
+            b {{ error }}
         .row
           .col-xs-12.text-center
             button.btn.btn-primary(type="submit") Sign Inn
@@ -24,7 +29,8 @@ export default {
   data() {
     return {
       login: "",
-      password: ""
+      password: "",
+      error: null 
     };
   },
   methods: {
@@ -40,7 +46,8 @@ export default {
 
         this.$router.push("dashboard");
       } catch (err) {
-        console.warn(err);
+        console.log(err.response.data.message);
+        this.error = err.response.data.message;
       }
     }
   }

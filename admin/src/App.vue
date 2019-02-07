@@ -1,5 +1,7 @@
 <template lang="pug">
-  <div id="app">
+  #app(
+    :class="{ asideOpen: this.$store.state.aside }"
+  )
     template(v-if="$store.state.isAuthorized")
       .wrapper
         app-header
@@ -20,6 +22,11 @@ import appFooter from "@/components/Footer";
 import appAside from "@/components/Aside";
 
 export default {
+  data() {
+    return {
+      aside: true
+    }
+  },
   components: {
     appHeader,
     appFooter,

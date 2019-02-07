@@ -9,22 +9,22 @@
       a -
     div.social.link-wrap
       a(
-        :href="$store.state.settings.facebook"
+        :href="$store.state.settings.social.facebook"
         title="Facebook"
       )
         img(src="../../assets/img/social/facebook.svg", alt="Facebook logo")
       a(
-        href="$store.state.settings.twitter"
+        :href="$store.state.settings.social.twitter"
         title="Twitter"
       )
         img(src="../../assets/img/social/twitter.svg", alt="Twitter logo")
       a(
-        href="$store.state.settings.instagram"
+        :href="$store.state.settings.social.instagram"
         title="Instagram"
       )
         img(src="../../assets/img/social/instagram.svg", alt="Instagram logo")
       a(
-        href="$store.state.settings.youtube" 
+        :href="$store.state.settings.social.youtube" 
         Title="Youtube"
       )
         img(src="../../assets/img/social/youtube.svg", alt="Youtube logo")

@@ -14,7 +14,13 @@
         .item.col-xs-12(:class="(index + 1) % 3 === 0 ? 'col-sm-12 full-width' : 'col-sm-6'" v-for="(item, index) in sortedList.slice(0, displayLimit)" :key="item.id")
           router-link(:to="{ name: 'works-project', params: { slug: item.slug } }")
             span.image-wrap
-              .image-wrap-content(style="background-image: url('https://placeimg.com/640/480/any')")
+              .image-wrap-content(
+                v-if="item.gallery"
+                :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.gallery) + ')' }"
+              )
+              .image-wrap-content(
+                v-else
+              )
               .person-review
                 span.person
                   span.userpic
@@ -62,6 +68,14 @@ export default {
         page: "works"
       })).data;
       const list = (await contentService.works.get()).data;
+
+      list.forEach(element => {
+        if (element.gallery && element.gallery.indexOf(',') > -1) {
+          element.gallery =  element.gallery.split(',')[0]
+        } else { 
+          element.gallery = false
+        }
+      });
 
       this.items = list;
       this.title = blockInfo.title;

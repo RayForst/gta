@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js src/starter.js --exec 'npm run lint && node'",
+    "start": "DEBUG=express:* ./node_modules/nodemon/bin/nodemon.js src/starter.js --exec 'npm run lint && node'",
     "lint": "./node_modules/.bin/eslint \"**/*.js\""
   },
   "dependencies": {
@@ -17,11 +17,16 @@
     "commander": "^2.19.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "express-validator": "^5.3.1",
     "helmet-crossdomain": "^0.3.0",
     "joi": "^13.7.0",
     "jsonwebtoken": "^8.4.0",
+    "mime": "^2.4.0",
     "morgan": "^1.9.1",
+    "multer": "^1.4.1",
     "mysql2": "^1.6.1",
+    "nodemailer": "^5.1.1",
+    "refresh-token": "^1.0.0",
     "sequelize": "^4.39.0"
   },
   "devDependencies": {

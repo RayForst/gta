@@ -15,10 +15,12 @@ export default new Vuex.Store({
     settings: {
       meta: null,
       headings: null,
-      phone: "+1 (416) 522-4501",
-      email: "hello@gtaimagesolutions.com",
-      address: "790 Eglinton Ave East Toronto, ON M4G 2L1",
-      copyright: "2018 GTA Image solutions Inc",
+      phone: '',
+      email: '',
+      address: '',
+      copyright: '',
+      lat: 0,
+      long: 0,
       routes: [
         {
           text: "What we do",
@@ -64,6 +66,21 @@ export default new Vuex.Store({
     setSettings(state, payload) {
       state.settings.meta = payload.meta;
       state.settings.headings = payload.headings;
+
+      let settings = payload.settings[0];
+
+      state.settings.email = settings.email;
+      state.settings.phone = settings.phone;
+      state.settings.copyright = settings.copyright;
+      state.settings.address = settings.address;
+      state.settings.lat = +settings.lat;
+      state.settings.long = +settings.long;
+      state.settings.social.facebook = settings.facebook;
+      state.settings.social.twitter = settings.twitter;
+      state.settings.social.instagram = settings.instagram;
+      state.settings.social.youtube = settings.youtube;
+
+      console.log(state.settings)
     }
   },
   actions: {

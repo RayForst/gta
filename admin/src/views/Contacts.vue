@@ -1,5 +1,5 @@
 <template lang="pug">
-  dev
+  div
     section.content-header
       h1 Contact us
     section.content

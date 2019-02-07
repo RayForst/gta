@@ -1,15 +1,17 @@
 <template lang="pug">
-  .box.box-default
-    .box-header.with-border
-      h3.box-title Content
-      .box-tools.pull-right
-        button.btn.btn-box-toolbtn.btn-box-tool
-          i.fa.fa-minus
-    form.box-body(@submit.prevent="save")
-      .form-group
-        label(for="r2") Text
-        textarea#r2.form-control(v-model="text" placeholder="text")
-      button.btn.btn-block.btn-success Save
+  form.mt-3(@submit.prevent="save")
+    .form-group(
+      :class="{ 'has-error': form.text.error }"
+    )
+      label(for="r2") Text
+      textarea#r2.form-control(v-model="form.text.value" placeholder="text")
+      span.help-block(v-if="form.text.error") {{ form.text.error }}
+    .btn-grp
+      button.btn.btn-success Save
+      button(@click="cancel" type="button").btn.btn-danger Cancel
+      transition(name="fade")
+        span.success-status(v-if="success")
+          b Successfully Saved!
 </template>
 
 <script>
@@ -18,21 +20,56 @@ import contentService from "@/services/ContentService";
 export default {
   data() {
     return {
-      text: null
+      form: {
+        text: {
+          value: null,
+          error: null,
+        }
+      },
+      serverError: null,
+      success: false
     };
   },
   methods: {
     async save() {
-      await contentService.aboutCompany.save({
-        text: this.text
-      });
+      const $this = this;
+      $this.clearErrors()
+
+      try {
+        const response = await contentService.aboutCompany.save({
+          text: this.form.text.value
+        });
+
+        $this.success = true;
+
+        setTimeout(() => {
+          $this.success = false;
+        }, 4000)
+      } catch(err) {
+        if (err.response.status === 422) {
+          err.response.data.errors.forEach(function(element) {
+            $this.form[element.param].error = element.msg
+          })
+        } else {
+          console.log('ERRR :',err.response.status)
+        }
+      }
     },
     async get() {
       const meta = (await contentService.aboutCompany.get({
         id: 1
       })).data;
 
-      this.text = meta.text;
+      this.form.text.value = meta.text;
+    },
+    clearErrors() {
+      this.serverError = '';
+      for(var index in this.form) { 
+        this.form[index].error = null
+      }
+    },
+    cancel() {
+      this.get();
     }
   },
   mounted() {
@@ -40,3 +77,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .mt-3 {
+    margin-top: 30px;
+  }
+</style>

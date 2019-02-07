@@ -20,12 +20,9 @@
                   | Learn more
                   img.icon(src="../assets/img/arrow.svg", alt="")
               .col-xs-12.col-md-6(:class="(index + 1) % 2 !== 0 ? 'first-md owl-dots-left' : 'col-md-offset-1 owl-dots-right'")
-                .carousel-wrap
+                .carousel-wrap(v-if="item.gallery")
                   carousel(loop=true :items=1 :dots="true" :nav="false")
-                    <img src="https://placeimg.com/490/280/any?1">
-                    <img src="https://placeimg.com/490/280/any?2">
-                    <img src="https://placeimg.com/490/280/any?3">
-                    <img src="https://placeimg.com/490/280/any?4">
+                    <img v-for="(src, index) in item.gallery" :src="src">
           template(v-else)
             .row
               .col-xs-12.center-xs.start-sm
@@ -64,6 +61,17 @@ export default {
         page: "what-we-do"
       })).data;
       const list = (await contentService.whatWeDo.get()).data;
+      console.log(list);
+
+      list.forEach(element => {
+        if (element.gallery && element.gallery.indexOf(',') > -1) {
+          element.gallery =  element.gallery.split(',').map(function(image){
+            return require('./../../../uploads/'+image)
+          })
+        } else { 
+          element.gallery = false
+        }
+      });
 
       this.items = list;
       this.title = blockInfo.title;

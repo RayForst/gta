@@ -1,63 +1,205 @@
 <template lang="pug">
   section.relative
-    ui-morph(type="morph7" size="medium")
+    ui-morph(
+      type="morph7"
+      size="medium"
+    )
     .container-fluid.mid
       .row.bottom-md
         .col-xs-12.col-md-7
-          form.gta-form
+          form.gta-form(
+            @submit.prevent="save"
+          )
             .row.center-xs.start-md
-              .col-xs-12.col-sm-5.input-container.start-sm
+              .col-xs-12.col-sm-5.input-container.start-sm.form-group(
+                :class="{ 'has-error': form.type.error }"
+              )
                 span.custom-dropdown
-                  select(name='subject')
-                    option(value="1") Payment question
-                    option(value="2") Life meaning question
-                    option(value="3") Drug question
-              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
+                  select(
+                    name='subject'
+                    v-model="form.type.value"
+                  )
+                    option(
+                      :value="type" 
+                      v-for="type in subjectTypes"
+                    ) {{ type }}
+                span.help-block(
+                  v-if="form.type.error"
+                ) {{ form.type.error }}
+              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm.form-group(
+                :class="{ 'has-error': form.fullname.error }"
+              )
                 .gta-input
-                  label(for='#formName') Full Name
-                  input(type="text" id="formName" name='name' required)
+                  label(
+                    for='#formName'
+                  ) Full Name
+                  input(
+                    type="text"
+                    id="formName"
+                    v-model="form.fullname.value"
+                    name='name'
+                    required
+                  )
+                span.help-block(
+                  v-if="form.fullname.error"
+                ) {{ form.fullname.error }}
             .row.center-xs.start-md
-              .col-xs-12.col-sm-5.input-container.start-sm
+              .col-xs-12.col-sm-5.input-container.start-sm.form-group(
+                :class="{ 'has-error': form.phone.error }"
+              )
                 .gta-tel-input
-                  label.gta-label(for='#formPhone') Phone
-                  vue-tel-input(v-model="phone"
-                        @onInput="onInput"
-                        :preferredCountries="['ca', 'us']")
-              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm
+                  label.gta-label(
+                    for='#formPhone'
+                  ) Phone
+                  vue-tel-input(
+                    v-model="form.phone.value"
+                    :preferredCountries="['ca', 'us']"
+                  )
+                span.help-block(
+                  v-if="form.phone.error"
+                ) {{ form.phone.error }}
+              .col-xs-12.col-sm-5.col-sm-offset-1.input-container.start-sm.form-group(
+                :class="{ 'has-error': form.email.error }"
+              )
                 .gta-input
-                  label(for='#formEmail') E-mail
-                  input(type="email" id="formEmail" name='email' required)
+                  label(
+                    for='#formEmail'
+                  ) E-mail
+                  input(
+                    type="email"
+                    id="formEmail"
+                    name='email'
+                    v-model="form.email.value"
+                    required
+                  )
+                span.help-block(
+                  v-if="form.email.error"
+                ) {{ form.email.error }}
             .row.center-xs.start-md
-              .col-xs-12.col-sm-11.input-container.start-sm
+              .col-xs-12.col-sm-11.input-container.start-sm.form-group(
+                :class="{ 'has-error': form.message.error }"
+              )
                 .gta-textarea
-                  label.gta-label(for='#formMesssge') Message
-                  textarea(required id="formMesssge" name="message", cols="30", rows="6" placeholder="Hi guys, we want to cooporate…")
+                  label.gta-label(
+                    for='#form-message'
+                  ) Message
+                  textarea(
+                    required 
+                    id="form-message" 
+                    name="form.message.value"
+                    v-model="form.message.value"
+                    cols="30"
+                    rows="6"
+                    placeholder="Hi guys, we want to cooporate…"
+                  )
+                span.help-block(
+                  v-if="form.message.error"
+                ) {{ form.message.error }}
             .row.result-wrap
-              .col-xs-12.center-xs.start-md.button-wrap
+              .col-xs-12.center-xs.start-md.button-wrap(
+                v-if="!success"
+              )
                 button.ui-btn.gta-form__button.button.button-primary.button-big Send
-              .col-xs-12.primary.gta-form__response(v-if="success")
-                | Thank You for contacting Us! If you have any more questions, click here to write a new message.
+              .col-xs-12.primary.gta-form__response(
+                v-if="success"
+              ) Thank You for contacting Us!<br />
+                | If you have any more questions, click 
+                a.link(href='#' @click.prevent="resetForm") here
+                |  to write a new message.
+            .spacer
         .col-xs-12.col-md-5.first-xs.last-md
           .image-wrap
-              img(src="../assets/img/gta-house.png", srcset="../assets/img/gta-house@2x.png 2x" alt="")
+            img(
+              src="../assets/img/gta-house.png"
+              srcset="../assets/img/gta-house@2x.png 2x"
+              alt=""
+            )
 </template>
 
 <script>
 import uiMorph from "@/components/ui/Morph";
+import contentService from "@/services/ContentService";
 
 export default {
   data() {
     return {
-      phone: "",
-      success: false
+      success: false,
+      serverError: null,
+      subjectTypes: [
+        'Subject 1',
+        'Subject 2',
+        'Subject 3',
+        'Else'
+      ],
+      form: {
+        type: {
+            value: 'Subject 1',
+            error: null,
+        },
+        phone: {
+            value: null,
+            error: null,
+        },
+        fullname: {
+            value: null,
+            error: null,
+        },
+        email: {
+            value: null,
+            error: null,
+        },
+        message: {
+            value: null,
+            error: null,
+        },
+      },
     };
   },
   components: {
     uiMorph
   },
   methods: {
-    onInput({ number, isValid, country }) {
-      console.log(number, isValid, country);
+    async save() {
+      const $this = this;
+      $this.clearErrors()
+
+      try {
+        const response = await contentService.contactRequest.save({
+          type: this.form.type.value,
+          phone: this.form.phone.value,
+          fullname: this.form.fullname.value,
+          email: this.form.email.value,
+          message: this.form.message.value,
+        });
+
+        
+        $this.success = true;
+        $this.clearForm();
+      } catch(err) {
+         if (err.response.status === 422) {
+          err.response.data.errors.forEach(function(element) {
+            $this.form[element.param].error = element.msg
+          })
+        } else {
+          console.log('ERRR :',err.response.status)
+        }
+      }
+    },
+    clearErrors() {
+      this.serverError = '';
+      for(var index in this.form) { 
+        this.form[index].error = null
+      }
+    },
+    clearForm() {
+      for(var index in this.form) { 
+        this.form[index].value = null
+      }
+
+      this.form.type.value = 'Subject 1'
+    },
+    resetForm() {
+      this.success = false;
     }
   }
 };
@@ -68,9 +210,24 @@ export default {
   padding-bottom: 32px;
 }
 
+.help-block {
+  font-size: 14px;
+  color: #f50a0a;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
 .gta-form {
   @media only screen and (min-width: 64em) {
     padding-top: 40px;
+  }
+
+  &__response {
+    text-align: center;
+    line-height: 1.6em;
+    color: #1ba51b;
+    font-weight: bold;
   }
 }
 

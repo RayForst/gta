@@ -17,6 +17,7 @@
     "pug-plain-loader": "^1.0.0",
     "v-owl-carousel": "^1.0.7",
     "vue": "^2.5.17",
+    "vue-easy-lightbox": "^0.3.9",
     "vue-meta": "^1.5.6",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.0.1",

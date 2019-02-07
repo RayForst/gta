@@ -9,11 +9,14 @@
     .owl-wrap(v-if="items.length")
       carousel(loop=true autoWidth=true :responsive="{0:{nav:false,dots:true,center:true},1024:{nav:true,dots:false,center:false}}")
         .carousel-item(v-for="item in items" :key="item.id")
-          router-link.carousel-item-content(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }") 
-            span.bg(style="background-image: url('https://placeimg.com/640/480/any')")
+          router-link.carousel-item-content(:to="{ name: 'works-project', params: { slug: item.slug } }") 
+            span.bg(
+              :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.gallery) + ')' }"
+            )
             span.person
-              span.userpic
-                img(src="../assets/img/userpic.jpeg", alt="")
+              span.userpic(
+                :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.image) + ')' }"
+              )
               span.user-details
                 span.fullname {{ item.person_name }}
                 span.position {{ item.person_position }}
@@ -55,7 +58,13 @@ export default {
       })).data;
       const list = (await contentService.customerReviews.get()).data;
 
+      list.forEach(element => {
+        element.gallery = element.gallery.indexOf(',') > -1 ? element.gallery.split(',')[0] : ''
+      });
+
       this.items = list;
+
+      console.log('client list', list)
       this.title = blockInfo.title;
       this.caption = blockInfo.caption;
       this.buttonText = blockInfo.buttonText;
