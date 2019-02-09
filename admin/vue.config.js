@@ -1,5 +1,5 @@
 module.exports = {
-  assetsDir: "admin/",
+  baseUrl: '/admin/',
   lintOnSave: false,
   configureWebpack: {
     module: {
