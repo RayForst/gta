@@ -11,11 +11,11 @@
         .carousel-item(v-for="item in items" :key="item.id")
           router-link.carousel-item-content(:to="{ name: 'works-project', params: { slug: item.slug } }") 
             span.bg(
-              :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.gallery) + ')' }"
+              :style="{ backgroundImage: 'url(' + require('uploads/'+item.gallery) + ')' }"
             )
             span.person
               span.userpic(
-                :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.image) + ')' }"
+                :style="{ backgroundImage: 'url(' + require('uploads/'+item.image) + ')' }"
               )
               span.user-details
                 span.fullname {{ item.person_name }}

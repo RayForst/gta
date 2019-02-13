@@ -73,7 +73,7 @@
           img(
             v-if="editImage"
             class="uploaded-image"
-            :src="require('./../../../../uploads/'+editImage)"
+            :src="require('uploads/'+editImage)"
           )
         label(for="t3") Person photo
         input#t3.form-control(placeholder="File" type="file" @change="onFileSelected" ref="fileInput")

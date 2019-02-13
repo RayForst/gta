@@ -77,7 +77,7 @@ export default {
 
       if ( content.gallery && content.gallery.indexOf(',') > -1) {
         this.gallery = content.gallery.split(',').map(function(image){
-          return require('./../../../uploads/'+image)
+          return require('uploads/'+image)
         })
       }
 

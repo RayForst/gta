@@ -8,7 +8,7 @@
       .row
           .col-xs-12.col-sm-6.col-md-4.col-lg-3.person-item(v-for="item in list" :key="item.id")
               div.user-photo-wrap
-                .user-photo(v-if="item.image" :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.image) + ')' }")
+                .user-photo(v-if="item.image" :style="{ backgroundImage: 'url(' + require('uploads/'+item.image) + ')' }")
               div.name {{ item.fullname }}
               div.pos {{ item.position }}
 </template>

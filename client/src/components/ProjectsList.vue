@@ -16,7 +16,7 @@
             span.image-wrap
               .image-wrap-content(
                 v-if="item.gallery"
-                :style="{ backgroundImage: 'url(' + require('./../../../uploads/'+item.gallery) + ')' }"
+                :style="{ backgroundImage: 'url(' + require('uploads/'+item.gallery) + ')' }"
               )
               .image-wrap-content(
                 v-else
