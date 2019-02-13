@@ -7,7 +7,7 @@ import "./assets/css/vendors/adminLTE/AdminLTE.css";
 import "./assets/css/vendors/adminLTE/skin-black.css";
 import "./assets/css/main.styl";
 import router from "./router";
-import store from "./store/Store";
+import store from "./store";
 import wysiwyg from "vue-wysiwyg";
 import { sync } from "vuex-router-sync";
 import moment from 'moment'
