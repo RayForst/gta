@@ -24,7 +24,6 @@ app.use(function (req, res, next) {
 
 app.use('/img', express.static(__dirname + '/../../uploads'))
 
-console.log('PATTH TESST   ', __dirname + '/../../uploads')
 require('./routes')(app)
 require('./commands')(app)
 
@@ -35,10 +34,12 @@ models.sequelize.sync().then(() => {
 })
 
 app.use(function(err, req, res, next) {
-    console.log('MIDDLEWARE', next)
+    console.log('ERROR', err)
     if (err.code === 'LIMIT_FILE_TYPES') {
         return res.status(422).json({ error: 'Only images are allowed'})
     }
+
+    next()
 })
 
 

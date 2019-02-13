@@ -38,11 +38,10 @@ export default {
 
     if (
       !this.$store.state.isAuthorized &&
-      this.$store.state.route.path != "/"
+      this.$store.state.route.path != "/login"
     ) {
       this.$router.push({ name: "login" });
     }
-    //}
   }
 };
 </script>

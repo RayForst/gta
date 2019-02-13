@@ -16,9 +16,10 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
+  base: '/admin',
   routes: [
     {
-      path: "/",
+      path: "/login",
       name: "login",
       component: appLogin
     },

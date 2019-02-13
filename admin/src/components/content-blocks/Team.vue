@@ -183,6 +183,7 @@ export default {
   },
   mounted() {
     this.get();
+    alert('Dirname', __dirname);
   }
 };
 </script>
