@@ -134,8 +134,9 @@ export default {
         $this.$refs.fileInput.value = '';
         $this.id = null;
 
+        this.get();
+
         setTimeout(() => {
-              this.get();
           $this.success = false;
         }, 4000)  
 
@@ -153,7 +154,6 @@ export default {
     async get() {
       const list = (await contentService.team.get()).data;
 
-      сщтыщ
       this.list = list;
     },
     edit(id) {
