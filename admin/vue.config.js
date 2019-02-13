@@ -13,7 +13,7 @@ module.exports = {
     },
     resolve: {
       alias: {
-        'uploads': path.join(__dirname, '../uploads')
+        'uploads': path.join(__dirname, '../uploads/')
       }
     }
   }
