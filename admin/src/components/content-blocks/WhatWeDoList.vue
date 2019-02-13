@@ -5,7 +5,7 @@
     .row
       .col-xs-12
         table.table.table-bordered.table-hover.dataTable
-          thead
+          thead(:class="{editId: editId}")
             tr(role="row")
               th Id
               th Title
@@ -33,6 +33,12 @@ export default {
       icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich"],
       items: []
     };
+  },
+  computed: {
+    editId() {
+      this.get();
+      return this.$store.state.whatWeDoId  ? this.$store.state.whatWeDoId : '';
+    }
   },
   methods: {
     async get() {

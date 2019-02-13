@@ -160,6 +160,7 @@ export default {
   },
   computed: {
     editId() {
+      console.log('upate');
       return this.$store.state.whatWeDoId  ? this.$store.state.whatWeDoId : '';
     },
     keyword() {
@@ -186,16 +187,13 @@ export default {
           id: this.editId
         });
 
-          if (!this.editId) {
+        if (!this.editId) {
           $this.$store.dispatch("whatWeDoEdit", response.data.id);
         }
 
         setTimeout(function(){
           $this.cancel()
         }, 500)
-
-        $this.get();
-
 
         $this.success = true;
 
@@ -211,7 +209,6 @@ export default {
           console.log('ERRR :',err.response.status)
         }
       }
-      this.get();
     },
     async get() {
       this.items = (await contentService.whatWeDo.get()).data;
