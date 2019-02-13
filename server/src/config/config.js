@@ -1,5 +1,5 @@
 export default {
-    port: process.env.PORT || 8191,
+    port: process.env.PORT || 3000,
     db: {
         database: process.env.DB_NAME || 'gta',
         user: process.env.DB_USER || 'root',
