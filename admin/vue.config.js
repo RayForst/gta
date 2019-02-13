@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
   baseUrl: '/admin/',
   lintOnSave: false,
@@ -9,6 +10,11 @@ module.exports = {
           loader: "pug-plain-loader"
         }
       ]
+    },
+    resolve: {
+      alias: {
+        'uploads': path.join(__dirname, '../uploads')
+      }
     }
   }
 };

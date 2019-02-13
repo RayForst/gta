@@ -22,7 +22,7 @@
                   img(
                     v-if="item.image"
                     class="uploaded-image"
-                    :src="require(imagePath(item.image))"
+                    :src="require('uploads/'+item.image)"
                   )
                 td
                   span.edit(@click="edit(item.id)") Edit
@@ -54,7 +54,7 @@
             img(
               v-if="editImage"
               class="uploaded-image"
-              :src="imagePath(editImage)"
+              :src="require('uploads/'+editImage)"
             )
           label(for="t3") Photo
           input#t3.form-control(placeholder="File" type="file" @change="onFileSelected" ref="fileInput")
@@ -179,14 +179,10 @@ export default {
     cancel() {
       this.clearErrors();
       this.get();
-    },
-    imagePath(img) {
-      return __dirname + '../../uploads/'+ img
     }
   },
   mounted() {
     this.get();
-    console.warn('Dirname', __dirname);
   }
 };
 </script>
