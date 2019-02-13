@@ -2,6 +2,6 @@ import axios from "axios";
 
 export default () => {
   return axios.create({
-    baseURL: 'https://kolpakov.work/api/'
+    baseURL: 'http://localhost:6680/api/'
   });
 };

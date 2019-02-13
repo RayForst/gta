@@ -262,9 +262,7 @@ module.exports = {
 
                 res.send(services)
             } else {
-                services = await Models.Service.findAll({
-                    raw: true,
-                })
+                services = await Models.Service.findAll({})
 
                 for (let i = 0; i < services.length; i++) { 
                     let gallery = await Models.ImageGallery.findOne({
@@ -273,16 +271,11 @@ module.exports = {
                         },
                     })
 
-                    console.log('LOOOKING FOR ID', services[i].id)
-                    
-                    console.log(gallery)
-                    
                     if (gallery) {
                         services[i].gallery = gallery.dataValues.images
                     } else {
                         services[i].gallery = false
                     }
-                    services[i].title = 'tesstt'
                 }
 
                 res.send(services)
@@ -403,7 +396,6 @@ module.exports = {
                     })
 
                     services[i].gallery = gallery.dataValues.images
-                    services[i].title = 'tesstt'
                 }
           
                 res.send(services)

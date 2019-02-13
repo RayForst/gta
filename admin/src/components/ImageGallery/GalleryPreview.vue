@@ -6,12 +6,12 @@
       )
         a(
           target="_blank"
-          :href="require('uploads/'+image)"
+          :href="'/uploads/'+image"
         )
           img(
             v-if="image"
             class="uploaded-image-gallery"
-            :src="require('uploads/'+image)"
+            :src="'/uploads/'+image"
           )
         a.remove(@click="remove(image)")
           i.glyphicon.glyphicon-trash

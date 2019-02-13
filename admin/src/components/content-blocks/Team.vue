@@ -22,7 +22,7 @@
                   img(
                     v-if="item.image"
                     class="uploaded-image"
-                    :src="require('uploads/'+item.image)"
+                    :src="'/uploads/'+item.image"
                   )
                 td
                   span.edit(@click="edit(item.id)") Edit
@@ -54,7 +54,7 @@
             img(
               v-if="editImage"
               class="uploaded-image"
-              :src="require('uploads/'+editImage)"
+              :src="'/uploads/'+editImage"
             )
           label(for="t3") Photo
           input#t3.form-control(placeholder="File" type="file" @change="onFileSelected" ref="fileInput")
@@ -135,8 +135,11 @@ export default {
         $this.id = null;
 
         setTimeout(() => {
+              this.get();
           $this.success = false;
         }, 4000)  
+
+    
       } catch(err) {
         if (err.response.status === 422) {
           err.response.data.errors.forEach(function(element) {
@@ -146,11 +149,11 @@ export default {
           console.log('ERRR :',err.response.status)
         }
       }
-      this.get();
     },
     async get() {
       const list = (await contentService.team.get()).data;
 
+      сщтыщ
       this.list = list;
     },
     edit(id) {

@@ -10,11 +10,6 @@ module.exports = {
           loader: "pug-plain-loader"
         }
       ]
-    },
-    resolve: {
-      alias: {
-        'uploads': path.join(__dirname, '../uploads/')
-      }
     }
   }
 };

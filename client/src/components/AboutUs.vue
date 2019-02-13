@@ -76,7 +76,7 @@ export default {
 
       if (gallery && gallery.images) {
         this.gallery = gallery.images.split(',').map(function(image){
-          return require('uploads/'+image)
+          return '/uploads/'+image
         })
       }
       
@@ -86,7 +86,7 @@ export default {
 
       if (gallery2 && gallery2.images) {
         this.gallery2 = gallery2.images.split(',').map(function(image){
-          return require('uploads/'+image)
+          return '/uploads/'+image
         })
       }
 

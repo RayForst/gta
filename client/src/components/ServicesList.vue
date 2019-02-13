@@ -66,7 +66,7 @@ export default {
       list.forEach(element => {
         if (element.gallery && element.gallery.indexOf(',') > -1) {
           element.gallery =  element.gallery.split(',').map(function(image){
-            return require('uploads/'+image)
+            return '/uploads/'+image
           })
         } else { 
           element.gallery = false
