@@ -151,7 +151,7 @@ export default {
           error: null,
         },
       },
-      icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich"],
+      icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich", "window-frosting", "channel-letters", "led-panels", "reception-sign", "sign-boxes"],
       items: [],
       success: false,
       serverError: null,
