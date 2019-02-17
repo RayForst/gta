@@ -30,7 +30,7 @@ import contentService from "@/services/ContentService";
 export default {
   data() {
     return {
-      icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich"],
+      icons: ["3d-letters", "decals", "glass", "large", "promo", "sandvich", "window-frosting", "channel-letters", "led-panels", "reception-sign", "sign-boxes"],
       items: []
     };
   },
@@ -45,7 +45,6 @@ export default {
       this.items = (await contentService.whatWeDo.get()).data;
     },
     edit(id) {
-      console.log('edit id',id);
        this.$store.dispatch("whatWeDoEdit", id);
     },
     async remove(id) {

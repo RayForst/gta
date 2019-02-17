@@ -14,7 +14,7 @@
             .row.header-padding
               .col-xs-12.col-sm-6
                 h1 {{ title }}
-                p.heading-caption {{ caption }}
+                p.heading-caption(style="margin-left:0;") {{ caption }} еуые
                 .row
                   .col-xs-12.center-xs.start-sm
                     router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
