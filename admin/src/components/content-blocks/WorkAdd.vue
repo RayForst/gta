@@ -90,7 +90,8 @@
       )
         label(for="testid-2") Second column description
         wysiwyg#testid-2(v-model="form.description2.value")
-      appImageGallery(v-if="!updateGallery" :keyword="keyword" name="Gallery")
+      template(v-if="editId")
+        appImageGallery(v-if="!updateGallery" :keyword="keyword" name="Gallery")
       .btn-grp
         button.btn.btn-success Save
         button(@click="cancel" type="button").btn.btn-danger Cancel

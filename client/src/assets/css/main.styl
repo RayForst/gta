@@ -392,3 +392,20 @@ a:active {
     margin: 0;
   }
 }
+
+.square-block {
+  background-size: cover;
+  background-position: center center;
+
+   &:before {
+    content: '';
+    padding-top: 100%;
+    display: block;
+  } 
+
+  &-wide {
+    &:before {
+      padding-top: 60%;
+    } 
+  }
+}

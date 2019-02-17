@@ -10,19 +10,34 @@
             .row.relative
               template(v-if="morph")
                 ui-morph(type="morph2" size="medium" :class="(index + 1) % 2 !== 0 ? 'left' : 'right'")
-              .col-xs-12.col-md-5(:class="(index + 1) % 2 !== 0 ? 'col-md-offset-1' : ''")
-                .row
-                  .col-xs-12.center-xs.start-sm
-                    img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
-                h3 {{ item.title }}
-                p {{ item.shortDescription }}
-                router-link.link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }")
-                  | Learn more
-                  img.icon(src="../assets/img/arrow.svg", alt="")
-              .col-xs-12.col-md-6(:class="(index + 1) % 2 !== 0 ? 'first-md owl-dots-left' : 'col-md-offset-1 owl-dots-right'")
-                .carousel-wrap(v-if="item.gallery")
-                  carousel(loop=true :items=1 :dots="true" :nav="false")
-                    <img v-for="(src, index) in item.gallery" :src="src">
+              template(v-if="item.gallery")
+                .col-xs-12.col-md-5(:class="(index + 1) % 2 !== 0 ? 'col-md-offset-1' : ''")
+                  .row
+                    .col-xs-12.center-xs.start-sm
+                      img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
+                  h3 {{ item.title }}
+                  p {{ item.shortDescription }}
+                  router-link.link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }")
+                    | Learn more
+                    img.icon(src="../assets/img/arrow.svg", alt="")
+                .col-xs-12.col-md-6(:class="(index + 1) % 2 !== 0 ? 'first-md owl-dots-left' : 'col-md-offset-1 owl-dots-right'")
+                  .carousel-wrap(v-if="item.gallery")
+                    carousel(loop=true :items=1 :dots="true" :nav="false")
+                      .square-block.square-block-wide(
+                        v-for="(src, index) in item.gallery"
+                        :style="{ backgroundImage: 'url(' + src + ')' }"
+                      )
+                      //- <img v-for="(src, index) in item.gallery" :src="src">
+              tamplate(v-else)
+                .col-xs-12
+                  .row
+                    .col-xs-12.center-xs.start-sm
+                      img(:src="require('../assets/img/what-we-do/'+item.icon+'.svg')", alt="")
+                  h3 {{ item.title }}
+                  p {{ item.shortDescription }}
+                  router-link.link(:to="{ name: 'what-we-do-item', params: { slug: item.slug } }")
+                    | Learn more
+                    img.icon(src="../assets/img/arrow.svg", alt="")
           template(v-else)
             .row
               .col-xs-12.center-xs.start-sm
@@ -64,8 +79,10 @@ export default {
       console.log(list);
 
       list.forEach(element => {
-        if (element.gallery && element.gallery.indexOf(',') > -1) {
+        console.log('LIST ITERATINNG', element);
+        if (element.gallery && ((element.gallery.indexOf(',') > -1) || element.gallery.length)) {
           element.gallery =  element.gallery.split(',').map(function(image){
+            
             return '/uploads/'+image
           })
         } else { 

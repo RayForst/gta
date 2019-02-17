@@ -30,10 +30,9 @@
                     img(src="../assets/img/02.png", srcset="../assets/img/02@2x.png 2x" alt="")
           template(v-else-if="contentKey !== 'error'")
             .row.middle-xs.header-padding
-              .col-xs-12.col-sm-7.col-md-8
-                h1 {{ title }}
-                p.heading-caption {{ caption }}
-              .col-xs-12.col-sm-5.col-md-4.center-xs
+              .col-xs-12(style="text-align:center;")
+                h1(style="margin:0 auto;") {{ title }}
+                p.heading-caption(style="margin:20px auto 0 auto;") {{ caption }}
                 router-link.ui-btn(v-if="showContactButton" :to="{ name: 'contacts' }") Request a quote
         template(v-else-if="itemView.title")
           .row.middle-xs.crumbs-hero
@@ -44,18 +43,17 @@
               | / 
               span {{ itemView.breadcrumbs[1].name }}
           .row.middle-xs.header-padding
-            .col-xs-12.col-sm-7.col-md-8
+            .col-xs-12(style="text-align:center;")
               template(v-if="typeof itemView.icon === 'string'")
                 .row.icon-heading.align-center
-                  .col-xs-12.col-md-5.col-lg-3.center-xs
+                  .col-xs-12(style="text-align:center;")
                     img(:src="require('../assets/img/what-we-do/'+itemView.icon)" alt="")
-                  .col-xs-12.col-md-7.col-lg-9
-                    h1 {{ itemView.title }}
-                    p.heading-caption {{ itemView.caption }}
+                    h1(style="margin:0 auto;") {{ itemView.title }}
+                    p.heading-caption(style="margin:20px auto;") {{ itemView.caption }}
               template(v-else)
-                h1 {{ itemView.title }}
-                p.heading-caption {{ itemView.caption }}
-            .col-xs-12.col-sm-5.col-md-4.center-xs
+                h1(style="margin:0 auto;") {{ itemView.title }}
+                p.heading-caption(style="margin:20px auto;") {{ itemView.caption }}
+            .col-xs-12(style="text-align:center;")
               router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
       icon-waves
 </template>
@@ -185,6 +183,9 @@ header {
   padding-bottom: 80px;
 }
 
+.heading-caption {
+  margin: 20px auto;
+}
 nav {
   color: #fff;
   padding: 10px 0;

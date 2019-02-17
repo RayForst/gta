@@ -9,7 +9,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './../uploads')
+        cb(null, path.join(__dirname, '/../../uploads'))
     },
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
+        console.log(file.originalname);
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
             const error = new Error('Only image files are allowed!')
             error.code = 'LIMIT_FILE_TYPES'

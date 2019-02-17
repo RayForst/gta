@@ -85,6 +85,7 @@ export default {
       serverError: null,
       success: false,
       icons: ["temporary-img"],
+      editId: null
     }
   },
   methods: {
@@ -93,9 +94,11 @@ export default {
       $this.clearErrors()
 
       try {
+        console.log('EDIT ID', this.editId)
         const response = await contentService.whyUs.save({
           icon: this.form.icon.value,
           text: this.form.text.value,
+          id: this.editId
         })
         $this.success = true;
 
@@ -128,7 +131,18 @@ export default {
         this.get(); 
       }
     },
+    edit(id) {
+      const selected = this.items.filter(obj => obj.id === id)[0];
+
+      this.form.text.value = selected.text;
+      this.form.icon.value = selected.icon;
+      this.editId = id;
+    },
     cancel() {
+      this.form.text.value = null;
+      this.form.icon.value = null;
+      this.editId = null;
+
       this.get();
     },
     clearErrors() {

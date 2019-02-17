@@ -252,17 +252,19 @@ module.exports = {
                     },
                 })
 
-                services = services.toJSON()
-
                 if (gallery) {
                     services.gallery = gallery.dataValues.images
                 } else {
                     services.gallery = false
                 }
 
+                services = services.toJSON()
+
                 res.send(services)
             } else {
-                services = await Models.Service.findAll({})
+                services = await Models.Service.findAll({
+                    raw: true,
+                })
 
                 for (let i = 0; i < services.length; i++) { 
                     let gallery = await Models.ImageGallery.findOne({
@@ -276,6 +278,11 @@ module.exports = {
                     } else {
                         services[i].gallery = false
                     }
+
+                    
+
+                    console.log('GALLERY <BR>')
+                    console.log(services[i].gallery)
                 }
 
                 res.send(services)

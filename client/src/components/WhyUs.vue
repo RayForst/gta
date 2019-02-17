@@ -7,7 +7,7 @@
           h2 {{ title }}
           p.caption {{ caption }}
       .row
-          .col-xs-12.col-sm-6(v-for="item in list" :key="item.id")
+          .col-xs-12.col-sm-6.item-wrap(v-for="item in list" :key="item.id")
             .item
               .row
                 .col-xs-12
@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.item-wrap {
+  margin-bottom: 40px;
+}
+
 .item {
   font-size: 22px;
   line-height: 1.27;
@@ -59,9 +63,9 @@ export default {
   box-shadow: 0 0 40px 0 rgba(9, 39, 75, 0.11);
   background-color: #ffffff;
   margin: 0 12px;
-  margin-bottom: 40px;
   padding: 30px 40px;
   box-sizing: border-box;
+  height: 100%;
 
   img {
     margin-bottom: 20px;
