@@ -59,7 +59,8 @@ export default {
       const list = (await contentService.customerReviews.get()).data;
 
       list.forEach(element => {
-        element.gallery = element.gallery.indexOf(',') > -1 ? element.gallery.split(',')[0] : ''
+        
+        element.gallery = (element.gallery && ((element.gallery.indexOf(',') > -1) || element.gallery.length)) ? element.gallery.split(',')[0] : ''
       });
 
       this.items = list;

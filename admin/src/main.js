@@ -35,7 +35,8 @@ Vue.use(wysiwyg, {
     "code": true,
     "image": true,
     "headings": true
-  }
+  },
+  forcePlainTextOnPaste: true
 });
 new Vue({
   router,

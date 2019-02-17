@@ -75,7 +75,7 @@ export default {
 
       console.log('content', content)
 
-      if ( content.gallery && content.gallery.indexOf(',') > -1) {
+      if ( content.gallery && ((element.gallery.indexOf(',') > -1) || element.gallery.length)) {
         this.gallery = content.gallery.split(',').map(function(image){
           return '/uploads/'+image
         })
