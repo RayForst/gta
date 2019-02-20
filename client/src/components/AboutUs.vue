@@ -9,7 +9,7 @@
       .row.desc-wrap
         template(v-if="gallery.length")
           .col-xs-12.col-sm-5
-            p.pre(v-html="description")
+            p.pre.editor-result(v-html="description")
           .col-xs-12.col-sm-6.col-sm-offset-1
             .carousel-wrap.owl-dots-left
               carousel(loop=true :items=1 :dots="true" :nav="false")
@@ -22,7 +22,7 @@
               )
         template(v-else)
           .col-xs-12
-            p.pre(v-html="description")
+            p.pre.editor-result(v-html="description")
       .spacer
       .row.short-desc-wrap
         template(v-if="gallery2.length")
@@ -37,10 +37,10 @@
                 @hide="handleHide"
               )
           .col-xs-12.col-sm-5.col-sm-offset-1
-            p.pre(v-html="shortDescription")
+            p.pre.editor-result(v-html="shortDescription")
         template(v-else)
           .col-xs-12
-            p.pre(v-html="shortDescription")
+            p.pre.editor-result(v-html="shortDescription")
 </template>
 
 

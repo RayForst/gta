@@ -1,7 +1,7 @@
 <template lang="pug">
   section.relative
     ui-morph(type="morph5" size="large")
-    .container-fluid.mid.relative
+    .container-fluid.small.relative
       .row
         .col-xs-12.section-heading.line
           h2 {{ title }}

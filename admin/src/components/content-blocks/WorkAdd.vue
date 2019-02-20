@@ -81,15 +81,37 @@
           v-if="form.image.error"
         ) {{ form.image.error }}
       .form-group(
+        :class="{ 'has-error': form.image2.error }"
+      )
+        div
+          img(
+            v-if="editImage2"
+            class="uploaded-image"
+            :src="'/uploads/'+editImage2"
+          )
+        label(for="t4") Person company logo
+        input#t4.form-control(placeholder="File" type="file" @change="onFileSelected2" ref="fileInput2")
+        span.help-block(
+          v-if="form.image2.error"
+        ) {{ form.image2.error }}
+      .form-group(
         :class="{ 'has-error': form.description.error }"
       )
         label(for="testid-2") First column description
-        wysiwyg#testid-2(v-model="form.description.value")
+        ckeditor#testid-3(
+          :editor="editor"
+          v-model="form.description.value"
+          :config="editorConfig"
+        )
       .form-group(
         :class="{ 'has-error': form.description2.error }"
       )
         label(for="testid-2") Second column description
-        wysiwyg#testid-2(v-model="form.description2.value")
+        ckeditor#testid-3(
+          :editor="editor"
+          v-model="form.description2.value"
+          :config="editorConfig"
+        )
       template(v-if="editId")
         appImageGallery(v-if="!updateGallery" :keyword="keyword" name="Gallery")
       .btn-grp
@@ -103,10 +125,15 @@
 <script>
 import contentService from "@/services/ContentService";
 import appImageGallery from "@/components/ImageGallery/ImageGallery";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
   data() {
     return {
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: [ 'bold', 'italic', 'link', 'blockquote', 'numberedList', 'bulletedList']
+      },
       form: {
         title: {
           value: null,
@@ -133,14 +160,18 @@ export default {
           error: null,
         },
         description: {
-          value: null,  
+          value: '',  
           error: null,
         },
         description2: {
-          value: null,
+          value: '',
           error: null,
         },
         file: {
+          value: null,
+          error: null,
+        },
+        file2: {
           value: null,
           error: null,
         },
@@ -148,8 +179,13 @@ export default {
           value: null,
           error: null,
         },
+        image2: {
+          value: null,
+          error: null,
+        },
       },
       editImage: null,
+      editImage2: null,
       items: [],
       success: false,
       serverError: null,
@@ -175,16 +211,28 @@ export default {
       const $this = this;
       $this.clearErrors()
       let img = null;
+      let img2 = null;
       let imageEdit = this.form.file.value ? false : imageEdit;
+      let imageEdit2 = this.form.file2.value ? false : imageEdit2;
 
       // new image or edit image
-      if (!imageEdit) {
+      if (!imageEdit && this.form.file.value)  {
         let fd = new FormData();
         fd.append('file', this.form.file.value)
         let image = (await contentService.upload.save(fd)).data;
         img = image.file.filename;
       } else {
         img = this.editImage;
+      }
+
+      // new image or edit image
+      if (!imageEdit2 && this.form.file2.value) {
+        let fd = new FormData();
+        fd.append('file', this.form.file2.value)
+        let image = (await contentService.upload.save(fd)).data;
+        img2 = image.file.filename;
+      } else {
+        img2 = this.editImage2;
       }
 
       try {
@@ -198,6 +246,7 @@ export default {
           description: this.form.description.value,
           description2: this.form.description2.value,
           image: img,
+          image2: img2,
           id: this.editId
         });
 
@@ -239,6 +288,7 @@ export default {
       this.form.description.value = selected.description;
       this.form.description2.value = selected.description2;
       this.editImage = selected.image;
+      this.editImage2 = selected.image2;
       this.$store.dispatch("ourWorksEdit", selected.id);
     },
     async clearGallery() {
@@ -264,11 +314,13 @@ export default {
       this.form.person_name.value = null;
       this.form.person_position.value = null;
       this.form.comment.value = null;
-      this.form.description.value = null;
-      this.form.description2.value = null;
+      this.form.description.value = '';
+      this.form.description2.value = '';
       this.editImage = null;
+      this.editImage2 = null;
       this.$store.dispatch("ourWorksEdit", null);
       this.$refs.fileInput.value = '';
+      this.$refs.fileInput2.value = '';
       this.clearGallery();
     },
     clearErrors() {
@@ -279,6 +331,9 @@ export default {
     },
     onFileSelected(event) {
       this.form.file.value = event.target.files[0];
+    },
+    onFileSelected2(event) {
+      this.form.file2.value = event.target.files[0];
     },
   },
   watch: {

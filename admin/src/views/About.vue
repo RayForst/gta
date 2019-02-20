@@ -4,13 +4,13 @@
       h1 About us
     section.content
       app-tabs
-        app-tab(name="Meta" :selected="true")
+        app-tab(name="Meta")
           app-meta(page="about")
         app-tab(name="Head")
           app-head(page="about")
         app-tab(name="Block info")
           app-block-info(page='about')
-        app-tab(name="Content")
+        app-tab(name="Content" :selected="true")
           app-about
 </template>
 

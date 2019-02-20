@@ -14,7 +14,11 @@
         .col-xs-12.col-md-6.col-md-offset-1
           .carousel-wrap.owl-dots-left(v-if="gallery")
             carousel(loop=true :items=1 :dots="true" :nav="false")
-              <img v-for="(src, index) in gallery" :src="src" @click="() => showImg(index)">
+              .square-block.square-block-wide(
+                v-for="(src, index) in gallery"
+                :style="{ backgroundImage: 'url(' + src + ')' }"
+                @click="() => showImg(index)"
+              )
             vue-easy-lightbox(
               :visible="galleryVisible"
               :imgs="gallery"
@@ -73,9 +77,7 @@ export default {
       this.shortDescription = content.shortDescription;
       this.articleTitle = content.articleTitle;
 
-      console.log('content', content)
-
-      if ( content.gallery && ((element.gallery.indexOf(',') > -1) || element.gallery.length)) {
+      if (content.gallery && ((content.gallery.indexOf(',') > -1) || content.gallery.length)) {
         this.gallery = content.gallery.split(',').map(function(image){
           return '/uploads/'+image
         })

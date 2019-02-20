@@ -577,6 +577,14 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@ckeditor/ckeditor5-build-classic@^11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-11.2.0.tgz#205ae1bd5495b2a7c9f5a4fef5241aca4118229a"
+
+"@ckeditor/ckeditor5-vue@^1.0.0-beta.1":
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-vue/-/ckeditor5-vue-1.0.0-beta.1.tgz#976bf7b00bd5f9d99637bfa8279e35f2e899c334"
+
 "@intervolga/optimize-cssnano-plugin@^1.0.5":
   version "1.0.6"
   resolved "http://registry.npm.taobao.org/@intervolga/optimize-cssnano-plugin/download/@intervolga/optimize-cssnano-plugin-1.0.6.tgz#be7c7846128b88f6a9b1d1261a0ad06eb5c0fdf8"
@@ -7086,7 +7094,11 @@ vue2-dropzone@^3.0.4:
   dependencies:
     dropzone "^5.5.0"
 
-vue@^2.5.13, vue@^2.5.17:
+vue@^2.5.13:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.6.tgz#dde41e483c11c46a7bf523909f4f2f816ab60d25"
+
+vue@^2.5.17:
   version "2.5.17"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 

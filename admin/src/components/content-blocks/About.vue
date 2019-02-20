@@ -1,16 +1,19 @@
 <template lang="pug">
   form(@submit.prevent="save")
-    appImageGallery(keyword="about-gallery" name="Gallery")
-    <br />
-    appImageGallery(keyword="about-gallery-2" name="Gallery 2")
+    appImageGallery(keyword="about-gallery" name="First gallery")
     .form-group(
       :class="{ 'has-error': form.description.error }"
     )
       label(for="testid-2") 
         | Description
         i.req-star *
-      wysiwyg#testid-2(v-model="form.description.value")
+      ckeditor#testid-2(
+        :editor="editor"
+        v-model="form.description.value"
+        :config="editorConfig"
+      )
       span.help-block(v-if="form.description.error") {{ form.description.error }}
+    appImageGallery(keyword="about-gallery-2" name="Second gallery")
     .form-group(
       :class="{ 'has-error': form.shortDescription.error }"
     )
@@ -30,10 +33,15 @@
 <script>
 import appImageGallery from "@/components/ImageGallery/ImageGallery";
 import contentService from "@/services/ContentService";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
   data() {
     return {
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: [ 'bold', 'italic', 'link', 'blockquote', 'numberedList', 'bulletedList']
+      },
       form: {
         gallery: {
           value: [],
