@@ -17,7 +17,7 @@
                 td {{ item.id }}
                 td {{ item.text }}
                 td
-                  img(v-if="item.icon" :src="require('../../assets/img/why-us/'+item.icon+'.png')" alt="")
+                  img(v-if="item.icon" :src="require('../../assets/img/why-us/'+item.icon+'.svg')" alt="")
                 td
                   span.edit(@click="edit(item.id)") Edit
                   span.delete(@click="remove(item.id)") Delete
@@ -51,7 +51,7 @@
               img(
                 height="100" 
                 v-if="form.icon.value"
-                :src="require('../../assets/img/why-us/'+form.icon.value+'.png')"
+                :src="require('../../assets/img/why-us/'+form.icon.value+'.svg')"
                 alt=""
               )
           span.help-block(
@@ -84,7 +84,7 @@ export default {
       },
       serverError: null,
       success: false,
-      icons: ["temporary-img"],
+      icons: ["care", "do-our-best", "experience", "vision"],
       editId: null
     }
   },
