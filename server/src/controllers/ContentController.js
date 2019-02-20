@@ -251,6 +251,8 @@ module.exports = {
                         keyword: 'what-we-do-'+services.id 
                     },
                 })
+                services = services.toJSON()
+
 
                 if (gallery) {
                     services.gallery = gallery.dataValues.images
@@ -258,7 +260,6 @@ module.exports = {
                     services.gallery = false
                 }
 
-                services = services.toJSON()
 
                 res.send(services)
             } else {

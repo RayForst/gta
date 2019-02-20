@@ -114,6 +114,8 @@ module.exports = app => {
             .isLength({ max: 255 }).withMessage('Position should be 255 chars long'),
         check('image')
             .isLength({ min: 1 }).withMessage('Cannot be empty'),
+        check('image2')
+            .isLength({ min: 1 }).withMessage('Cannot be empty'),
         check('comment')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 500 }).withMessage('Comment should be 255 chars long'),

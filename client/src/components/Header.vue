@@ -17,7 +17,7 @@
                 p.heading-caption(style="margin-left:0;") {{ caption }}
                 .row
                   .col-xs-12.center-xs.start-sm
-                    router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+                    router-link.ui-btn(:to="{ name: 'contacts' }" style="margin-top: 10px;") Request a quote
               .col-xs-12.col-sm-6.graphics-wrap
                 .graphics
                   div.graph.graph-1
@@ -33,7 +33,7 @@
               .col-xs-12(style="text-align:center;")
                 h1(style="margin:0 auto;") {{ title }}
                 p.heading-caption(style="margin:20px auto 0 auto;") {{ caption }}
-                router-link.ui-btn(v-if="showContactButton" :to="{ name: 'contacts' }") Request a quote
+                router-link.ui-btn(v-if="showContactButton" :to="{ name: 'contacts' }" style="margin-top: 10px;") Request a quote
         template(v-else-if="itemView.title")
           .row.middle-xs.crumbs-hero
             .col-xs-12.breadcrumbs
@@ -54,7 +54,7 @@
                 h1(style="margin:0 auto;") {{ itemView.title }}
                 p.heading-caption(style="margin:20px auto;") {{ itemView.caption }}
             .col-xs-12(style="text-align:center;")
-              router-link.ui-btn(:to="{ name: 'contacts' }") Request a quote
+              router-link.ui-btn(:to="{ name: 'contacts' }" style="margin-top: 10px;") Request a quote
       icon-waves
 </template>
 

@@ -4,13 +4,13 @@
       h1 Our works
     section.content
       app-tabs
-        app-tab(name="Meta" :selected="true")
+        app-tab(name="Meta")
           app-meta(page="works")
         app-tab(name="Head")
           app-head(page="works")
         app-tab(name="Block info")
           app-block-info(page='works')
-        app-tab(name="What we do")
+        app-tab(name="Our works" :selected="true")
           app-works-list
           app-works-add
 </template>

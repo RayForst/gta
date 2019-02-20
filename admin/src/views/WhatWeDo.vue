@@ -4,13 +4,13 @@
       h1 What we do
     section.content
       app-tabs
-        app-tab(name="Meta" :selected="true")
+        app-tab(name="Meta")
           app-meta(page="what-we-do")
         app-tab(name="Head")
           app-head(page="what-we-do")
         app-tab(name="Block info")
           app-block-info(page='what-we-do')
-        app-tab(name="What we do")
+        app-tab(name="What we do" :selected="true")
           app-what-we-do-list
           app-what-we-do
 </template>

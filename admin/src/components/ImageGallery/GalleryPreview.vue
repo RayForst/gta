@@ -14,7 +14,7 @@
             :src="'/uploads/'+image"
           )
         a.remove(@click="remove(image)")
-          i.glyphicon.glyphicon-trash
+          i.glyphicon.glyphicon-remove
 </template>
 
 
@@ -50,13 +50,15 @@ export default {
   display: inline-block;
 
   .remove {
-    position:absolute;
-    right:20px;
-    top:20px;
-    width:20px;
-    height: 20px;
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 18px;
+    height: 18px;
     z-index: 23;
     cursor: pointer;
+    color: red;
+    font-size: 18px;
   }
 }
 </style>

@@ -84,8 +84,10 @@
         :class="{ 'has-error': form.description.error }"
       )
         label(for="testid-2") First column description
-        wysiwyg#testid-2(
+        ckeditor#testid-2(
+          :editor="editor"
           v-model="form.description.value"
+          :config="editorConfig"
         )
         span.help-block(
           v-if="form.description.error"
@@ -94,13 +96,16 @@
         :class="{ 'has-error': form.description2.error }"
       )
         label(for="testid-3") Second column description
-        wysiwyg#testid-3(
+        ckeditor#testid-3(
+          :editor="editor"
           v-model="form.description2.value"
+          :config="editorConfig"
         )
         span.help-block(
           v-if="form.description2.error"
         ) {{ form.description2.error }}
-      appImageGallery(v-if="!updateGallery" :keyword="keyword" name="Gallery")
+      template(v-if="editId")
+        appImageGallery(v-if="!updateGallery" :keyword="keyword" name="Gallery")
       .form-group.has-error(
         v-if="serverError"
       )
@@ -117,10 +122,15 @@
 <script>
 import contentService from "@/services/ContentService";
 import appImageGallery from "@/components/ImageGallery/ImageGallery";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
   data() {
     return {
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: [ 'bold', 'italic', 'link', 'blockquote', 'numberedList', 'bulletedList']
+      },
       form: {
         title: {
           value: null,
@@ -143,11 +153,11 @@ export default {
           error: null,
         },
         description: {
-          value: null,
+          value: '',
           error: null,
         },
         description2: {
-          value: null,
+          value: '',
           error: null,
         },
       },
@@ -247,8 +257,8 @@ export default {
       this.form.shortDescription.value = null;
       this.form.slug.value = null;
       this.form.icon.value = null;
-      this.form.description.value = null;
-      this.form.description2.value = null;
+      this.form.description.value = '';
+      this.form.description2.value = '';
       this.$store.dispatch("whatWeDoEdit", null);
       this.clearGallery();
     },

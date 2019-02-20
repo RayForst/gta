@@ -3,36 +3,28 @@
     .spacer
     .container-fluid.small
       .row
-        .col-xs-12.col-md-4.last-xs
-          .company-logo-wrap
-            img(src="../assets/img/company-logo.jpg", alt="")
+        .col-xs-12.col-md-4.last-xs.first-md
+          .company-logo-wrap(
+            :style="{ backgroundImage: 'url(/uploads/' + person_company_logo + ')' }"
+          )
           span.person
-            span.userpic
-              img(src="../assets/img/userpic.jpeg", alt="")
+            span.userpic(
+              :style="{ backgroundImage: 'url(/uploads/' + person_pic + ')' }"
+            )
             span.user-details
               span.fullname {{ person_name }}
               span.position {{ person_position }}
         .col-xs-12.col-md-7.col-md-offset-1.comment
           | {{ comment }}
     .spacer
-    .carousel-wrap.owl-wrap
+    .carousel-wrap.owl-wrap(v-if="gallery")
       carousel(loop=true autoWidth=true :responsive="{0:{nav:false,dots:true,center:true},1024:{nav:true,dots:false,center:false}}")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
-        .carousel-item
-          .carousel-item-content(style="background-image: url('https://placeimg.com/200/200/any?1')")
+        .carousel-item(
+           v-for="(src, index) in gallery"
+        )
+          .carousel-item-content(
+            :style="{ backgroundImage: 'url(' + src + ')' }"
+          )
     .relative
       ui-morph(type="morph6" size="large")
     .container-fluid.small.relative
@@ -72,7 +64,10 @@ export default {
       description: null,
       comment: null,
       person_name: null,
-      person_position: null
+      person_position: null,
+      gallery: null,
+      person_pic: null,
+      person_company_logo: null
     };
   },
   methods: {
@@ -85,6 +80,14 @@ export default {
       this.comment = content.comment;
       this.person_name = content.person_name;
       this.person_position = content.person_position;
+      this.person_pic = content.image;
+      this.person_company_logo = content.image2;
+
+      if (content.gallery && ((content.gallery.indexOf(',') > -1) || content.gallery.length)) {
+        this.gallery = content.gallery.split(',').map(function(image){
+          return '/uploads/'+image
+        })
+      }
 
       this.$store.commit("setHeader", {
         title: content.title,
@@ -129,9 +132,13 @@ export default {
   margin-bottom: 40px;
   max-width: 300px;
   margin: 0 auto;
+  background-position: center center;
+  background-size: cover;
 
-  img {
-    width: 100%;
+  &:before {
+    content: '';
+    display:block;
+    padding-top:50%;
   }
 }
 

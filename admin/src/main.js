@@ -10,7 +10,9 @@ import router from "./router";
 import store from "./store";
 import wysiwyg from "vue-wysiwyg";
 import { sync } from "vuex-router-sync";
-import moment from 'moment'
+import moment from 'moment';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
 
 Vue.config.productionTip = false;
 
@@ -25,6 +27,7 @@ Vue.filter('formatDate', function(value) {
   }
 });
 
+Vue.use(CKEditor);
 Vue.use(wysiwyg, {
   hideModules: { 
     "justifyLeft": true,

@@ -1,10 +1,9 @@
 <template lang="pug">
   div
     div
-    label {{ name }}
-    appGaleryUpload(@image-upload="upload")
+    h4 {{ name }}
     appGalleryPreview(@gallery-remove="removeFromList" :keyword="keyword" :images="images")
-    <br />
+    appGaleryUpload(@image-upload="upload")
 </template>
 
 <script>
