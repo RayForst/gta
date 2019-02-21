@@ -427,10 +427,10 @@ LOCK TABLES `WhyUs` WRITE;
 
 INSERT INTO `WhyUs` (`id`, `text`, `icon`, `createdAt`, `updatedAt`)
 VALUES
-	(1,'We are transforming business printing from start to finish','temporary-img','2018-11-27 21:23:41','2018-11-27 21:23:41'),
-	(2,'We are transforming business printing from start to finish','temporary-img','2018-11-27 21:24:01','2018-11-27 21:24:01'),
-	(3,'We are transforming business printing from start to finish','temporary-img','2018-11-27 21:24:03','2018-11-27 21:24:03'),
-	(9,'We are transforming business printing from start to finish !!!!!!! 123131','temporary-img','2019-02-17 11:35:05','2019-02-17 11:35:58');
+	(1,'We are transforming business printing from start to finish','care','2018-11-27 21:23:41','2018-11-27 21:23:41'),
+	(2,'We are transforming business printing from start to finish','care','2018-11-27 21:24:01','2018-11-27 21:24:01'),
+	(3,'We are transforming business printing from start to finish','care','2018-11-27 21:24:03','2018-11-27 21:24:03'),
+	(9,'We are transforming business printing from start to finish !!!!!!! 123131','care','2019-02-17 11:35:05','2019-02-17 11:35:58');
 
 /*!40000 ALTER TABLE `WhyUs` ENABLE KEYS */;
 UNLOCK TABLES;
