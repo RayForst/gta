@@ -11,7 +11,7 @@
             .item
               .row
                 .col-xs-12
-                  img(src="../assets/img/temporary-img.png", alt="")
+                  img(:src="require('../assets/img/why-us/'+item.icon+'.svg')" alt="")
               div {{ item.text }}
 </template>
 
