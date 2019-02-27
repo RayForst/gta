@@ -18,9 +18,5 @@ export default {
         login: 'gtaadmin',
         password: '1234',
     },
-    smtp: {
-        clientId: '211057929072-k6n17krph470kba2nir4gkju2vqthgoj.apps.googleusercontent.com',
-        clientSecret: 'iPyBsu9fSvZyZvwlPwjHQHm0',
-        refreshToken: '1/tKkCtatlZmamvn6ai7KPNhHXGQW3mPxPieR8SUDzwOA'
-    }
+    smtpToken: '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'
 }

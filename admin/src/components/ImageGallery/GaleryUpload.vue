@@ -32,16 +32,12 @@ export default {
       fd.append('file', $that.selectedFile)
       try {
         const uploaded = (await contentService.upload.save(fd)).data;
-
         
-        console.log(uploaded);
         $that.$emit('image-upload', uploaded.file)
         eventBus.$emit('uploaded', true)
         $that.$refs.galleryUpload.value = '';
 
       } catch(err) {
-        console.log(err)
-        console.log('errrr catchedd', err.error)
          $that.error = 'Only images allowed';
       }
 

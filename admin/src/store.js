@@ -53,7 +53,6 @@ export default new Vuex.Store({
       commit("setWhatWeDoId", id);
     },
     ourWorksEdit({ commit }, id) {
-      console.log('setting gallery id with', id)
       commit("setOurWorksId", id);
     },
     unreadedRequests({ commit }, count) {

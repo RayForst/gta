@@ -76,10 +76,8 @@ export default {
         page: "what-we-do"
       })).data;
       const list = (await contentService.whatWeDo.get()).data;
-      console.log(list);
 
       list.forEach(element => {
-        console.log('LIST ITERATINNG', element);
         if (element.gallery && ((element.gallery.indexOf(',') > -1) || element.gallery.length)) {
           element.gallery =  element.gallery.split(',').map(function(image){
             

@@ -64,8 +64,6 @@ export default {
       });
 
       this.items = list;
-
-      console.log('client list', list)
       this.title = blockInfo.title;
       this.caption = blockInfo.caption;
       this.buttonText = blockInfo.buttonText;

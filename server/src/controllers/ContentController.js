@@ -1,59 +1,46 @@
 import Models from '../models'
 const { validationResult } = require('express-validator/check')
-// const GoogleTokenProvider = require('refresh-token').GoogleTokenProvider
-// import config from './../config/config'
-// const nodemailer = require('nodemailer')
+import config from './../config/config'
+const nodemailer = require('nodemailer')
+var sgTransport = require('nodemailer-sendgrid-transport')
 
-// function sendMail(req) {
-//     return true
-//     const tokenProvider = new GoogleTokenProvider({
-//         refresh_token: config.smtp.refreshToken,
-//         client_id: config.smtp.clientId,
-//         client_secret: config.smtp.clientSecret,
-//     })
+async function sendMail(req) {
+    var options = {
+        auth: {
+            api_key: config.smtpToken
+        }
+    }
 
-//     tokenProvider.getToken((err, token) => {
-//         console.log(token)
-//         console.log(err)
-//         if (!err) {
-//             const transporter = nodemailer.createTransport({
-//                 host: 'smtp.gmail.com',
-//                 port: 465,
-//                 secure: true,
-//                 auth: {
-//                     type: 'OAuth2',
-//                     password: 'Molotrus6655',
-//                     user: 'sergeikalpakov@gmail.com',
-//                     clientId: config.clientId,
-//                     clientSecret: config.clientSecret,
-//                     refreshToken: config.refreshToken,
-//                     accessToken: token,
-//                 }
-//             })
-        
-//             const HelperOptions = {
-//                 from: 'GTA Website <admin@itdaddy.ca>',
-//                 to: config.mail,
-//                 subject: 'New contact request! + ' + req.body.subject,
-//                 text: `Text from contact form${JSON.stringify(req.body)}`,
-//                 html: `<h1>Text from contact form</h1>
-//                     <div>Subject: ${req.body.subject}</div>
-//                     <div>Client Fullname: ${req.body.name}</div>
-//                     <div>Client Email: ${req.body.email}</div>
-//                     <div>Client phone: ${req.body.phone}</div>
-//                     <div>Message: ${req.body.message}</div>
-//                 `, // html body
-//             }
-        
-//             transporter.sendMail(HelperOptions, (error) => {
-//                 if (error) console.log(error)
-//                 else console.log('Mail send Success')
-        
-//                 transporter.close()
-//             })
-//         } else console.log(err)
-//     })
-// }
+    var transporter = nodemailer.createTransport(sgTransport(options))
+
+    const settings = await Models.Settings.findAll({
+        limit: 1,
+        order: [ [ 'createdAt', 'DESC' ]],
+        raw: true
+    })
+
+    const HelperOptions = {
+        from: 'GTA Website <admin@itdaddy.ca>',
+        to: settings[0].contactFormEmail,
+        subject: 'New contact request! + ' + req.body.type,
+        text: `Text from contact form${JSON.stringify(req.body)}`,
+        html: `<h1>Text from contact form</h1>
+            <div>Subject: ${req.body.type}</div>
+            <div>Client Fullname: ${req.body.fullname}</div>
+            <div>Client Email: ${req.body.email}</div>
+            <div>Client phone: ${req.body.phone}</div>
+            <div>Message: ${req.body.message}</div>
+        `, // html body
+    }
+
+    transporter.sendMail(HelperOptions, (error) => {
+        if (error) console.log(error)
+        else console.log('Mail send Success')
+
+        transporter.close()
+    })
+
+}
 
 module.exports = {
     async getSettings(req, res) {
@@ -234,7 +221,6 @@ module.exports = {
             let services
 
             if (req.query.slug) {
-                console.log('SINGLE SELECT TEST')
                 services = await Models.Service.findOne({
                     where: { slug: req.query.slug },
                 })
@@ -279,11 +265,6 @@ module.exports = {
                     } else {
                         services[i].gallery = false
                     }
-
-                    
-
-                    console.log('GALLERY <BR>')
-                    console.log(services[i].gallery)
                 }
 
                 res.send(services)
@@ -654,7 +635,7 @@ module.exports = {
         try {
             const record = await Models.ContactRequest.create(req.body)
             
-            // sendMail(req)
+            sendMail(req)
             res.send(record ? record.toJSON() : {})
         } catch (err) {
             console.log(err)
@@ -675,10 +656,8 @@ module.exports = {
             })
 
             if (record) {
-                console.log('reccorrd exists')
                 record.update(req.body)
             } else {
-                console.log('reccorrd dos not exists')
                 record = await Models.ImageGallery.create(req.body)
             }
             
@@ -692,7 +671,6 @@ module.exports = {
     },
     async getGallery(req, res) {
         try {
-            console.log('route hit')
             const records = await Models.ImageGallery.findOne({
                 where: { keyword: req.query.keyword },
             })

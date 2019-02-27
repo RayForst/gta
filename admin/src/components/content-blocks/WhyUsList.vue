@@ -94,7 +94,6 @@ export default {
       $this.clearErrors()
 
       try {
-        console.log('EDIT ID', this.editId)
         const response = await contentService.whyUs.save({
           icon: this.form.icon.value,
           text: this.form.text.value,

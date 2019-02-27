@@ -21,7 +21,8 @@
                   )
                     option(
                       :value="type" 
-                      v-for="type in subjectTypes"
+                      v-for="type, index in subjectTypes"
+                      :selected="index === 0 ? true : false"
                     ) {{ type }}
                 span.help-block(
                   v-if="form.type.error"
@@ -125,15 +126,9 @@ export default {
     return {
       success: false,
       serverError: null,
-      subjectTypes: [
-        'Subject 1',
-        'Subject 2',
-        'Subject 3',
-        'Else'
-      ],
       form: {
         type: {
-            value: 'Subject 1',
+            value: null,
             error: null,
         },
         phone: {
@@ -157,6 +152,23 @@ export default {
   },
   components: {
     uiMorph
+  },
+  computed: {
+    subjectTypes() {
+      if (this.$store.state.settings.subjects) {
+        if (this.$store.state.settings.subjects.indexOf(',') > -1) {
+          let arr = this.$store.state.settings.subjects.split(',');
+          this.form.type.value = arr[0]
+
+          return arr;
+        } else {
+          this.form.type.value = this.$store.state.settings.subjects
+          return [this.$store.state.settings.subjects]
+        }
+      } else {
+        return [];
+      }
+    }
   },
   methods: {
     async save() {
@@ -192,11 +204,9 @@ export default {
       }
     },
     clearForm() {
-      for(var index in this.form) { 
-        this.form[index].value = null
+      for(var index in this.form) {
+        if (index !== 'type') this.form[index].value = null
       }
-
-      this.form.type.value = 'Subject 1'
     },
     resetForm() {
       this.success = false;

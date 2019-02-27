@@ -33,13 +33,11 @@ export default {
     removeFromList(imageMame) {
       var index = this.images.indexOf(',');
 
-      console.log('remove images', this.images);
       index = this.images.indexOf(imageMame);
       if (index > -1) {
         this.images.splice(index, 1);
       }
 
-      console.log('result', this.images)
       this.save();
     },
     async save() {
@@ -54,7 +52,6 @@ export default {
         images = '';
       }
 
-      console.log('savving with keyword ', this.keyword)
       const savedArr = (await contentService.gallery.save({
         images,
         keyword: this.keyword
@@ -72,9 +69,6 @@ export default {
         keyword: $that.keyword
       })).data;
 
-
-      console.log('getting imaages leng', data.images)
-
       if (data.hasOwnProperty('images')) {
         if (data.images.length) {
           $that.images = data.images.split(',')
@@ -87,7 +81,6 @@ export default {
 
   watch: {
     keyword (newId, oldId) {
-      console.log('watchh fire in immage galllery component, keyword now ', this.keyword)
       if (
         (newId === 'work-') ||
         (newId === 'what-we-do-') 

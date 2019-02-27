@@ -62,7 +62,6 @@ export default {
   },
   watch: {
     editId (newId, oldId) {
-      console.log('WATCH IN LIST')
       this.get();
     }
   },

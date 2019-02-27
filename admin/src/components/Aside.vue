@@ -57,7 +57,6 @@ export default {
       } else {
          li.classList.add('menu-open')
       }
-      console.log('clicky!', $event.target.closest('.treeview'));
     }
   }
 }

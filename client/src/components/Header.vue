@@ -98,7 +98,6 @@ export default {
   },
   methods: {
     get() {
-      console.log("in gett", this.contentKey);
       if (!this.contentKey) return;
 
       const blockInfo = this.$store.state.settings.headings.filter(
@@ -146,7 +145,6 @@ export default {
       return this.$store.state.route.path;
     },
     itemView() {
-      console.log("getting item view", this.$store.state.headerData);
       return this.$store.state.headerData;
     }
   },

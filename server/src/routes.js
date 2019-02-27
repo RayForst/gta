@@ -5,7 +5,29 @@ const { check } = require('express-validator/check')
 const multer = require('multer')
 const crypto = require('crypto')
 const path = require('path')
+import jwt from 'jsonwebtoken'
+import config from './config/config'
+import Models from './models'
 
+
+async function validateToken(req, res, next) {
+    if (!req.headers['authorization']) res.status(401).send()
+
+    try {
+        var decoded = jwt.verify(req.headers['authorization'], config.authentication.jwtSecret)
+
+        const user = await Models.User.findOne({
+            where: {
+                login: decoded.login
+            }
+        })
+        
+        if (decoded.password === user.password) next()
+        else res.status(401).send()
+    } catch(err) {
+        res.status(401).send()
+    }
+}
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -43,7 +65,7 @@ module.exports = app => {
     app.post('/admin/login', AuthenticationController.login)
 
     app.get('/settings', ContentController.getSettings)
-    app.post('/settings', [
+    app.post('/settings', validateToken, [
         check('email')
             .isLength({ min: 1 }).withMessage('Cannot be empty'),
         check('contactFormEmail')
@@ -67,7 +89,7 @@ module.exports = app => {
     ], ContentController.saveSettings)
 
     app.get('/content/meta', ContentController.getMeta)
-    app.post('/content/meta', [
+    app.post('/content/meta', validateToken, [
         check('title')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Title should be 255 chars long'),
@@ -78,7 +100,7 @@ module.exports = app => {
     ], ContentController.saveMeta)
 
     app.get('/content/what-we-do', ContentController.getService)
-    app.post('/content/what-we-do', [
+    app.post('/content/what-we-do', validateToken, [
         check('title')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Title should be 255 chars long'),
@@ -96,7 +118,7 @@ module.exports = app => {
     app.delete('/content/what-we-do', ContentController.deleteService)
 
     app.get('/content/work', ContentWorkController.getWork)
-    app.post('/content/work', [
+    app.post('/content/work', validateToken, [
         check('title')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Title should be 255 chars long'),
@@ -123,7 +145,7 @@ module.exports = app => {
     app.delete('/content/work', ContentWorkController.deleteWork)
 
     app.get('/content/block-info', ContentController.getBlockInfo)
-    app.post('/content/block-info',[
+    app.post('/content/block-info', validateToken, [
         check('title')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Title should be 255 chars long'),
@@ -134,7 +156,7 @@ module.exports = app => {
     ], ContentController.saveBlockInfo)
 
     app.get('/content/head', ContentController.getHead)
-    app.post('/content/head', [
+    app.post('/content/head', validateToken, [
         check('title')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Title should be 255 chars long'),
@@ -143,13 +165,13 @@ module.exports = app => {
     ],  ContentController.saveHead)
 
     app.get('/content/about-company', ContentController.getAboutCompany)
-    app.post('/content/about-company', [
+    app.post('/content/about-company', validateToken, [
         check('text')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
     ], ContentController.saveAboutCompany)
 
     app.get('/content/about', ContentController.getAbout)
-    app.post('/content/about', [
+    app.post('/content/about', validateToken, [
         check('description')
             .isLength({ min: 1 }).withMessage('Cannot be empty'),
         check('shortDescription')
@@ -157,10 +179,10 @@ module.exports = app => {
     ], ContentController.saveAbout)
 
     app.get('/content/customer-review', ContentController.getCustomerReview)
-    app.post('/content/customer-review', ContentController.saveCustomerReview)
+    app.post('/content/customer-review', validateToken, ContentController.saveCustomerReview)
 
     app.get('/content/why-us', ContentController.getWhyUs)
-    app.post('/content/why-us', [
+    app.post('/content/why-us', validateToken, [
         check('text')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 255 }).withMessage('Should be 255 chars long'),
@@ -172,7 +194,7 @@ module.exports = app => {
 
 
     app.get('/content/team', ContentController.getTeam)
-    app.post('/content/team', [
+    app.post('/content/team', validateToken, [
         check('fullname')
             .isLength({ min: 1 }).withMessage('Cannot be empty')
             .isLength({ max: 100 }).withMessage('Fullname should be 255 chars long'),

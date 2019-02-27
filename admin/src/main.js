@@ -42,7 +42,6 @@ Vue.use(wysiwyg, {
   forcePlainTextOnPaste: true
 });
 
-console.log('test');
 new Vue({
   router,
   store,
