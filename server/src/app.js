@@ -39,6 +39,8 @@ app.use(function(err, req, res, next) {
         return res.status(422).json({ error: 'Only images are allowed'})
     }
 
+    console.log('IN ERROR OLOLOLO')
+
     next()
 })
 
