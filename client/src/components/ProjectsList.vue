@@ -23,8 +23,9 @@
               )
               .person-review
                 span.person
-                  span.userpic
-                    img(src="../assets/img/userpic.jpeg", alt="")
+                  span.userpic(
+                    :style="{ backgroundImage: 'url(' + '/uploads/'+item.image + ')' }"
+                  )
                   span.user-details
                     span.fullname {{ item.person_name }}
                     span.position {{ item.person_position }}
