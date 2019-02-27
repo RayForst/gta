@@ -58,7 +58,6 @@ export default {
       this.$router.push({ name: "login" });
     },
     asideToggle() {
-      console.log('click', this.$store.state.aside);
       this.$store.dispatch("asideToggle", !this.$store.state.aside);
     }
   },

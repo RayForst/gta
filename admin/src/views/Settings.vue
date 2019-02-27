@@ -20,7 +20,7 @@
               :class="{ 'has-error': form.contactFormEmail.error }"
             )
               label(for="r1") Email for contact form requests
-              input#r1.form-control(v-model="form.contactFormEmail.value" type="email" placeholder="Email")
+              input#r1.form-control(v-model="form.contactFormEmail.value" type="text" placeholder="Email")
               span.help-block(
                 v-if="form.contactFormEmail.error"
               ) {{ form.contactFormEmail.error }}

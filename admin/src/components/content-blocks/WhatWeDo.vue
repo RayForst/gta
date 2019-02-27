@@ -170,7 +170,6 @@ export default {
   },
   computed: {
     editId() {
-      console.log('upate');
       return this.$store.state.whatWeDoId  ? this.$store.state.whatWeDoId : '';
     },
     keyword() {

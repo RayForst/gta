@@ -70,7 +70,6 @@ module.exports = {
                             keyword: 'work-'+works[i].id 
                         },
                     })
-                    console.log('GALLERY', gallery, works[i].id)
 
                     if (gallery) {
                         works[i].gallery = gallery.dataValues.images

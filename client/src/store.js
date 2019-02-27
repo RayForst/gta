@@ -21,6 +21,7 @@ export default new Vuex.Store({
       copyright: '',
       lat: 0,
       long: 0,
+      subjects: [],
       routes: [
         {
           text: "What we do",
@@ -79,8 +80,7 @@ export default new Vuex.Store({
       state.settings.social.twitter = settings.twitter;
       state.settings.social.instagram = settings.instagram;
       state.settings.social.youtube = settings.youtube;
-
-      console.log(state.settings)
+      state.settings.subjects = settings.contactFormSubject;
     }
   },
   actions: {

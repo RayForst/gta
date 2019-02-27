@@ -9,24 +9,16 @@ import path from 'path'
 
 const SERVER_NAME = 'SERVER'
 const consoleSay = (author, message) => `${author}: ${message}`
-
 const app = express()
+
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(expressValidator())
 app.use(cors())
-
-app.use(function (req, res, next) {
-    var filename = path.basename(req.url)
-    console.log('The file ' + filename + ' was requested.')
-    next()
-})
-
 app.use('/img', express.static(__dirname + '/../../uploads'))
 
 require('./routes')(app)
 require('./commands')(app)
-
 
 models.sequelize.sync().then(() => {
     app.listen(config.port)
@@ -34,16 +26,12 @@ models.sequelize.sync().then(() => {
 })
 
 app.use(function(err, req, res, next) {
-    console.log('ERROR', err)
     if (err.code === 'LIMIT_FILE_TYPES') {
         return res.status(422).json({ error: 'Only images are allowed'})
     }
 
-    console.log('IN ERROR OLOLOLO')
-
     next()
 })
-
 
 
 console.log(consoleSay(SERVER_NAME, 'Waking up...'))
