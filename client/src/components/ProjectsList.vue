@@ -38,7 +38,7 @@
               | {{ item.title }}
           p 
             router-link(:to="{ name: 'works-project', params: { slug: item.slug } }")
-              | {{ item.category }} {{ item.slug }}
+              | {{ item.category }}
       .row(v-if='displayLimit < items.length')
         .col-xs-12.center-xs
           button.ui-btn.ui-secondary(@click="increaseDisplayLimit") {{ buttonText }}
@@ -71,8 +71,12 @@ export default {
       const list = (await contentService.works.get()).data;
 
       list.forEach(element => {
-        if (element.gallery && element.gallery.indexOf(',') > -1) {
-          element.gallery =  element.gallery.split(',')[0]
+        if (element.gallery) {
+          if (element.gallery.indexOf(',') > -1) {
+            element.gallery =  element.gallery.split(',')[0]
+          } else {
+            element.gallery =  element.gallery
+          }
         } else { 
           element.gallery = false
         }
