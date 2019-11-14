@@ -42,7 +42,11 @@ export default {
     ) {
       this.$router.push({ name: "login" });
     }
-  }
+  },
+  beforeMount() {
+    const domain = 'https://gtaimagesolutions.com';
+    if (window.location.origin !== domain) window.location.href = domain
+  },
 };
 </script>
 

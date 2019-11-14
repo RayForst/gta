@@ -42,6 +42,8 @@ export default {
   },
   beforeMount() {
     this.getSettings();
+    const domain = 'https://gtaimagesolutions.com';
+    if (window.location.origin !== domain) window.location.href = domain
   },
   mounted() {}
 };
