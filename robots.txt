@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://gtaimagesolutions.com/
+Sitemap: https://gtaimagesolutions.com/sitemap.xml
