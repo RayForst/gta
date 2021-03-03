@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "ev-emitter": "^1.1.1",
     "normalize.css": "^8.0.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "v-owl-carousel": "^1.0.7",
     "vue": "^2.5.17",
